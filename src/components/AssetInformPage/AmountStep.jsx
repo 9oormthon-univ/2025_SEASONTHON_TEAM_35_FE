@@ -21,11 +21,10 @@ export default function AmountStep({ title, value, onChange, error, totalSteps, 
                 <ProgressIndicator totalSteps={totalSteps} currentStep={currentStep} />
             </div>
 
-            {/* 제목 */}
-            {/* ✨ mt-10 (margin-top) 값을 조절해서 프로그레스 바와의 간격을 정하세요! */}
+            {/* 제목 -  mt 값 조절로 프로그레스바와 간격 결정  */}
             <h2 className="mt-10 mb-8 whitespace-pre-wrap text-2xl font-bold leading-tight">{title}</h2>
 
-            {/* 3. 입력창 그룹 */}
+            {/* 입력창 */}
             <div>
                 <div className="flex items-center">
                     <input
@@ -46,7 +45,7 @@ export default function AmountStep({ title, value, onChange, error, totalSteps, 
                     <span className="ml-4 text-2xl font-medium leading-tight">원</span>
                 </div>
 
-                {/* 4. 에러 메시지 */}
+                {/* 에러 메시지 */}
                 <div className="mt-3 ml-1 h-4">
                     {error && (
                         <p className="text-sm text-error">{error}</p>
