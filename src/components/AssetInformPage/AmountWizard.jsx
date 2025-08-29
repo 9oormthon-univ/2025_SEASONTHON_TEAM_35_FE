@@ -3,7 +3,7 @@ import AmountStep from "./AmountStep";
 import BackIcon from '../../assets/icons/back.svg?react';
 import CloseIcon from '../../assets/icons/close.svg?react';
 import { useAmountWizard } from "../../hooks/useAmountWizard";
-
+import ProgressIndicator from "./ProgressIndicator.jsx";
 const variants = {
     enter: (dir) => ({ x: dir > 0 ? 150 : -150, opacity: 0, position: "absolute" }),
     center: { x: 0, opacity: 1, position: "relative" },
@@ -36,6 +36,7 @@ export default function AmountWizard() {
 
     return (
         <div className="flex h-full flex-col">
+            {/* 상단 헤더 */}
             <div className="px-5 pt-6 flex items-center justify-between text-xl">
                 <button onClick={prev} disabled={step === 0} className="p-2 disabled:opacity-30">
                     <BackIcon/>
@@ -43,6 +44,14 @@ export default function AmountWizard() {
                 <button className="p-2">
                     <CloseIcon/>
                 </button>
+            </div>
+            {/* 프로그레스 바 */}
+            <div className="px-7 mt-24">
+                <ProgressIndicator
+                    totalSteps={totalSteps}
+                    currentStep={step}
+                    className="justify-start"
+                />
             </div>
 
             <div className="flex-1 relative">

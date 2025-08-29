@@ -1,10 +1,10 @@
 import React from 'react';
 
-export default function ProgressIndicator({ totalSteps, currentStep }) {
+export default function ProgressIndicator({ totalSteps, currentStep, className="" }) {
     const stepsArray = Array.from({ length: totalSteps }, (_, i) => i);
 
     return (
-        <div className="flex justify-center items-center space-x-2">
+        <div className={`flex items-center space-x-2 ${className}`}>
             {stepsArray.map((index) => (
                 <div
                     key={index}

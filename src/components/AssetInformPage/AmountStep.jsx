@@ -1,5 +1,3 @@
-import ProgressIndicator from "./ProgressIndicator"; // ProgressIndicator를 여기서 import 합니다.
-
 export default function AmountStep({ title, value, onChange, error, totalSteps, currentStep }) {
     const handleInputChange = (e) => {
         const rawValue = e.target.value.replace(/,/g, '');
@@ -16,13 +14,9 @@ export default function AmountStep({ title, value, onChange, error, totalSteps, 
 
     return (
         <div className="p-5 pt-8">
-            {/* 프로그레스 바: justify-start  */}
-            <div className="flex justify-start mt-20">
-                <ProgressIndicator totalSteps={totalSteps} currentStep={currentStep} />
-            </div>
 
             {/* 제목 -  mt 값 조절로 프로그레스바와 간격 결정  */}
-            <h2 className="mt-10 mb-8 whitespace-pre-wrap text-2xl font-bold leading-tight">{title}</h2>
+            <h2 className="mt-1 mb-8 whitespace-pre-wrap text-2xl font-bold leading-tight">{title}</h2>
 
             {/* 입력창 */}
             <div>
