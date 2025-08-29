@@ -1,5 +1,6 @@
-// src/components/AssetInformPage/AmountStep.jsx
-export default function AmountStep({ title, value, onChange, error, progressPercentage }) {
+import ProgressIndicator from "./ProgressIndicator"; // ProgressIndicator를 여기서 import 합니다.
+
+export default function AmountStep({ title, value, onChange, error, totalSteps, currentStep }) {
     const handleInputChange = (e) => {
         const rawValue = e.target.value.replace(/,/g, '');
         if (isNaN(rawValue) && rawValue !== '') return;
@@ -14,16 +15,17 @@ export default function AmountStep({ title, value, onChange, error, progressPerc
     const inputBorderColor = error ? 'border-error ring-error focus:ring-error' : 'border-gray-300 focus:ring-primary-1';
 
     return (
-        <div className="p-5 pt-3">
-            {/* 프로그레스 바 */}
-            <div className="w-full bg-gray-10 h-1 mt-20 rounded-full">
-                <div className="bg-primary-2 h-1 rounded-full transition-all duration-300" style={{ width: `${progressPercentage}%` }} />
+        <div className="p-5 pt-8">
+            {/* 프로그레스 바: justify-start  */}
+            <div className="flex justify-start mt-20">
+                <ProgressIndicator totalSteps={totalSteps} currentStep={currentStep} />
             </div>
 
             {/* 제목 */}
-            <h2 className="mt-11 mb-8 whitespace-pre-wrap text-2xl font-bold leading-tight">{title}</h2>
+            {/* ✨ mt-10 (margin-top) 값을 조절해서 프로그레스 바와의 간격을 정하세요! */}
+            <h2 className="mt-10 mb-8 whitespace-pre-wrap text-2xl font-bold leading-tight">{title}</h2>
 
-            {/* 입력창*/}
+            {/* 3. 입력창 그룹 */}
             <div>
                 <div className="flex items-center">
                     <input

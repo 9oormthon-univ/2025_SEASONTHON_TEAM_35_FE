@@ -25,7 +25,6 @@ export default function AmountWizard() {
     const [error, setError] = useState('');
 
     const current = steps[step];
-    const progressPercentage = ((step + 1) / steps.length) * 100;
 
     const updateValue = (val) => {
         setForm((p) => ({ ...p, [current.key]: val }));
@@ -65,7 +64,7 @@ export default function AmountWizard() {
         <div className="flex h-full flex-col">
             {/* 상단 뒤로가기, 닫기 버튼 */}
             <div className="px-5 pt-6 flex items-center justify-between text-xl">
-                <button onClick={prev} disabled={step === 0} className="px-2 disabled:opacity-30"> -</button>
+                <button onClick={prev} disabled={step === 0} className="px-2 disabled:opacity-30">‹</button>
                 <button className="px-2">✕</button>
             </div>
 
@@ -82,13 +81,14 @@ export default function AmountWizard() {
                         transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
                         className="absolute w-full h-full"
                     >
-                        {/* ✨ 프로그레스 바 값을 props로 전달 */}
+                        {/* ✨ 필요한 모든 정보를 props로 전달 */}
                         <AmountStep
                             title={current.title}
                             value={form[current.key]}
                             onChange={updateValue}
                             error={error}
-                            progressPercentage={progressPercentage}
+                            totalSteps={steps.length}
+                            currentStep={step}
                         />
                     </motion.div>
                 </AnimatePresence>
