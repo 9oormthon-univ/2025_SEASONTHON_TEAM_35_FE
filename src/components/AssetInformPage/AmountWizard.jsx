@@ -1,7 +1,8 @@
-// src/components/AssetInformPage/AmountWizard.jsx
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import AmountStep from "./AmountStep";
+import BackIcon from '../icons/BackIcon.jsx';
+import CloseIcon from '../icons/CloseIcon.jsx';
 
 const variants = {
     enter: (dir) => ({ x: dir > 0 ? 150 : -150, opacity: 0, position: "absolute" }),
@@ -64,8 +65,12 @@ export default function AmountWizard() {
         <div className="flex h-full flex-col">
             {/* 상단 뒤로가기, 닫기 버튼 */}
             <div className="px-5 pt-6 flex items-center justify-between text-xl">
-                <button onClick={prev} disabled={step === 0} className="px-2 disabled:opacity-30">‹</button>
-                <button className="px-2">✕</button>
+                <button onClick={prev} disabled={step === 0} className="p-2 disabled:opacity-30">
+                    <BackIcon />
+                </button>
+                <button className="p-2">
+                    <CloseIcon />
+                </button>
             </div>
 
             {/* 컨텐츠 영역: 이제 애니메이션만 담당합니다. */}
@@ -81,7 +86,7 @@ export default function AmountWizard() {
                         transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
                         className="absolute w-full h-full"
                     >
-                        {/* ✨ 필요한 모든 정보를 props로 전달 */}
+                        {/* 필요한 모든 정보를 props로 전달 */}
                         <AmountStep
                             title={current.title}
                             value={form[current.key]}
