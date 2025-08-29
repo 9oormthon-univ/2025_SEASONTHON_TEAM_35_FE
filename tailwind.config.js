@@ -23,7 +23,7 @@ export default {
           90: "#283038",
           100: "#171F27",
         },
-
+        error: '#FF0000',
       },
       fontFamily: {
         sans: ["Pretendard Variable", "Pretendard", "system-ui", "sans-serif"],

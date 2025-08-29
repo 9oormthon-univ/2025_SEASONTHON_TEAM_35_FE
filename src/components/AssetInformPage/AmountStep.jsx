@@ -1,9 +1,8 @@
-export default function AmountStep({ title, value, onChange }) {
+// src/components/AssetInformPage/AmountStep.jsx
+export default function AmountStep({ title, value, onChange, error, progressPercentage }) {
     const handleInputChange = (e) => {
         const rawValue = e.target.value.replace(/,/g, '');
-        if (isNaN(rawValue) && rawValue !== '') {
-            return;
-        }
+        if (isNaN(rawValue) && rawValue !== '') return;
         if (rawValue === '') {
             onChange('');
             return;
@@ -12,28 +11,46 @@ export default function AmountStep({ title, value, onChange }) {
         onChange(formattedValue);
     };
 
-    return (
-        <section className="flex h-[400px] flex-col justify-center bg-white text-start">
-            <h2 className="mb-10 whitespace-pre-wrap text-2xl font-bold leading-tight">{title}</h2>
+    const inputBorderColor = error ? 'border-error ring-error focus:ring-error' : 'border-gray-300 focus:ring-primary-1';
 
-            {/* 입력란과 '원' 글자를 flex로 묶어둠*/}
-            <div className="flex items-center">
-                <input
-                    type="text"
-                    inputMode="numeric"
-                    placeholder="0"
-                    value={value}
-                    onChange={handleInputChange}
-                    //너비 85%로 잡아둠
-                    className="flex-2 min-w-1 appearance-none rounded-xl border border-gray-300 bg-white px-4 py-2 font-sans text-2xl font-bold shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-2"
-                />
-                {/* 원  컴포넌트  스타일 */}
-                <span className="ml-4 text-2xl font-medium leading-tight ">
-                    원
-                </span>
+    return (
+        <div className="p-5 pt-3">
+            {/* 프로그레스 바 */}
+            <div className="w-full bg-gray-10 h-1 mt-20 rounded-full">
+                <div className="bg-primary-2 h-1 rounded-full transition-all duration-300" style={{ width: `${progressPercentage}%` }} />
             </div>
 
-            <p className="mt-3 ml-1 text-sm text-gray-400">없으면 0을 입력해주세요.</p>
-        </section>
+            {/* 제목 */}
+            <h2 className="mt-11 mb-8 whitespace-pre-wrap text-2xl font-bold leading-tight">{title}</h2>
+
+            {/* 입력창*/}
+            <div>
+                <div className="flex items-center">
+                    <input
+                        type="text"
+                        inputMode="numeric"
+                        placeholder="금액을 입력해 주세요"
+                        value={value}
+                        onChange={handleInputChange}
+                        className={`
+                            flex-1 min-w-0 appearance-none rounded-xl border bg-white px-4 py-2 
+                            h-[50px]
+                            font-sans text-xl font-medium shadow-sm 
+                            focus:outline-none focus:ring-1 
+                            placeholder:text-base placeholder:font-light placeholder:text-gray-400
+                            ${inputBorderColor}
+                        `}
+                    />
+                    <span className="ml-4 text-2xl font-medium leading-tight">원</span>
+                </div>
+
+                {/* 4. 에러 메시지 */}
+                <div className="mt-3 ml-1 h-4">
+                    {error && (
+                        <p className="text-sm text-error">{error}</p>
+                    )}
+                </div>
+            </div>
+        </div>
     );
 }
