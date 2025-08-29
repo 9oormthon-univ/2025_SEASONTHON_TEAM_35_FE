@@ -1,5 +1,6 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider, Navigate, Outlet } from "react-router-dom";
+import AssetInformPage from "./pages/AssetInformPage/index.jsx";
 
 function RootLayout() {
   return <Outlet />;
@@ -11,10 +12,10 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true,
-        element: <Navigate to="/home" replace />
+        element: <Navigate to="/home/inform" replace />
       },
       { path: "home/inform",
-        element:  <div></div>
+        element:  <AssetInformPage/>
       },
     ],
   },
