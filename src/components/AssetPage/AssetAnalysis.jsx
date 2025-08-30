@@ -5,7 +5,7 @@ export default function AssetAnalysis() {
         <div className="w-[361px]  flex flex-col gap-2">
             {/* 헤더 */}
             <div className="flex justify-between items-center">
-                <h2 className="text-base text-gray-100 font-bold">자산 분석</h2>
+                <h2 className="text-base text-gray-100 font-bold pl-[4px]">자산 분석</h2>
                 <Link to="/asset-input" className="text-xs text-gray-40"> {/* 자산 입력 페이지 경로 */}
                     수정하기 &gt;
                 </Link>
