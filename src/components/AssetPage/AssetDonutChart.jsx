@@ -1,50 +1,62 @@
-import { PieChart, Pie, Cell } from "recharts";
+import { PieChart, Pie, Cell } from 'recharts';
 
-const data = [
-    { name: "주식", value: 60 },
-    { name: "비트코인", value: 20 },
-    { name: "채권", value: 15 },
-    { name: "ETF", value: 5 },
+// 데이터 관리, 아래에서 순서 변경 필요
+const assetData = [
+    { name: '주식', value: 60, color: '#00E8C0' },
+    { name: '비트코인', value: 20, color: '#58A9FF' },
+    { name: '채권', value: 15, color: '#FF919F' },
+    { name: 'ETF', value: 5, color: '#FFD562' },
 ];
 
-// Tailwind theme에 맞춰 색상 순서 정의
-const COLORS = ["#00B894", "#6C5CE7", "#0984E3", "#E17055"];
-// ↑ 예시로 primary-2, sub-1, sub-2, sub-3 색상을 직접 HEX 코드로 넣었어요.
-// 프로젝트 theme.colors에 이미 정의돼 있다면 그대로 불러와서 대체하면 됩니다.
+// 차트 시각적 배치를 위한 데이터 (순서 유지)
+const dataForChart = [
+    assetData.find(a => a.name === '채권'),
+    assetData.find(a => a.name === '주식'),
+    assetData.find(a => a.name === '비트코인'),
+    assetData.find(a => a.name === 'ETF'),
+];
+
+// 범례 표시를 위한 데이터 (내림차순)
+const dataForLegend = [...assetData].sort((a, b) => b.value - a.value);
+
 
 export default function AssetDonutChart() {
     return (
-        <div className="flex items-center gap-6">
-            {/* 도넛 차트 */}
-            <PieChart width={140} height={140}>
-                <Pie
-                    data={data}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={45}  // 도넛 두께
-                    outerRadius={70}  // 전체 크기
-                    dataKey="value"
-                    stroke="none"
-                >
-                    {data.map((entry, index) => (
-                        <Cell
-                            key={`cell-${index}`}
-                            fill={COLORS[index % COLORS.length]}
-                        />
-                    ))}
-                </Pie>
-            </PieChart>
+        <div className="flex items-center space-x-6 p-4 bg-white rounded-lg">
 
-            {/* 범례 리스트 */}
-            <div className="flex flex-col gap-2 text-sm">
-                {data.map((entry, index) => (
-                    <div key={entry.name} className="flex items-center gap-2">
-            <span
-                className="inline-block w-3 h-3 rounded-full"
-                style={{ backgroundColor: COLORS[index] }}
-            ></span>
-                        <span className="font-medium">{entry.name}</span>
-                        <span className="text-gray-500">{entry.value}%</span>
+            {/* 도넛 차트 */}
+            <div className="relative">
+                <PieChart width={140} height={140}>
+                    <Pie
+                        data={dataForChart}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={45}
+                        outerRadius={65}
+                        dataKey="value"
+                        startAngle={90}
+                        endAngle={-270}
+                        labelLine={false}
+                        label={false}
+                    >
+                        {dataForChart.map((entry) => (
+                            <Cell key={`cell-${entry.name}`} fill={entry.color} stroke="none" />
+                        ))}
+                    </Pie>
+                </PieChart>
+            </div>
+
+            {/* 범례  */}
+            {/*  컨테이너 사이즈를 130x96px  */}
+            <div className="w-[130px] h-[96px] flex flex-col justify-center space-y-3">
+                {dataForLegend.map((entry) => ( // 정렬된 범례용 데이터 사용
+                    <div key={`legend-${entry.name}`} className="flex items-center text-sm">
+                        <div
+                            className="w-2 h-2 rounded-full mr-2"
+                            style={{ backgroundColor: entry.color }}
+                        />
+                        <span className="text-gray-60">{entry.name}</span>
+                        <span className="text-gray-80 ml-auto">{entry.value}%</span>
                     </div>
                 ))}
             </div>
