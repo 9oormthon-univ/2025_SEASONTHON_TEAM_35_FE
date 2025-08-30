@@ -5,8 +5,11 @@ export default function TotalAssets() {
 
     return (
         <div className="w-[361px] h-[96px] bg-white rounded-xl p-5 flex flex-col gap-1 shadow-sm">
-            <span className="text-sm text-gray-50">{userName}님의 총 자산</span>
-            <span className="text-2xl font-bold text-gray-80">{totalAmount} 원</span>
+            <span className="text-sm">
+                <span className="text-primary-1 font-bold pr-1">{userName}</span>
+                <span className="text-gray-60">님의 총 자산</span>
+            </span>
+            <span className="text-2xl font-bold text-gray-100">{totalAmount} 원</span>
         </div>
     );
 }

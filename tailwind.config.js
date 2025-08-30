@@ -4,10 +4,10 @@ export default {
         extend: {
             colors:{
                 primary: {
-                    1: "#00D6B1",
-                    2: "#00E8C0", //main
-                    3: "#4EEFD3",
-                    4: "#98F6E6",
+                    1: "#00BA9B",
+                    2: "#00D6B3", //main
+                    3: "#4DE2CA",
+                    4: "#99EFE1",
                 },
                 sub:{
                     1:"#58A9FF",
