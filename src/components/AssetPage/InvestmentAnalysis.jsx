@@ -2,7 +2,7 @@ import AssetDonutChart from './AssetDonutChart';
 
 export default function InvestmentAnalysis() {
     return (
-        <div className="w-[361px] flex flex-col gap-1">
+        <div className="w-[361px] flex flex-col gap-2">
             {/* 헤더 */}
             <div className="flex justify-between items-center">
                 <h2 className="text-base font-bold pl-[4px]">투자 분석</h2>

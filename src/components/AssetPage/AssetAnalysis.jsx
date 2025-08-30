@@ -14,8 +14,16 @@ export default function AssetAnalysis() {
             {/* 헤더 */}
             <div className="flex justify-between items-center">
                 <h2 className="text-base text-gray-100 font-bold pl-[4px]">자산 분석</h2>
-                <Link to="/asset-input" className="text-xs text-gray-40">
-                    수정하기 &gt;
+                <Link
+                    to="/asset-input"
+                    className="flex items-center text-xs text-gray-40 pr-[4px] gap-[8px]"
+                >
+                    수정하기
+                    <img
+                        src={goIcon}
+                        alt="상세보기"
+                        className="w-[4px] h-[8px] cursor-pointer"
+                    />
                 </Link>
             </div>
 
