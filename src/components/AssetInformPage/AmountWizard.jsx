@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import AmountStep from "./AmountStep";
 import BackIcon from '../../assets/icons/back.svg?react';
-import CloseIcon from '../../assets/icons/close.svg?react';
+import ClosePng from '../../assets/icons/close.png';
 import { useAmountWizard } from "../../hooks/useAmountWizard";
 import ProgressIndicator from "./ProgressIndicator.jsx";
 const variants = {
@@ -42,7 +42,7 @@ export default function AmountWizard() {
                     <BackIcon/>
                 </button>
                 <button className="p-2">
-                    <CloseIcon/>
+                    <img src={ClosePng} alt="닫기" width={14} height={14} />
                 </button>
             </div>
             {/* 프로그레스 바 */}
