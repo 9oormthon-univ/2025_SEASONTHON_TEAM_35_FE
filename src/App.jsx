@@ -6,6 +6,8 @@ import {
   Outlet,
 } from 'react-router-dom';
 
+import HomePage from './pages/HomePage';
+
 function RootLayout() {
   return <Outlet />;
 }
@@ -16,6 +18,7 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <Navigate to="/home" replace /> },
+      { path: 'home', element: <HomePage /> },
       { path: 'home/inform', element: <div></div> },
     ],
   },
@@ -23,7 +26,7 @@ const router = createBrowserRouter([
 export default function App() {
   return (
     <div className="flex justify-center min-h-screen bg-#E5E5E5 pt-6">
-      <div className="w-[393px] h-[852px] bg-white shadow-lg overflow-hidden">
+      <div className="w-[393px] h-[852px] bg-white shadow-lg overflow-hidden relative">
         <RouterProvider router={router} />
       </div>
     </div>
