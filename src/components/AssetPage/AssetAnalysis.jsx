@@ -1,19 +1,23 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import goIcon from '../../assets/icons/goIcon.png';
+import { useAssets } from '../../context/AssetContext.jsx';
 
-// 임시 데이터
-const analysisData = [
-    { name: '예금 및 현금', value: 60.0, amount: '7,200,000', color: '#00E8C0' },
-    { name: '투자', value: 30.0, amount: '3,600,000', color: '#58A9FF' },
-    { name: '기타 자산', value: 10.0, amount: '1,200,000', color: '#FFD562' },
-];
+// 자산 key에 맞는 이름과 색상을 매핑하는 객체
+const ASSET_DETAILS = {
+    cash: { name: '예금 및 현금', color: '#00E8C0' },
+    stock: { name: '투자', color: '#58A9FF' },
+    bitcoin: { name: '투자', color: '#58A9FF' },
+    bond: { name: '투자', color: '#58A9FF' },
+    etf: { name: '투자', color: '#58A9FF' },
+    etc: { name: '기타 자산', color: '#FFD562' },
+};
 
 export default function AssetAnalysis() {
+    const { assetData, loading } = useAssets();
     const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
-        // 사용자 환경설정에 'reduce motion'이 켜져있으면 애니메이션 생략
         const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
         if (reduceMotion) {
             setIsReady(true);
@@ -23,27 +27,52 @@ export default function AssetAnalysis() {
         return () => cancelAnimationFrame(t);
     }, []);
 
+    if (loading || !assetData) {
+        return null;
+    }
+
+    // Context의 데이터를 UI에 필요한 형태로 가공
+    const analysisData = [
+        {
+            name: '예금 및 현금',
+            amount: assetData.amounts?.cash || 0,
+            value: assetData.ratios?.cash || 0,
+            color: ASSET_DETAILS.cash.color,
+            mode: 'cash'
+        },
+        {
+            name: '투자',
+            amount: (assetData.amounts?.stock || 0) + (assetData.amounts?.bitcoin || 0) + (assetData.amounts?.bond || 0) + (assetData.amounts?.etf || 0),
+            value: (assetData.ratios?.stock || 0) + (assetData.ratios?.bitcoin || 0) + (assetData.ratios?.bond || 0) + (assetData.ratios?.etf || 0),
+            color: ASSET_DETAILS.stock.color,
+            mode: 'investment'
+        },
+        {
+            name: '기타 자산',
+            amount: assetData.amounts?.etc || 0,
+            value: assetData.ratios?.etc || 0,
+            color: ASSET_DETAILS.etc.color,
+            mode: 'etc'
+        },
+    ].filter(item => item.amount > 0);
+
     return (
         <div className="w-[353px] flex flex-col gap-2">
             {/* 헤더 */}
             <div className="flex justify-between items-center">
-                <h2 className="text-base text-gray-100 font-bold pl-[4px]">자산 분석</h2>
-                <Link
-                    to="/asset-input"
-                    className="flex items-center text-xs text-gray-40 pr-[4px] gap-[8px]"
-                >
-                    수정하기
-                    <img src={goIcon} alt="상세보기" className="w-[4px] h-[8px] cursor-pointer" />
+                <h2 className="text-base font-bold pl-[4px]">자산 분석</h2>
+                <Link to="/asset/edit/all" className="flex items-center text-[12px] text-gray-40 pr-1">
+                    <span>전체 수정</span>
+                    <img src={goIcon} alt="수정하기" className="w-1 h-2 ml-2" />
                 </Link>
             </div>
 
-            {/* 컨텐츠 카드 */}
-            <div className="w-[353px] h-[236px] bg-white rounded-xl shadow-sm p-4">
+            <div className="w-[353px] min-h-[178px] bg-white rounded-xl shadow-sm p-4">
                 {/* 자산 비율 */}
                 <p className="text-[12px] font-semibold text-gray-50 mb-2">자산 비율</p>
 
-                {/* 비율 막대 그래프 (등장 모션) */}
-                <div className="w-[321px] h-[24px] flex rounded-[3px] overflow-hidden space-x-[3px]">
+                {/* 비율 막대 그래프 (모션) */}
+                <div className="w-full h-[24px] flex rounded-[3px] overflow-hidden">
                     {analysisData.map((item, i) => (
                         <div
                             key={item.name}
@@ -51,9 +80,11 @@ export default function AssetAnalysis() {
                             style={{
                                 backgroundColor: item.color,
                                 width: isReady ? `${item.value}%` : '0%',
+                                // 막대 사이에 미세한 간격을 주기 위한 트릭
+                                marginRight: i < analysisData.length - 1 ? '2px' : '0px',
                                 transitionProperty: 'width',
                                 transitionDuration: '900ms',
-                                transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)', // easeOutCubic-ish
+                                transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)',
                                 transitionDelay: `${i * 70}ms`,
                             }}
                             aria-label={`${item.name} ${item.value}%`}
@@ -61,7 +92,7 @@ export default function AssetAnalysis() {
                     ))}
                 </div>
 
-                {/* 항목별 범례 리스트 (옵션: 살짝 페이드 인) */}
+                {/* 항목별 범례 리스트 */}
                 <div className="mt-3">
                     {analysisData.map((item, index) => (
                         <div
@@ -83,20 +114,15 @@ export default function AssetAnalysis() {
                             <span className="text-[12px] font-medium text-gray-100">{item.name}</span>
                             <span className="ml-1 text-[12px] text-gray-30">({item.value.toFixed(1)}%)</span>
                             <span className="ml-auto text-sm text-gray-100 font-medium mr-4">
-                {item.amount} 원
-              </span>
-                            <Link to={`/asset-details/${item.name}`}>
-                                <img src={goIcon} alt="상세보기" className="w-[4px] h-[8px] cursor-pointer" />
+                                {/* 숫자에 콤마를 추가하는 로직 적용 */}
+                                {item.amount.toLocaleString('en-US')} 원
+                            </span>
+                            {/* 수정 페이지로 가는 링크 경로 수정 */}
+                            <Link to={`/asset/edit/${item.mode}`}>
+                                <img src={goIcon} alt="수정하기" className="w-[4px] h-[8px] cursor-pointer" />
                             </Link>
                         </div>
                     ))}
-                </div>
-
-                {/* AI 자산 설계 보기 링크 */}
-                <div className="text-center mt-2">
-                    <Link to="/ai-asset-design" className="text-xs text-gray-40">
-                        AI 자산 설계 보기 &gt;
-                    </Link>
                 </div>
             </div>
         </div>

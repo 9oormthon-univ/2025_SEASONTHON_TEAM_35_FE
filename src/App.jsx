@@ -1,7 +1,10 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider, Navigate, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate, Outlet, Routes, Route } from "react-router-dom";
 import AssetInformPage from "./pages/AssetInformPage/index.jsx";
 import AssetPage from "./pages/AssetPage/index.jsx";
+import AssetEditPage from "./pages/AssetEditPage/index.jsx";
+import {AssetProvider} from "./context/AssetContext.jsx";
+
 function RootLayout() {
   return <Outlet />;
 }
@@ -11,22 +14,36 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     children: [
-      { index: true,
-        element: <Navigate to="/home/inform" replace />
+      {
+        index: true,
+        element: <Navigate to="/asset/main" replace />
       },
-      { path: "home/inform",
-        element:  <AssetPage/>
+      {
+        path: "asset/main",
+        element: <AssetPage />
+      },
+      {
+        path: "asset/inform",
+        element: <AssetInformPage />
+      },
+      // ✨ 수정 페이지를 위한 동적 라우트 추가
+      {
+        path: "asset/edit/:mode",
+        element: <AssetEditPage />
       },
     ],
   },
 ]);
+
 export default function App() {
   return (
-      <div className="flex justify-center min-h-screen bg-#E5E5E5 pt-6">
+      <div className="flex justify-center min-h-screen bg-[#E5E5E5] pt-6">
         <div className="w-[390px] h-[852px] bg-white shadow-lg overflow-hidden">
-          <RouterProvider router={router} />
+          {/* 👈 2. RouterProvider를 AssetProvider로 감싸줍니다. */}
+          <AssetProvider>
+            <RouterProvider router={router} />
+          </AssetProvider>
         </div>
       </div>
   );
 }
-
