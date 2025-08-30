@@ -19,12 +19,17 @@ export function useAmountWizard(steps) {
         if (error) setError('');
     };
 
+    //유효성 검증 3가지
     const next = () => {
         const currentValue = form[currentStepData.key];
         const numericValue = Number(currentValue.replace(/,/g, ''));
 
         if (currentValue.trim() === "" || numericValue < 0) {
             setError("0원 이상을 입력해 주세요.");
+            return;
+        }
+        if (currentStepData.key === "cash" && numericValue === 0) {
+            setError("0원은 입력할 수 없어요. 1원 이상을 입력해 주세요.");
             return;
         }
         if (numericValue > 500000000) {
