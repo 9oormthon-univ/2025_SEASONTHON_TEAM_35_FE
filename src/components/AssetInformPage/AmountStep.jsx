@@ -10,7 +10,7 @@ export default function AmountStep({ title, value, onChange, error, totalSteps, 
         onChange(formattedValue);
     };
 
-    const inputBorderColor = error ? 'border-error ring-error focus:ring-error' : 'border-gray-300 focus:ring-primary-1';
+    const inputBorderColor = error ? 'border-error ring-error focus:ring-error' : 'border-gray-10 focus:ring-primary-1';
 
     return (
         <div className="p-5 pt-8">
