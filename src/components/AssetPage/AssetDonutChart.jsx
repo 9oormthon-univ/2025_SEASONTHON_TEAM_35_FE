@@ -19,7 +19,7 @@ const dataForLegend = [...assetData].sort((a, b) => b.value - a.value);
 
 export default function AssetDonutChart() {
     return (
-        <div className="flex items-center space-x-5 p-4 bg-white rounded-lg">
+        <div className="flex items-center space-x-6 p-4 bg-white rounded-lg">
             {/* 도넛 차트 */}
             <div className="relative mr-1">
                 <PieChart width={140} height={140}>

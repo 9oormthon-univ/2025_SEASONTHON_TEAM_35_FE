@@ -24,7 +24,7 @@ export default function AssetAnalysis() {
     }, []);
 
     return (
-        <div className="w-[361px] flex flex-col gap-2">
+        <div className="w-[353px] flex flex-col gap-2">
             {/* 헤더 */}
             <div className="flex justify-between items-center">
                 <h2 className="text-base text-gray-100 font-bold pl-[4px]">자산 분석</h2>
@@ -38,7 +38,7 @@ export default function AssetAnalysis() {
             </div>
 
             {/* 컨텐츠 카드 */}
-            <div className="w-[361px] h-[244px] bg-white rounded-xl shadow-sm p-4">
+            <div className="w-[353px] h-[236px] bg-white rounded-xl shadow-sm p-4">
                 {/* 자산 비율 */}
                 <p className="text-[12px] font-semibold text-gray-50 mb-2">자산 비율</p>
 

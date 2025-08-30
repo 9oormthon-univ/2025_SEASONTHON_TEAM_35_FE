@@ -4,7 +4,7 @@ export default function TotalAssets() {
     const totalAmount = "12,000,000";
 
     return (
-        <div className="w-[361px] h-[96px] bg-white rounded-xl p-5 flex flex-col gap-1 shadow-sm">
+        <div className="w-[353px] h-[96px] bg-white rounded-xl p-5 flex flex-col gap-1 shadow-sm">
             <span className="text-sm">
                 <span className="text-primary-1 font-bold pr-1">{userName}</span>
                 <span className="text-gray-60">님의 총 자산</span>
