@@ -9,8 +9,12 @@ export default {
           3: "#4EEFD3",
           4: "#98F6E6",
         },
+        sub:{
+          1:"#58A9FF",
+          2:"#FF919F",
+          3:"#FFD562",
+        },
         gray:{
-          0: "#F6F6F6", //Background color를 0으로 넣어두었습니다.
           5:"#E4E7EA",
           10: "#D7DDE1",
           20: "#C0C7CB",
@@ -24,6 +28,7 @@ export default {
           100: "#171F27",
         },
         error: '#FF0000',
+        background: '#F5F7FA',
       },
       fontFamily: {
         sans: ["Pretendard Variable", "Pretendard", "system-ui", "sans-serif"],
