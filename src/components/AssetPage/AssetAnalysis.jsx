@@ -1,18 +1,81 @@
-import { Link } from 'react-router-dom'; // react-router-dom을 사용한다고 가정
+import { Link } from 'react-router-dom';
+import goIcon from '../../assets/icons/goIcon.png';
+
+// 임시 데이터: 나중에 API로 받아오면 교체
+const analysisData = [
+    { name: '예금 및 현금', value: 60.0, amount: '7,200,000', color: '#00E8C0' },
+    { name: '투자', value: 30.0, amount: '3,600,000', color: '#58A9FF' },
+    { name: '기타 자산', value: 10.0, amount: '1,200,000', color: '#FFD562' },
+];
 
 export default function AssetAnalysis() {
     return (
-        <div className="w-[361px]  flex flex-col gap-2">
+        <div className="w-[361px] flex flex-col gap-2">
             {/* 헤더 */}
             <div className="flex justify-between items-center">
                 <h2 className="text-base text-gray-100 font-bold pl-[4px]">자산 분석</h2>
-                <Link to="/asset-input" className="text-xs text-gray-40"> {/* 자산 입력 페이지 경로 */}
+                <Link to="/asset-input" className="text-xs text-gray-40">
                     수정하기 &gt;
                 </Link>
             </div>
-            {/* 컨텐츠 카드 , h를 살짝 작게 잡아둠*/}
-            <div className="w-[361px] h-[250px] bg-white rounded-xl shadow-sm flex items-center justify-center">
-                <span className="text-gray-40">자산 분석 내용 표기 예정</span>
+
+            {/* 컨텐츠 카드 */}
+            <div className="w-[361px] h-[244px] bg-white rounded-xl shadow-sm p-4">
+                {/* 자산 비율 */}
+                <p className="text-[12px] font-semibold text-gray-50 mb-2">자산 비율</p>
+
+                {/* 비율 막대 그래프 */}
+                <div className="w-[321px] h-[24px] flex rounded-[3px] overflow-hidden space-x-[3px]">
+                    {analysisData.map((item) => (
+                        <div
+                            key={item.name}
+                            className="h-full"
+                            style={{ width: `${item.value}%`, backgroundColor: item.color }}
+                        />
+                    ))}
+                </div>
+
+                {/* 항목별 범례 리스트 */}
+                <div className="mt-3">
+                    {analysisData.map((item, index) => (
+                        <div
+                            key={item.name}
+                            className={`flex items-center py-2 px-1 ${
+                                index < analysisData.length - 1 ? 'border-b border-gray-10' : ''
+                            }`}
+                        >
+                            {/* 색상 원 */}
+                            <div
+                                className="w-2 h-2 rounded-full mr-4"
+                                style={{ backgroundColor: item.color }}
+                            />
+                            {/* 이름 + 퍼센트 */}
+                            <span className="text-[12px] font-medium text-gray-100">{item.name}</span>
+                            <span className="ml-1 text-[12px] text-gray-30">
+                ({item.value.toFixed(1)}%)
+              </span>
+                            {/* 금액 */}
+                            <span className="ml-auto text-sm text-gray-100 font-medium mr-4">
+                {item.amount} 원
+              </span>
+
+                            <Link to={`/asset-details/${item.name}`}>
+                                <img
+                                    src={goIcon}
+                                    alt="상세보기"
+                                    className="w-[4px] h-[8px] cursor-pointer"
+                                />
+                            </Link>
+                        </div>
+                    ))}
+                </div>
+
+                {/* AI 자산 설계 보기 링크 */}
+                <div className="text-center mt-2">
+                    <Link to="/ai-asset-design" className="text-xs text-gray-40">
+                        AI 자산 설계 보기 &gt;
+                    </Link>
+                </div>
             </div>
         </div>
     );
