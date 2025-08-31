@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import goIcon from '../../assets/icons/goIcon.png';
 import { useAssets } from '../../context/AssetContext.jsx';
-
+import goIcon from '../../assets/icons/goIcon.png';
+import fixIcon from '../../assets/icons/fix.png';
 // 자산 key에 맞는 이름과 색상을 매핑하는 객체
 const ASSET_DETAILS = {
     cash: { name: '예금 및 현금', color: '#00E8C0' },
@@ -119,7 +119,7 @@ export default function AssetAnalysis() {
                             </span>
                             {/* 수정 페이지로 가는 링크 경로 수정 */}
                             <Link to={`/asset/edit/${item.mode}`}>
-                                <img src={goIcon} alt="수정하기" className="w-[4px] h-[8px] cursor-pointer" />
+                                <img src={fixIcon} alt="수정하기" className="w-[10px] h-[10px] cursor-pointer" />
                             </Link>
                         </div>
                     ))}
