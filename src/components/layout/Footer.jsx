@@ -14,7 +14,7 @@ import inactiveGoalIcon from '../../assets/Footer/inactive/goalIcon.png';
 const FOOTER_TAB = [
   {
     title: '홈',
-    link: '',
+    link: '/home',
     activeIcon: activeHomeIcon,
     inactiveIcon: inactiveHomeIcon,
   },
@@ -26,7 +26,7 @@ const FOOTER_TAB = [
   },
   {
     title: 'AI 자산 설계',
-    link: '',
+    link: '/home/AI-asset-plan',
     activeIcon: activeAssetPlanIcon,
     inactiveIcon: inactiveAssetPlanIcon,
   },
