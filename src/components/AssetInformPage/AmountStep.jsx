@@ -15,7 +15,7 @@ export default function AmountStep({ title, value, onChange, error, totalSteps, 
     return (
         <div className="p-5 pt-8">
 
-            {/* 제목 -  mt 값 조절로 프로그레스바와 간격 결정  */}
+            {/* 제목  */}
             <h2 className="mt-1 mb-8 whitespace-pre-wrap text-2xl font-bold leading-tight">{title}</h2>
 
             {/* 입력창 */}

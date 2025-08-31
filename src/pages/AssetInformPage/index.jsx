@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import AmountWizard from "../../components/AssetInformPage/AmountWizard";
-import { useAssets } from '../../context/AssetContext.jsx'; // 👈 1. useAssets 훅 가져오기
+import { useAssets } from '../../context/AssetContext.jsx';
+import Footer from "../../components/layout/Footer.jsx";
 
 //  wizard에 표시될 스텝 정보
 const WIZARD_STEPS = [
@@ -13,10 +14,10 @@ const WIZARD_STEPS = [
 ];
 
 export default function AssetInformPage() {
-    const navigate = useNavigate(); // 👈 2. 페이지 이동을 위한 navigate 함수
-    const { updateAssetData } = useAssets(); // 👈 3. 컨텍스트에서 데이터 업데이트 함수 가져오기
+    const navigate = useNavigate(); // 페이지 이동을 위한 navigate 함수
+    const { updateAssetData } = useAssets(); // 컨텍스트에서 데이터 업데이트 함수
 
-    // 👈 4. wizard가 완료되었을 때 실행될 함수
+    // wizard가 완료되었을 때 실행
     const handleComplete = (payload) => {
         updateAssetData(payload); // 컨텍스트를 통해 전역 자산 데이터를 업데이트
         alert("자산 정보가 저장되었습니다.");
@@ -27,7 +28,7 @@ export default function AssetInformPage() {
         <div className="h-full bg-white">
             <AmountWizard
                 wizardSteps={WIZARD_STEPS}
-                onComplete={handleComplete} // 👈 5. AmountWizard에 완료 함수를 props로 전달
+                onComplete={handleComplete} // AmountWizard에 완료 함수를 props로 전달
                 submitButtonText="완료"
             />
         </div>

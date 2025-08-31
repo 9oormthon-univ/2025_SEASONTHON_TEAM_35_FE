@@ -41,7 +41,7 @@ const FOOTER_TAB = [
 export default function Footer() {
   const [onClicked, setOnClicked] = useState('홈');
   return (
-    <div className="w-[393px] h-[90px] bg-white flex pl-[32px] pr-[24.5px] pt-[12px] justify-between border-t-[0.5px] border-gray-5 rounded-t-[16px] shadow-[0_0_4px_rgba(146,0,0,0.05)] absolute bottom-0">
+    <div className="w-[393px] h-[90px] bg-white flex pl-[32px] pr-[24.5px] pt-[12px] justify-between border-t-[0.5px] border-gray-5 rounded-t-[16px] shadow-[0_0_4px_rgba(146,0,0,0.05)] fixed bottom-0">
       {FOOTER_TAB.map((item, idx) => (
         <Link
           key={idx}

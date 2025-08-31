@@ -1,8 +1,7 @@
-import Layout from '../../components/Layout';
+import Layout from '../../components/layout/Layout.jsx';
 import TotalAssets from '../../components/AssetPage/TotalAssets';
 import AssetAnalysis from '../../components/AssetPage/AssetAnalysis';
 import InvestmentAnalysis from '../../components/AssetPage/InvestmentAnalysis';
-import userIcon from '../../assets/icons/user.png';
 
 export default function AssetPage() {
     return (
@@ -14,5 +13,6 @@ export default function AssetPage() {
                 <InvestmentAnalysis />
             </div>
         </Layout>
+
     );
 }
