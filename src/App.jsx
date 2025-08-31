@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
 
 function RootLayout() {
   return <Outlet />;
@@ -17,9 +18,10 @@ const router = createBrowserRouter([
     path: '/',
     element: <RootLayout />,
     children: [
-      { index: true, element: <Navigate to="/home" replace /> },
+      { index: true, element: <Navigate to="/login" replace /> },
       { path: 'home', element: <HomePage /> },
       { path: 'home/inform', element: <div></div> },
+      { path: 'login', element: <LoginPage /> },
     ],
   },
 ]);
