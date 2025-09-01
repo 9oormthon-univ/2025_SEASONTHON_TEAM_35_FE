@@ -26,7 +26,6 @@ export default function AssetDonutChart() {
                         cy="50%"
                         innerRadius={45}
                         outerRadius={65}
-                        paddingAngle={chartData.length > 1 ? 2 : 0}
                         startAngle={90}
                         endAngle={-270}
                     >
