@@ -9,7 +9,7 @@ import {
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import MyPage from './pages/MyPage';
-import AIAssetPlanPage from './pages/AIAssetPlanPage/AIAssetPlanPage';
+import AIAssetPlanPage from './pages/AIAssetPlanPage';
 
 function RootLayout() {
   return <Outlet />;

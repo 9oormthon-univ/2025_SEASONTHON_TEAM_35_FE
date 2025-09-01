@@ -9,7 +9,7 @@ const DATA = [
 ];
 
 // 색상
-const COLORS = ['#00BA9B', '#58A9FF', '#FFD562'];
+const COLORS = ['#00D6B3', '#58A9FF', '#FFD562'];
 
 export default function AIRecommendAssetCard() {
   return (
@@ -19,19 +19,13 @@ export default function AIRecommendAssetCard() {
           AI 추천 자산 비율
         </h1>
         <Link className="flex justify-center items-center text-[12px] text-gray-40 border-[1px] border-gray-5 rounded-[12px] w-[66px] h-[24px] font-normal">
-          수정하기
+          다시하기
         </Link>
       </div>
 
       {/* 그래프 */}
       <div className="flex flex-col items-center gap-[24px]">
         <PieChart width={220} height={220}>
-          <defs>
-            <linearGradient id="gradInvest" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#00D6B333" />
-              <stop offset="100%" stopColor="#00BA9B" />
-            </linearGradient>
-          </defs>
           <Pie
             data={DATA}
             dataKey="value"
@@ -42,7 +36,7 @@ export default function AIRecommendAssetCard() {
             startAngle={90}
             endAngle={-270}
           >
-            <Cell key="cell-0" fill="url(#gradInvest)" stroke="none" />
+            <Cell key="cell-0" fill={COLORS[0]} stroke="none" />
             <Cell key="cell-1" fill={COLORS[1]} stroke="none" />
             <Cell key="cell-2" fill={COLORS[2]} stroke="none" />
           </Pie>
