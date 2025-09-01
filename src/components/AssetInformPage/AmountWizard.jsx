@@ -28,8 +28,7 @@ export default function AmountWizard({ wizardSteps, initialData, onComplete, onC
                 direction={direction}
                 stepData={currentStepData}
                 formValue={form[currentStepData.key]}
-                onValue-Change={updateValue} // 👈 이 부분을
-                onValueChange={updateValue} // ✨ 이렇게 수정해주세요! (하이픈을 지우고 대문자 C로)
+                onValueChange={updateValue}
                 error={error}
             />
             {/* WizardFooter에 submitButtonText 전달 */}

@@ -23,6 +23,7 @@ export default function WizardContent({ direction, stepData, formValue, onValueC
                 >
                     <AmountStep
                         title={stepData.title}
+                        keyword={stepData.keyword}
                         value={formValue}
                         onChange={onValueChange}
                         error={error}
