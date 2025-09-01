@@ -6,7 +6,7 @@ export default function MyPage() {
   const navigate = useNavigate();
   return (
     <div className="h-full bg-background flex flex-col items-center">
-      <div className="w-full h-[44px] flex gap-[16px] items-center pl-[20px] py-[8px] mb-[8px] mt-[20px]">
+      <div className="w-full h-[108px] flex gap-[16px] items-center pl-[20px] pt-[68px] mb-[40px]">
         {/* mt 수정 필요!! */}
         <button onClick={() => navigate(-1)} className="w-[24px] h-[24px]">
           <img src={backIcon} alt="backIcon" />
