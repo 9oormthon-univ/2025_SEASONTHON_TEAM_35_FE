@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import goBtn from '../../../assets/AIAssetPlan/goBtn.png';
 
 const MY_INFO = [
   {
@@ -25,10 +24,6 @@ export default function MyInfoCard() {
     <div className="py-[20px] px-[24px] bg-white flex flex-col gap-[16px]">
       <div className="flex justify-between items-center">
         <h1 className="text-gray-90 text-[16px] font-bold">나의 입력 정보</h1>
-        <Link className="flex gap-[4px]">
-          <h1 className="text-[12px] text-gray-40 font-normal">수정하기</h1>
-          <img src={goBtn} alt="goBtn" className="w-[16px] h-[16px]" />
-        </Link>
       </div>
       <div className="flex flex-col gap-[7px]">
         {MY_INFO.map((item, idx) => (
