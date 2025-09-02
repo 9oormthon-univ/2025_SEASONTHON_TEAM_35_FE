@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import AmountWizard from "../../components/AssetInformPage/AmountWizard";
+import AmountWizardCompat from "../../components/AssetInformPage/AmountWizardCompat.jsx";
 import { useAssets } from '../../context/AssetContext.jsx';
 
 const WIZARD_STEPS = [
@@ -29,11 +29,11 @@ export default function AssetInformPage() {
             alert("자산 정보 저장에 실패했습니다. 다시 시도해 주세요.");
         }
     };
-
     return (
         <div className="h-full bg-white">
-            <AmountWizard
+            <AmountWizardCompat
                 wizardSteps={WIZARD_STEPS}
+                initialData={{ cash: "", stock: "", bond: "",bitcoin: "", etf:"", etc:"" }}
                 onComplete={handleRegister}
                 submitButtonText="완료"
                 isSubmitting={isSubmitting}

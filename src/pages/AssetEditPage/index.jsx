@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import AmountWizard from "../../components/AssetInformPage/AmountWizard.jsx";
+import AmountWizardCompat from "../../components/AssetInformPage/AmountWizardCompat.jsx";
 import { useAssets } from '../../context/AssetContext.jsx';
 
 const ALL_STEPS = [
@@ -69,7 +69,7 @@ export default function AssetEditPage() {
     const initialFormValues = formatAmountsForForm(assetData?.amounts);
 
     return (
-        <AmountWizard
+        <AmountWizardCompat
             wizardSteps={stepsToEdit}
             initialData={initialFormValues}
             onComplete={handleEditComplete}
