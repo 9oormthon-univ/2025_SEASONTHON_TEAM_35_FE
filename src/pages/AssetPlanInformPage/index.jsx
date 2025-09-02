@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import BaseWizard from '../../components/common/wizard/BaseWizard.jsx';
 import PlanQuestionStep from '../../components/AssetPlanInformPage/PlanQuestionStep.jsx';
-import { PLAN_WIZARD_STEPS } from '../../constants/wizardSteps.js';
+import { PLAN_WIZARD_STEPS } from '@/constants/wizardSteps.js';
 
 export default function AssetPlanInformPage() {
     const navigate = useNavigate();
