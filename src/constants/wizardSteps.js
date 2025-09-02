@@ -73,38 +73,53 @@ export const PLAN_WIZARD_STEPS = [
         title: "본인의 투자 성향을\n선택해주세요",
         keyword: "투자 성향",
         type: 'toggle',
+        styleVariant: 'card',
         options: [
-            { value: 'STABLE', label: '안정형' },
-            { value: 'COMMON', label: '중립형' },
-            { value: 'ACTIVE', label: '공격형' },
+            // 각 option을 객체로 만들어서 description과 icon 정보를 추가
+            {
+                value: 'STABLE',
+                label: '안정형',
+                description: '안전하게, 원금 중심으로 투자하고 싶어요.',
+                icon: 'ShieldIcon' // (아이콘 이름은 임시)
+            },
+            {
+                value: 'COMMON',
+                label: '중립형',
+                description: '안정과 수익, 적당히 섞어 투자하고 싶어요.',
+                icon: 'BalanceIcon'
+            },
+            {
+                value: 'ACTIVE',
+                label: '공격형',
+                description: '높은 수익을 목표로 적극적으로 투자하고 싶어요.',
+                icon: 'RocketIcon'
+            },
         ],
-        styleVariant: 'card', // 예시 스타일
     },
     {
-        key: "emergencyFund", // 이 부분은 백엔드 명세에 없어서 임의로 key를 정했습니다.
+        key: "emergencyFund",
         title: "언제든 바로 찾을 수 있는 \n 돈이 필요한가요?",
         type: 'toggle',
+        styleVariant: 'box',
         options: [
             { value: 'true',  label: '단기 자금' },
             { value: 'false', label: '장기 자금' },
         ],
-        styleVariant: 'full', // 예시 스타일
     },
     {
         key: "investmentPurpose",
         title: "현재 가장 중요하게 생각하는\n주요 목표는 무엇인가요?",
         keyword: "주요 목표",
         type: 'toggle',
+        styleVariant: 'pill',
         options: [
-            { value: 'SAVINGS',          label: '저축' },
-            { value: 'HOME_OWNERSHIP',   label: '내 집 마련' },
-            { value: 'CAR_PURCHASE',     label: '차량 구매' },
-            { value: 'TRAVEL',           label: '여행' },
-            { value: 'MARRIAGE',         label: '결혼' },
-            { value: 'SELF_DEVELOPMENT', label: '자기계발' },
-            { value: 'OTHER',            label: '기타' },
+            { value: 'SAVINGS',          label: '저축',           icon: '💰' },
+            { value: 'HOME_OWNERSHIP',   label: '내 집 마련',     icon: '🏠' },
+            { value: 'CAR_PURCHASE',     label: '차량 구매',       icon: '🚗' },
+            { value: 'TRAVEL',           label: '여행',           icon: '✈️' },
+            { value: 'MARRIAGE',         label: '결혼',           icon: '💍' },
+            { value: 'SELF_DEVELOPMENT', label: '자기계발',       icon: '📚' },
+            { value: 'OTHER',            label: '기타',           icon: '✨' },
         ],
-        styleVariant: 'pill', // 예시 스타일
     },
-
 ];
