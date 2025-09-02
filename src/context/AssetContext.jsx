@@ -3,30 +3,38 @@ import apiClient from '../api/client'; // 👈 1. API 클라이언트 import
 import {getAssetSummary, registerNewAssets, modifyCashAsset,modifyInvestmentAsset,modifyOtherAsset} from "../api/assetApi.js";
 
 // GET /summary API 응답을 프론트엔드 형식으로 변환하는 함수
-const transformSummaryResponse = (apiResult) => {
+ const transformSummaryResponse = (apiResult) => {
     if (!apiResult) return null;
+
+    // 👇✅ API 응답 값을 직접 사용하여 amounts 객체를 구성합니다.
+    // 개별 투자 자산(주식 등)의 '금액'은 API가 주지 않으므로,
+    // 총 투자액만 별도로 관리하거나 필요 시 0으로 둘 수 있습니다.
+    // 여기서는 도넛 차트와 분석 UI를 위해 이전처럼 추정치를 계산하는 로직을 유지하되,
+    // 다른 값들은 API의 값을 직접 사용하도록 명확히 합니다.
     return {
-        // 백엔드(camelCase) -> 프론트엔드(snake_case)
         total_amount: apiResult.totalAmount,
-        // amounts 객체 구성 (API 응답에 없는 값은 0으로 초기화)
         amounts: {
-            cash: apiResult.cashAmount || 0,
-            etc: apiResult.otherAmount || 0,
-            // GET API는 개별 투자 금액을 주지 않으므로, 총 투자액과 비율로 역산 (추정치)
+            cash: apiResult.cashAmount,
+            etc: apiResult.otherAmount,
+
+            // [참고] 개별 투자 '금액'은 여전히 API 응답에 없으므로,
+            // 이 부분은 총 투자액과 비율을 통해 추정치를 계산하는 것이 맞습니다.
+            // 만약 UI에서 개별 투자 금액 표시가 필요 없다면 이 부분을 0으로 처리해도 됩니다.
             stock: (apiResult.investedAmount * apiResult.stockRatioPercent) / 100 || 0,
             bitcoin: (apiResult.investedAmount * apiResult.bitcoinRatioPercent) / 100 || 0,
             bond: (apiResult.investedAmount * apiResult.bondRatioPercent) / 100 || 0,
             etf: (apiResult.investedAmount * apiResult.etfRatioPercent) / 100 || 0,
         },
-        // ratios 객체 구성
         ratios: {
-            cash: apiResult.cashRatioPercent || 0,
-            etc: apiResult.otherRatioPercent || 0,
-            stock: apiResult.stockRatioPercent || 0,
-            bitcoin: apiResult.bitcoinRatioPercent || 0,
-            bond: apiResult.bondRatioPercent || 0,
-            etf: apiResult.etfRatioPercent || 0,
+            cash: apiResult.cashRatioPercent,
+            etc: apiResult.otherRatioPercent,
+            stock: apiResult.stockRatioPercent,
+            bitcoin: apiResult.bitcoinRatioPercent,
+            bond: apiResult.bondRatioPercent,
+            etf: apiResult.etfRatioPercent,
         },
+        // [추가] investedAmount도 활용할 수 있도록 추가하면 좋습니다.
+        invested_amount: apiResult.investedAmount,
     };
 };
 
@@ -130,7 +138,10 @@ export function AssetProvider({ children }) {
                 result = await modifyInvestmentAsset(amounts);
             } else if (mode === 'etc') {
                 result = await modifyOtherAsset(amounts.etc);
-            } else {
+            } else if (mode === 'all') {
+                // 자산 최초 등록 API를 재사용하여 전체 자산을 업데이트합니다.
+                result = await registerNewAssets(wizardPayload);
+            }else {
                 // 'all' 모드는 각 API를 모두 호출해야 하므로 별도 구현이 필요합니다.
                 throw new Error(`'${mode}' 모드는 아직 지원되지 않습니다.`);
             }

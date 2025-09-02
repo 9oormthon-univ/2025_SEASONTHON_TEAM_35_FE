@@ -4,6 +4,7 @@ import AssetInformPage from "./pages/AssetInformPage/index.jsx";
 import AssetPage from "./pages/AssetPage/index.jsx";
 import AssetEditPage from "./pages/AssetEditPage/index.jsx";
 import {AssetProvider} from "./context/AssetContext.jsx";
+import AssetPlanInformPage from "./pages/AssetPlanInformPage/index.jsx";
 
 function RootLayout() {
   return <Outlet />;
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/asset/main" replace />
+        element: <Navigate to="ai/plan/inform" replace />
       },
       {
         path: "asset/main",
@@ -26,10 +27,14 @@ const router = createBrowserRouter([
         path: "asset/inform",
         element: <AssetInformPage />
       },
-      // ✨ 수정 페이지를 위한 동적 라우트 추가
+      // 수정 페이지를 위한 동적 라우트 추가
       {
         path: "asset/edit/:mode",
         element: <AssetEditPage />
+      },
+      {
+        path: "ai/plan/inform",
+        element: <AssetPlanInformPage />
       },
     ],
   },
