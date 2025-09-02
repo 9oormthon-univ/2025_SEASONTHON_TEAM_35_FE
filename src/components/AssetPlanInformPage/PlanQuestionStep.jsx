@@ -2,12 +2,11 @@ import React from 'react';
 
 export default function PlanQuestionStep({ stepData, value, onChange, error }) {
     const { key, title, type, options = [] } = stepData;
-
     const handleInputChange = (e) => {
         onChange(key, e.target.value);
     };
 
-    // 각 질문 타입에 맞는 UI를 렌더링하는 함수
+    // 질문 타입에 맞는 UI를 렌더링 (radio/
     const renderInput = () => {
         switch (type) {
             case 'number':

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAssetValidator } from "./useAssetValidator.js"; // 👈 1. 유효성 검증 훅 import
 
 export function useAmountWizard(steps, options = {}) {
-    const { onComplete, initialFormValues = {}, memberId } = options;
+    const { onComplete, initialFormValues = {}, memberId, disableNextUntilSelected = false } = options;
 
     const [step, setStep] = useState(0);
     const [direction, setDirection] = useState(1);
@@ -12,6 +12,8 @@ export function useAmountWizard(steps, options = {}) {
 
     const currentStepData = steps[step];
     const { error, validate, setError } = useAssetValidator();
+    // disableNextUntilSelected가 true일 때만 비활성화
+    const isNextDisabled = disableNextUntilSelected ? !form[currentStepData.key] : false;
 
     const updateValue = (key, val) => {
         setForm((prevForm) => ({ ...prevForm, [key]: val }));
@@ -58,6 +60,6 @@ export function useAmountWizard(steps, options = {}) {
 
     return {
         step, totalSteps: steps.length, currentStepData, form, error, direction,
-        next, prev, updateValue,
+        next, prev, updateValue,isNextDisabled,
     };
 }

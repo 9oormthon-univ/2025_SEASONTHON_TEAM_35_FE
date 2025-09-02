@@ -12,8 +12,9 @@ export default function BaseWizard({
                                        showPrevButton,
                                        submitButtonText,
                                        renderStep,
+                                       disableNextUntilSelected,
                                    }) {
-    // ✅ 초반 가드: 잘못된 props 방지
+    // 잘못된 props 방지
     if (!Array.isArray(wizardSteps) || wizardSteps.length === 0) {
         if (import.meta.env.DEV) {
             console.warn("[BaseWizard] wizardSteps가 비어있거나 배열이 아닙니다.", { wizardSteps });
@@ -27,14 +28,15 @@ export default function BaseWizard({
 
     const {
         step, totalSteps, currentStepData, form, error, direction,
-        next, prev, updateValue,
+        next, prev, updateValue, isNextDisabled,
     } = useAmountWizard(wizardSteps, {
         onComplete,
         initialFormValues: initialData ?? {}, // ✅ null 방지
         memberId: 123,
+        disableNextUntilSelected,
     });
 
-    // ✅ 현재 스텝 방어
+    // 현재 스텝 방어
     if (!currentStepData) {
         if (import.meta.env.DEV) {
             console.warn("[BaseWizard] currentStepData가 없습니다.", { step, wizardSteps });
@@ -65,6 +67,7 @@ export default function BaseWizard({
                 onNext={next}
                 isLastStep={step === totalSteps - 1}
                 submitButtonText={submitButtonText}
+                isNextDisabled={isNextDisabled}
             />
         </div>
     );

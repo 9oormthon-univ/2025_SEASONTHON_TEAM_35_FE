@@ -5,7 +5,7 @@ import AssetPage from "./pages/AssetPage/index.jsx";
 import AssetEditPage from "./pages/AssetEditPage/index.jsx";
 import {AssetProvider} from "./context/AssetContext.jsx";
 import AssetPlanInformPage from "./pages/AssetPlanInformPage/index.jsx";
-
+import AssetPlanStartPage from "@/pages/AssetPlanStartPage/index.jsx";
 function RootLayout() {
   return <Outlet />;
 }
@@ -31,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "asset/edit/:mode",
         element: <AssetEditPage />
+      },
+      {
+        path: "ai/plan/start",
+        element: <AssetPlanStartPage />
       },
       {
         path: "ai/plan/inform",
