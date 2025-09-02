@@ -99,11 +99,22 @@ export const PLAN_WIZARD_STEPS = [
     {
         key: "emergencyFund",
         title: "언제든 바로 찾을 수 있는 \n 돈이 필요한가요?",
+        keyword: "돈",
         type: 'toggle',
         styleVariant: 'box',
         options: [
-            { value: 'true',  label: '단기 자금' },
-            { value: 'false', label: '장기 자금' },
+            {
+                value: 'true',
+                label: '단기 자금',
+                description: '언제든 인출 가능한\n안정적인 자금이 필요해요.',
+                icon: '⏳'
+            },
+            {
+                value: 'false',
+                label: '장기 자금',
+                description: '유동성이 낮아도\n장기간 운용할 수 있어요.',
+                icon: '📈'
+            },
         ],
     },
     {
@@ -119,7 +130,6 @@ export const PLAN_WIZARD_STEPS = [
             { value: 'TRAVEL',           label: '여행',           icon: '✈️' },
             { value: 'MARRIAGE',         label: '결혼',           icon: '💍' },
             { value: 'SELF_DEVELOPMENT', label: '자기계발',       icon: '📚' },
-            { value: 'OTHER',            label: '기타',           icon: '✨' },
         ],
     },
 ];
