@@ -10,7 +10,7 @@ export default function AmountStep({ title, keyword, value, onChange, error }) {
         onChange(formattedValue);
     };
 
-    const inputBorderColor = error ? 'border-error ring-error focus:ring-error' : 'border-gray-10 focus:ring-primary-1';
+    const inputBorderColor = error ? 'border-error ring-error focus:ring-error' : 'border-gray-10 focus:ring-primary-2';
 
     // 키워드를 기준으로 제목 텍스트를 분리
     const titleParts = keyword ? title.split(keyword) : [title];

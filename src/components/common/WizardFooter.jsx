@@ -6,7 +6,6 @@ export default function WizardFooter({ onNext, isLastStep, submitButtonText = "ë
         <div>
             <button
                 onClick={onNext}
-                className="w-full h-[90px] bg-primary-2 text-white font-bold text-[20px] rounded-t-[16px] pt-[1px] pb-[24px] px-[160px]"
                 disabled={isSubmitting}
                 className="w-full h-[90px] bg-primary-2 text-white font-bold text-[20px] rounded-t-[16px] pt-[1px] pb-[24px] px-[167px]
                            disabled:bg-gray-30 disabled:cursor-not-allowed"
