@@ -3,7 +3,7 @@ import React from 'react';
 function CustomRadio({ name, option, value, onChange }) {
     const isSelected = value === option.value;
     return (
-        <label className="flex items-center p-3 cursor-pointer">
+        <label className="flex items-center p-1 cursor-pointer">
             <input
                 type="radio"
                 name={name}
@@ -12,8 +12,7 @@ function CustomRadio({ name, option, value, onChange }) {
                 onChange={onChange}
                 className="sr-only" // 실제 라디오 버튼은 숨기고
             />
-            {/* 👇 우리가 직접 디자인한 UI를 보여줍니다. */}
-            <div className={`w-[18px] h-[18px] rounded-full border flex items-center justify-center transition-colors
+            <div className={`w-[18px] h-[18px]  rounded-full border flex items-center justify-center transition-colors
                            ${isSelected ? 'border-primary-1 bg-white' : 'border-gray-20 bg-white'}`}
             >
                 {isSelected && <div className="w-[10px] h-[10px] bg-primary-1 rounded-full" />}
@@ -23,10 +22,9 @@ function CustomRadio({ name, option, value, onChange }) {
     );
 }
 
-
 // 메인 컴포넌트
 export default function PlanQuestionStep({ stepData, value, onChange, error }) {
-    const { key, title, type, options = [] } = stepData;
+    const { key, title, type, options = [], keyword } = stepData;
 
     const handleInputChange = (e) => {
         onChange(key, e.target.value);
@@ -40,9 +38,8 @@ export default function PlanQuestionStep({ stepData, value, onChange, error }) {
         switch (type) {
             case 'radio':
                 return (
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                         {options.map((option) => (
-                            // 👇 2. 파일 상단에 만든 CustomRadio 컴포넌트를 여기서 사용합니다.
                             <CustomRadio
                                 key={option.value}
                                 name={key}
@@ -75,14 +72,24 @@ export default function PlanQuestionStep({ stepData, value, onChange, error }) {
                         })}
                     </div>
                 );
-
-            // ... 다른 'select', 'number' 타입 케이스들 ...
         }
     };
+    const titleParts = keyword ? title.split(keyword) : [title];
 
     return (
         <div className="p-5 pt-8">
-            <h2 className="mt-1 mb-8 whitespace-pre-wrap text-2xl font-bold leading-tight">{title}</h2>
+            <h2 className="mt-1 mb-8 whitespace-pre-wrap text-2xl font-bold leading-tight">
+                {keyword ? (
+                    <>
+                        {titleParts[0]}
+                        <span className="text-primary-1">{keyword}</span>
+                        {titleParts[1]}
+                    </>
+                ) : (
+                    title
+                )}
+            </h2>
+
             <div>
                 {renderInput()}
                 {error && <p className="mt-2 text-sm text-error">{error}</p>}
