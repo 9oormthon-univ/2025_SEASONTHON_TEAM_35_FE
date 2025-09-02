@@ -6,6 +6,8 @@ import AssetEditPage from "./pages/AssetEditPage/index.jsx";
 import {AssetProvider} from "./context/AssetContext.jsx";
 import AssetPlanInformPage from "./pages/AssetPlanInformPage/index.jsx";
 import AssetPlanStartPage from "@/pages/AssetPlanStartPage/index.jsx";
+import AssetPlanResultPage from "@/pages/AssetPlanResultPage/index.jsx";
+
 function RootLayout() {
   return <Outlet />;
 }
@@ -40,6 +42,10 @@ const router = createBrowserRouter([
         path: "ai/plan/inform",
         element: <AssetPlanInformPage />
       },
+      {
+        path: "/ai/plan/result", // 👈 2. 결과 페이지 경로 추가
+        element: <AssetPlanResultPage />,
+      },
     ],
   },
 ]);
@@ -48,7 +54,6 @@ export default function App() {
   return (
       <div className="flex justify-center min-h-screen bg-[#E5E5E5] pt-6">
         <div className="w-[390px] h-[852px] bg-white shadow-lg overflow-hidden">
-          {/* 👈 2. RouterProvider를 AssetProvider로 감싸줍니다. */}
           <AssetProvider>
             <RouterProvider router={router} />
           </AssetProvider>
