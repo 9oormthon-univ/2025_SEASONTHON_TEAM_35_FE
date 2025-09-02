@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAssetValidator } from "./useAssetValidator.js"; // 👈 1. 유효성 검증 훅 import
 
 export function useAmountWizard(steps, options = {}) {
-    const { onComplete, initialFormValues = {}, memberId, disableNextUntilSelected = false } = options;
+    const { onComplete, initialFormValues = {}, memberId, disableNextUntilSelected = false, payloadType = 'plan' } = options;
 
     const [step, setStep] = useState(0);
     const [direction, setDirection] = useState(1);
@@ -21,13 +21,21 @@ export function useAmountWizard(steps, options = {}) {
     };
 
     const buildPayload = () => {
-        const parseAmount = (s) => Number((s || "").replace(/,/g, "")) || 0;
-        const amounts = Object.fromEntries(
-            Object.entries(form).map(([k, v]) => [k, parseAmount(v)])
-        );
-
-        // 자산 등록/수정에 필요한 amounts 객체만 반환하도록 간소화
-        return { amounts };
+        if (payloadType === 'amount') {
+            // "자산 입력" Wizard를 위한 로직
+            const parseAmount = (s) => Number((s || "").replace(/,/g, "")) || 0;
+            const amounts = Object.fromEntries(
+                Object.entries(form).map(([k, v]) => [k, parseAmount(v)])
+            );
+            return { amounts }; // amounts 객체를 반환
+        } else { // payloadType이 'plan'일 경우
+            // "AI 자산 설계" Wizard를 위한 로직
+            const processedForm = { ...form };
+            if (processedForm.emergencyFund) {
+                processedForm.emergencyFund = processedForm.emergencyFund === 'true';
+            }
+            return processedForm; // form 객체 전체를 반환
+        }
     };
 
     // next함수는 스텝만 넘기도록 간소화
