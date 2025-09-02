@@ -1,9 +1,8 @@
 import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
 import apiClient from '../api/client'; // 👈 1. API 클라이언트 import
+import {getAssetSummary, registerNewAssets, modifyCashAsset,modifyInvestmentAsset,modifyOtherAsset} from "../api/assetApi.js";
 
-// --- API 데이터와 프론트엔드 데이터 형식 맞추기 ---
-
-// 👈 2. GET /summary API 응답을 프론트엔드 형식으로 변환하는 함수
+// GET /summary API 응답을 프론트엔드 형식으로 변환하는 함수
 const transformSummaryResponse = (apiResult) => {
     if (!apiResult) return null;
     return {
@@ -31,7 +30,7 @@ const transformSummaryResponse = (apiResult) => {
     };
 };
 
-// 👈 3. 프론트엔드 form 데이터를 POST /register API 형식으로 변환하는 함수
+//  프론트엔드 form 데이터를 POST /register API 형식으로 변환하는 함수
 const transformToRegisterPayload = (wizardData) => {
     const assetMapping = {
         cash: "CASH",
@@ -61,33 +60,39 @@ export function AssetProvider({ children }) {
     const [isSubmitting, setIsSubmitting] = useState(false); // 데이터 저장/수정 상태
     const [error, setError] = useState(null); // API 에러 상태
 
-    // 👈 4. GET API를 호출하여 자산 요약 정보를 가져오는 함수
+    // GET API를 호출하여 자산 요약 정보를 가져오는 함수
     const fetchAssetSummary = useCallback(async () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await apiClient.get('/api/v0/asset/summary');
-            if (response.data && response.data.isSuccess) {
-                // API 응답을 프론트엔드에 맞게 변환하여 상태에 저장
-                const formattedData = transformSummaryResponse(response.data.result);
+            const result = await getAssetSummary();
+
+            // API 호출 성공 시
+            if (result.isSuccess) {
+                const formattedData = transformSummaryResponse(result.result);
                 setAssetData(formattedData);
+                // 자산 미입력 시
+            } else if (result.code === 'ASSET404') {
+                setAssetData('no-asset'); // 자산이 없다는 특별한 상태로 설정
+                // 그 외 다른 에러
             } else {
-                throw new Error(response.data.message || "자산 정보를 불러오는데 실패했습니다.");
+                throw new Error(result.message || "자산 정보를 불러오는데 실패했습니다.");
             }
         } catch (err) {
             console.error("자산 요약 조회 실패:", err);
             setError(err);
+            setAssetData(null); // 에러 발생 시 데이터 null 처리
         } finally {
             setLoading(false);
         }
     }, []);
 
-    // 👈 5. 컴포넌트가 마운트될 때 자산 정보를 불러옵니다.
+    //포넌트가 마운트될 때 자산 정보를 불러온다.
     useEffect(() => {
         fetchAssetSummary();
     }, [fetchAssetSummary]);
 
-    // 👈 6. POST API를 호출하여 자산을 '최초 등록'하는 함수
+    //  POST API를 호출하여 자산을 최초 등록하는 함수
     const registerAssets = async (wizardPayload) => {
         setIsSubmitting(true);
         setError(null);
@@ -110,10 +115,42 @@ export function AssetProvider({ children }) {
         }
     };
 
-    // (TODO: 자산 '수정' 함수는 다음 단계에서 여기에 추가할 예정입니다.)
+    // 자산 수정 함수
+    const modifyAssets = async (mode, wizardPayload) => {
+        setIsSubmitting(true);
+        setError(null);
+        try {
+            let result;
+            const amounts = wizardPayload.amounts;
 
+            // mode 값에 따라 다른 API 함수를 호출하는 분기 처리
+            if (mode === 'cash') {
+                result = await modifyCashAsset(amounts.cash);
+            } else if (mode === 'investment') {
+                result = await modifyInvestmentAsset(amounts);
+            } else if (mode === 'etc') {
+                result = await modifyOtherAsset(amounts.etc);
+            } else {
+                // 'all' 모드는 각 API를 모두 호출해야 하므로 별도 구현이 필요합니다.
+                throw new Error(`'${mode}' 모드는 아직 지원되지 않습니다.`);
+            }
 
-    // 👈 7. 자식 컴포넌트들에게 전달할 값들
+            if (!result.isSuccess) {
+                throw new Error(result.message || "자산 수정에 실패했습니다.");
+            }
+
+            await fetchAssetSummary(); // 수정 성공 후 최신 데이터 다시 불러오기
+            return true;
+        } catch (err) {
+            console.error("자산 수정 실패:", err);
+            setError(err);
+            return false;
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    // 자식 컴포넌트들에게 전달할 값들
     const value = {
         assetData,
         loading,
@@ -121,7 +158,7 @@ export function AssetProvider({ children }) {
         error,
         userName: "김민서", // (임시)
         registerAssets, // 자산 등록 함수
-        // updateAssetData, // (다음 단계에서 추가)
+        modifyAssets,
     };
 
     return (

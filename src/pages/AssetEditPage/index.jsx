@@ -24,8 +24,7 @@ function formatAmountsForForm(amounts = {}) {
 export default function AssetEditPage() {
     const { mode } = useParams();
     const navigate = useNavigate();
-    const { assetData, updateAssetData, loading } = useAssets();
-
+    const { assetData, modifyAssets, isSubmitting } = useAssets();
     // mode에 따라 wizard에 표시할 스텝 결정
     const stepsToEdit = (() => {
         switch (mode) {
@@ -43,10 +42,16 @@ export default function AssetEditPage() {
     const isSingleStepEdit = stepsToEdit.length === 1 && mode !== 'all';
 
     //  Wizard 완료 시 실행
-    const handleEditComplete = (updatedPayload) => {
-        updateAssetData(updatedPayload);
-        alert("자산 정보가 수정되었습니다.");
-        navigate("/asset/main");
+    const handleEditComplete = async (updatedPayload) => {
+        // mode와 함께 payload를 전달하여 API 호출
+        const success = await modifyAssets(mode, updatedPayload);
+
+        if (success) {
+            alert("자산 정보가 성공적으로 수정되었습니다.");
+            navigate("/asset/main");
+        } else {
+            alert("자산 정보 수정에 실패했습니다. 다시 시도해 주세요.");
+        }
     };
 
     // 'X' 버튼 클릭 시 실행될 함수
@@ -57,7 +62,7 @@ export default function AssetEditPage() {
         }
     };
 
-    if (loading) {
+    if (isSubmitting) {
         return <div>데이터를 불러오는 중입니다...</div>;
     }
 
@@ -71,6 +76,7 @@ export default function AssetEditPage() {
             onClose={handleClose} // 'X' 버튼 핸들러 전달
             showPrevButton={!isSingleStepEdit} // 개별+단일스텝 수정이 아닐 때만 '이전' 버튼 표시
             submitButtonText="수정하기"
+            isSubmitting={isSubmitting} // 제출 상태 전달
         />
     );
 }
