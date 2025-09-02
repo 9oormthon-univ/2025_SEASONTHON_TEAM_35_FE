@@ -13,22 +13,30 @@ const WIZARD_STEPS = [
 
 
 export default function AssetInformPage() {
-    const navigate = useNavigate(); // 페이지 이동을 위한 navigate 함수
-    const { updateAssetData } = useAssets(); // 컨텍스트에서 데이터 업데이트 함수
+    const navigate = useNavigate();
+    // 👈 1. context에서 registerAssets와 isSubmitting을 가져옵니다.
+    const { registerAssets, isSubmitting } = useAssets();
 
-    // wizard가 완료되었을 때 실행
-    const handleComplete = (payload) => {
-        updateAssetData(payload); // 컨텍스트를 통해 전역 자산 데이터를 업데이트
-        alert("자산 정보가 저장되었습니다.");
-        navigate("/asset/main"); // 자산 정보 메인 페이지로 이동
+    // 👈 2. wizard가 완료되었을 때 실행될 함수를 async/await으로 수정
+    const handleRegister = async (payload) => {
+        const success = await registerAssets(payload); // API 호출
+
+        if (success) {
+            alert("자산 정보가 성공적으로 저장되었습니다.");
+            navigate("/asset/main");
+        } else {
+            // AssetContext에서 error 상태를 관리하므로, 실패 시 에러 알림만 띄워줍니다.
+            alert("자산 정보 저장에 실패했습니다. 다시 시도해 주세요.");
+        }
     };
 
     return (
         <div className="h-full bg-white">
             <AmountWizard
                 wizardSteps={WIZARD_STEPS}
-                onComplete={handleComplete} // AmountWizard에 완료 함수를 props로 전달
+                onComplete={handleRegister}
                 submitButtonText="완료"
+                isSubmitting={isSubmitting}
             />
         </div>
     );
