@@ -1,23 +1,30 @@
 import React from 'react';
+import QuestionRenderer from './QuestionRenderer'; // 👈 분리한 컴포넌트 import
 
-// Wizard의 내용(content) 영역만 담당하는 컴포넌트입니다.
-export default function PlanStartStep({ stepData }) {
-    const { title, keyword, subtitle } = stepData;
-    const titleParts = title.split(keyword);
+export default function PlanQuestionStep({ stepData, value, onChange, error }) {
+    const { keyword, title } = stepData;
+    const titleParts = keyword ? title.split(keyword) : [title];
 
     return (
-        <div className="flex flex-col h-full p-5 pt-8 text-center">
-            {/* 상단 텍스트 영역 */}
-            <h1 className="text-2xl font-bold whitespace-pre-wrap leading-tight">
-                {titleParts[0]}
-                <span className="text-primary-1">{keyword}</span>
-                {titleParts[1]}
-            </h1>
-            <p className="mt-4 text-[18px] text-gray-40">
-                {subtitle}
-            </p>
+        <div className="p-5 pt-8">
+            <h2 className="mt-1 mb-8 whitespace-pre-wrap text-2xl font-bold leading-tight">
+                {keyword ? (
+                    <>
+                        {titleParts[0]}<span className="text-primary-1">{keyword}</span>{titleParts[1]}
+                    </>
+                ) : (
+                    title
+                )}
+            </h2>
 
-
+            <div>
+                <QuestionRenderer
+                    stepData={stepData}
+                    value={value}
+                    onChange={onChange}
+                />
+                {error && <p className="mt-2 text-sm text-error">{error}</p>}
+            </div>
         </div>
     );
 }
