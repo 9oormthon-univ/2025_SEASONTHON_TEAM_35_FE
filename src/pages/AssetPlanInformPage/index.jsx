@@ -1,52 +1,33 @@
-import BaseWizard from "@/components/common/wizard/BaseWizard.jsx";
-import ChoiceStep from "@/components/AssetPlanInformPage/ChoiceStep.jsx";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import BaseWizard from '../../components/common/wizard/BaseWizard.jsx';
+import PlanQuestionStep from '../../components/AssetPlanInformPage/PlanQuestionStep.jsx';
 
-const PLAN_STEPS = [
-    {
-        key: "goal",
-        title: "당신의 자산 설계 목적은 무엇인가요?",
-        keyword: "자산 설계 목적",
-        options: [
-            { label: "단기 비상자금", value: "emergency", desc: "3~6개월 생활비" },
-            { label: "내집 마련", value: "house" },
-            { label: "노후 준비", value: "retire" },
-            { label: "자녀 교육", value: "education" },
-        ],
-    },
-    {
-        key: "risk",
-        title: "어느 정도의 위험을 감수하실 수 있나요?",
-        keyword: "위험",
-        options: [
-            { label: "안정형", value: "low", desc: "원금 보존 우선" },
-            { label: "중립형", value: "mid" },
-            { label: "공격형", value: "high", desc: "수익 극대화" },
-        ],
-    },
+// 👇 7개의 질문만 남깁니다.
+const PLAN_WIZARD_STEPS = [
+    { key: "age", title: "만 나이가 어떻게 되시나요?", type: 'number' },
+    { key: "goal", title: "자산 설계의 목표는 무엇인가요?", type: 'select', options: ['은퇴 준비', '주택 마련', '자녀 교육'] },
+    { key: "risk", title: "선호하는 투자 위험도는 어느 정도인가요?", type: 'radio', options: ['안정형', '중립형', '공격형'] },
+    // ... 나머지 4개 질문
 ];
 
 export default function AssetPlanInformPage() {
-    const initialData = { goal: "", risk: "" };
+    const navigate = useNavigate();
 
-    const handleComplete = (form) => {
-        console.log("submit plan form:", form);
-        // ✅ 여기서 AI 자산 설계 API 호출
-    };
-    console.log(PLAN_STEPS)
+    const handlePlanComplete = (payload) => { /* ... */ };
+
     return (
         <BaseWizard
-            wizardSteps={PLAN_STEPS}
-            initialData={initialData}
-            onComplete={handleComplete}
-            submitButtonText="설계 시작"
-            showPrevButton={true}
-            renderStep={({ stepData, value, onChange }) => (
-                <ChoiceStep
-                    title={stepData.title}
-                    keyword={stepData.keyword}
-                    options={stepData.options}
+            wizardSteps={PLAN_WIZARD_STEPS} // 7개 질문
+            onComplete={handlePlanComplete}
+            submitButtonText="결과 보기"
+            showPrevButton={true} // 이전 버튼 항상 표시
+            renderStep={({ stepData, value, onChange, error }) => (
+                <PlanQuestionStep
+                    stepData={stepData}
                     value={value}
-                    onChange={(v) => onChange(stepData.key, v)}
+                    onChange={onChange}
+                    error={error}
                 />
             )}
         />
