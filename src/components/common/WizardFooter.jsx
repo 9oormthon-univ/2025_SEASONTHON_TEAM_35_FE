@@ -10,8 +10,7 @@ export default function WizardFooter({ onNext, isLastStep, submitButtonText = "�
             <button
                 onClick={onNext}
                 disabled={isSubmitting || isNextDisabled}
-                className="w-full h-[90px] text-white font-bold text-[20px] rounded-t-[16px] pt-[1px] pb-[24px] px-[167px] transition-colors
-                           // 👇 2. ...아래의 disabled: 스타일이 자동으로 적용됩니다.
+                className="w-full h-[90px] text-white font-bold text-[20px] rounded-t-[16px] pt-[1px] pb-[24px] px-[140px] transition-colors
                            disabled:bg-gray-10 disabled:cursor-not-allowed bg-primary-2"
             >
                 {buttonText}

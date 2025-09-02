@@ -24,15 +24,12 @@ export default function ToggleBox({ option, isSelected, onClick }) {
     return (
         <button onClick={onClick} className={containerClasses}>
             <div className="flex flex-col items-start justify-start w-full h-full text-left">
-                {/* 1. 아이콘 */}
                 <TempIcon icon={icon} />
 
-                {/* 2. 메인 텍스트 (제목) */}
                 <p className={`text-[16px] text-gray-100 font-bold  `}>
                     {option.label}
                 </p>
 
-                {/* 3. 서브 텍스트 (회색 설명) */}
                 <p className={`mt-1 text-xs text-gray-60 font-medium whitespace-pre-wrap ${titleFontClasses}`}>
                     {option.description}
                 </p>

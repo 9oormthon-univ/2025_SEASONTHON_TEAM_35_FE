@@ -7,7 +7,6 @@ export default function PlanQuestionStep({ stepData, value, onChange, error }) {
 
     return (
         <div className="p-5 pt-8">
-            {/* 제목 부분은 그대로 유지됩니다. */}
             <h2 className="mt-1 mb-8 whitespace-pre-wrap text-2xl font-bold leading-tight">
                 {keyword ? (
                     <>

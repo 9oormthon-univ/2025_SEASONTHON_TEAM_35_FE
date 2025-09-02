@@ -43,16 +43,16 @@ export default function QuestionRenderer({ stepData, value, onChange }) {
                 );
             }else if (stepData.styleVariant === 'pill') {
                 return (
-                    <div className="flex-wrap gap-2">
+                    <div className="flex-wrap space-y-2">
                         {options.map((option) => {
                             const isSelected = value === option.value;
                             return (
                                 <button
                                     key={option.value}
                                     onClick={() => handleValueChange(option.value)}
-                                    className={`flex items-center justify-center px-4 py-2 rounded-full border text-base transition-colors
+                                    className={`flex items-center justify-center px-4 py-2 rounded-full border text-Medium transition-colors
                                                     ${isSelected
-                                        ? 'bg-primary-1 text-white border-primary-1 font-bold'
+                                        ? 'bg-primary-2 text-white border-primary-2 font-bold'
                                         : 'bg-white text-gray-80 border-gray-20 hover:bg-gray-5'
                                     }`}
                                 >
