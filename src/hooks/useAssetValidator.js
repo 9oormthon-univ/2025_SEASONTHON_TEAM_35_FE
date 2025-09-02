@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-// 숫자 콤마 제거 및 변환 유틸리티
+// 숫자 콤마 제거 및 변환
 const parseAmount = (s) => Number((s || "").replace(/,/g, "")) || 0;
 
-// 유효성 검증 로직만 담은 커스텀 훅
+// 유효성 검증 로직
 export function useAssetValidator() {
     const [error, setError] = useState("");
 
-    // 검증을 수행하는 함수
+    // 검증 수행
     const validate = (currentValue, currentStepData) => {
         const numericValue = parseAmount(currentValue);
 

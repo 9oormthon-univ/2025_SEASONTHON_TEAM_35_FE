@@ -18,8 +18,6 @@ export function useAmountWizard(steps, options = {}) {
         if (error) setError(""); // 값을 입력하면 에러를 지웁니다.
     };
 
-
-    // 👇✅ 이 함수의 내용을 다시 채워 넣었습니다.
     const buildPayload = () => {
         const parseAmount = (s) => Number((s || "").replace(/,/g, "")) || 0;
         const amounts = Object.fromEntries(
@@ -33,11 +31,9 @@ export function useAmountWizard(steps, options = {}) {
     // next함수는 스텝만 넘기도록 간소화
     const next = () => {
         const currentValue = form[currentStepData.key];
-
         // 유효성 검증을 validator에게 위임
         const isValid = validate(currentValue, currentStepData);
         if (!isValid) return; // 유효하지 않으면 여기서 중단
-
         // 유효하다면, 다음 단계로 이동하거나 완료 처리
         if (step < steps.length - 1) {
             setDirection(1);
@@ -48,7 +44,17 @@ export function useAmountWizard(steps, options = {}) {
         }
     };
 
-    const prev = () => { /* ... (변경 없음) ... */ };
+    const prev = () => {
+        setStep((currentStep) => {
+            // 현재 스텝이 0보다 클 때만 1을 뺀다
+            if (currentStep > 0) {
+                setDirection(-1); // 애니메이션 방향 설정
+                return currentStep - 1;
+            }
+            // 0일 경우에는 더 이상 뒤로 가지 않도록
+            return currentStep;
+        });
+    };
 
     return {
         step, totalSteps: steps.length, currentStepData, form, error, direction,
