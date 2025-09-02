@@ -32,6 +32,10 @@ export default {
         error: '#FF0000',
         background: '#F5F7FA',
       },
+      backgroundImage: {
+        graduation:
+          'linear-gradient(to bottom, #F5F7FA 0%, #F6FFFE 50%, #F5F7FA 100%)',
+      },
       fontFamily: {
         sans: ['Pretendard Variable', 'Pretendard', 'system-ui', 'sans-serif'],
         gmarket: ['GmarketSans', 'Pretendard Variable', 'sans-serif'],

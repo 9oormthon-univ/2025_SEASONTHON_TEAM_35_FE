@@ -9,3 +9,10 @@
   -ms-overflow-style: none; /* IE, Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.recharts-surface:focus {
+  outline: none !important;
+}
+.recharts-surface:focus:not(:focus-visible) {
+  outline: none !important;
+}

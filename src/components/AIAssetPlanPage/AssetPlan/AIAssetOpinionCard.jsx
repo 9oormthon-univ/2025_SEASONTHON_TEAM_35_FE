@@ -1,8 +1,10 @@
+import starIcon from '../../../assets/AIAssetPlan/starIcon.png';
+
 export default function AIAssetOpinionCard() {
   return (
     <div className="w-full py-[20px] px-[24px] flex flex-col gap-[16px] bg-white">
       <div className="flex gap-[10px] items-center ">
-        <div className="w-[20px] h-[20px] bg-gray-5 rounded-[4px]" />
+        <img src={starIcon} alt="starIcon" className="w-[24px] h-[24px]" />
         <h1 className="font-bold text-[16px] text-gray-90">AI 자산 의견</h1>
       </div>
       <div className="text-gray-100 text-[14px] flex flex-col gap-[10px] font-medium">

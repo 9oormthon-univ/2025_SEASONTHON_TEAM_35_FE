@@ -1,9 +1,16 @@
 import { useState } from 'react';
+import Footer from '../../components/layout/Footer';
 
+// 자산 설계
 import AIRecommendAssetCard from '../../components/AIAssetPlanPage/AssetPlan/AIRecommendAssetCard';
 import AIAssetOpinionCard from '../../components/AIAssetPlanPage/AssetPlan/AIAssetOpinionCard';
 import MyInfoCard from '../../components/AIAssetPlanPage/AssetPlan/MyInfoCard';
-import Footer from '../../components/layout/Footer';
+
+// 투자 분석
+import AIPortfolio from '../../components/AIAssetPlanPage/InvestmentAnalysis/AIPortfolio';
+import AIInvestmentOpinion from '../../components/AIAssetPlanPage/InvestmentAnalysis/AIInvestmentOpinion';
+import Portfolio from '../../components/AIAssetPlanPage/InvestmentAnalysis/Portfolio';
+import ROA from '../../components/AIAssetPlanPage/InvestmentAnalysis/ROA';
 
 const ASSET_PALN_BTN = [
   {
@@ -39,7 +46,12 @@ export default function AIAssetPlanPage() {
           <MyInfoCard />
         </div>
       ) : (
-        ''
+        <div className="h-[606px] bg-background flex flex-col gap-[12px] overflow-y-scroll scrollbar-hide">
+          <AIPortfolio />
+          <AIInvestmentOpinion />
+          <Portfolio />
+          <ROA />
+        </div>
       )}
 
       <Footer />

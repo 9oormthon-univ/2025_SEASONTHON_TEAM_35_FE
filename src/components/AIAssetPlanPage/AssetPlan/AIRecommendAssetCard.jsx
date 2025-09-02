@@ -18,7 +18,7 @@ export default function AIRecommendAssetCard() {
         <h1 className="text-gray-90 text-[16px] font-bold">
           AI 추천 자산 비율
         </h1>
-        <Link className="flex justify-center items-center text-[12px] text-gray-40 border-[1px] border-gray-5 rounded-[12px] w-[66px] h-[24px] font-normal">
+        <Link className="w-[66px] h-[26px] text-gray-50 text-[12px] border-[1px] border-gray-5 flex justify-center items-center rounded-[12px]">
           다시하기
         </Link>
       </div>
