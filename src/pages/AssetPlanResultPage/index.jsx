@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AnalysisLayout from '../../components/AssetPlanInformPage/AnalysisLayout.jsx';
 // TODO: 실제 로딩 스피너, 체크 아이콘으로 교체
-const Spinner = () => <div className="w-16 h-16 border-4 border-primary-1 border-t-transparent rounded-full animate-spin" />;
+const Spinner = () => <div className="w-16 h-16 mb-20 border-4 border-primary-1 border-t-transparent rounded-full animate-spin" />;
 const CheckIcon = () => <svg className="w-20 h-20 text-primary-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
 
 // 로딩 중에 보일 회색 박스 리스트
@@ -35,10 +35,12 @@ export default function AssetPlanResultPage() {
                 isButtonDisabled={true}
             >
                 {/* 로딩 중에만 보이는 회색 박스들 */}
-                <div className="space-y-3">
+                <div className="space-y-2 mt-20">
                     {loadingSteps.map((text, index) => (
-                        <div key={index} className="w-full p-4 bg-gray-10 rounded-lg text-left text-gray-40">
-                            {text}
+                        <div
+                            key={index}
+                            className="w-full h-[50px] p-4 bg-[#F5F7FA] rounded-lg text-left text-gray-40"
+                        > {text}
                         </div>
                     ))}
                 </div>
