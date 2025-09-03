@@ -32,7 +32,7 @@ const FOOTER_TAB = [
   },
   {
     title: '목표 관리',
-    link: '/goal',
+    link: '/goal-setting',
     activeIcon: activeGoalIcon,
     inactiveIcon: inactiveGoalIcon,
   },
