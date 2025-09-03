@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
-import apiClient from '../api/client'; // 👈 1. API 클라이언트 import
+import apiClient from '../api/'; // 👈 1. API 클라이언트 import
 import {getAssetSummary, registerNewAssets, modifyCashAsset,modifyInvestmentAsset,modifyOtherAsset} from "../api/assetApi.js";
 
 // GET /summary API 응답을 프론트엔드 형식으로 변환하는 함수
@@ -99,7 +99,7 @@ export function AssetProvider({ children }) {
     useEffect(() => {
         fetchAssetSummary();
     }, [fetchAssetSummary]);
-
+/*
     //  POST API를 호출하여 자산을 최초 등록하는 함수
     const registerAssets = async (wizardPayload) => {
         setIsSubmitting(true);
@@ -160,7 +160,7 @@ export function AssetProvider({ children }) {
             setIsSubmitting(false);
         }
     };
-
+*/
     // 자식 컴포넌트들에게 전달할 값들
     const value = {
         assetData,
@@ -168,8 +168,8 @@ export function AssetProvider({ children }) {
         isSubmitting,
         error,
         userName: "김민서", // (임시)
-        registerAssets, // 자산 등록 함수
-        modifyAssets,
+        //registerAssets, // 자산 등록 함수
+        //modifyAssets,
     };
 
     return (
