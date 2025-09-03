@@ -9,6 +9,7 @@ import {
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import MyPage from './pages/MyPage';
+import GoalSettingPage from './pages/GoalSettingPage';
 
 function RootLayout() {
   return <Outlet />;
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: 'home/inform', element: <div></div> },
       { path: 'login', element: <LoginPage /> },
       { path: 'my-page', element: <MyPage /> },
+      { path: 'goal-setting', element: <GoalSettingPage /> },
     ],
   },
 ]);
