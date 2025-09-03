@@ -2,16 +2,13 @@ import Header from './Header';
 import Footer from './Footer';
 
 export default function Layout({ children, title }) {
-    return (
-        <div className="bg-background h-screen overflow-y-auto relative">
-            <Header title={title} />
+  return (
+    <div className="bg-background h-[852px] overflow-y-auto">
+      <Header title={title} />
 
-            {/* 스크롤 때문에 Footer 높이만큼 padding-bottom */}
-            <main className="px-7 pb-[100px]">
-                {children}
-            </main>
+      <main className="flex-1 overflow-y-auto pb-[90px]">{children}</main>
 
-            <Footer />
-        </div>
-    );
+      <Footer />
+    </div>
+  );
 }
