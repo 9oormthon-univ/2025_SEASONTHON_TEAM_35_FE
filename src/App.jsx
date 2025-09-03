@@ -5,6 +5,7 @@ import AssetEditPage from "./pages/AssetEditPage/index.jsx";
 import {AssetProvider} from "./context/AssetContext.jsx";
 import AssetPlanInformPage from "./pages/AssetPlanInformPage/index.jsx";
 import UserInformPage from "@/pages/UserInformPage/index.jsx";
+import UserInformResultPage from "@/pages/UserInformResultPage/index.jsx";
 // import AssetPlanStartPage from "@/pages/AssetPlanStartPage/index.jsx";
 // import AssetPlanResultPage from "@/pages/AssetPlanResultPage/index.jsx";
 
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "user/inform",
         element: <UserInformPage />
+      },
+      {
+        path: "user/inform/result",
+        element: <UserInformResultPage />
       },
       //{
        // path: "asset/inform",

@@ -14,11 +14,13 @@ export default function UserInformPage() {
         name: userNameFromServer,
     }), [userNameFromServer]);
 
-    console.log("1. UserInformPage에서 생성:", initialFormValues);
     const handleComplete = (payload) => {
-        console.log("사용자 정보 입력 완료:", payload);
-    };
+        console.log("최종 제출 데이터:", payload);
+        // TODO: 여기서 실제 API를 호출합니다.
 
+        // API 호출 후, 로딩 및 결과 페이지로 이동합니다.
+        navigate('/user/inform/result'); // 👈 이동 경로를 지정합니다.
+    };
     return (
         <div className="h-full bg-white">
             <UserInformWizard
