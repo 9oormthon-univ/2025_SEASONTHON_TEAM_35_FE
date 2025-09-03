@@ -96,7 +96,7 @@ export default function ETFConcept() {
               <img
                 src={item.icon}
                 alt="numberIcon"
-                className="w-[20px] h-[20px] "
+                className="w-[25px] h-[25px] "
               />
               <div className="flex flex-col w-[309px]">
                 <h1 className="text-gray-90 font-medium text-[18px]">
