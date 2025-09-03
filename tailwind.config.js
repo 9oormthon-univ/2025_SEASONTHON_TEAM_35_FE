@@ -14,6 +14,8 @@ export default {
           2: '#FF919F',
           3: '#FFD562',
         },
+        up: '#FF0000',
+        down: '#0073FF',
         gray: {
           5: '#E4E7EA',
           10: '#D7DDE1',

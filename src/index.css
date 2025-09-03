@@ -5,11 +5,23 @@
 @tailwind components;
 @tailwind utilities;
 
-.scrollbar-hide {
-  -ms-overflow-style: none; /* IE, Edge */
-  scrollbar-width: none; /* Firefox */
+.recharts-surface:focus {
+  outline: none !important;
+}
+.recharts-surface:focus:not(:focus-visible) {
+  outline: none !important;
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* 파이어폭스 */
+* {
+  scrollbar-width: none; /* Firefox 전용 */
+}
+
+/* IE, Edge (구버전) */
+* {
+  -ms-overflow-style: none; /* IE, Edge */
 }

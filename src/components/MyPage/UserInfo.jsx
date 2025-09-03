@@ -1,30 +1,30 @@
 import { Link } from 'react-router-dom';
-import pencilIcon from '../../assets/MyPage/pencilIcon.png';
-
+import seeMoreBtn from '../../assets/icons/seeMoreBtn.png';
 export default function UserInfo() {
   return (
-    <div className=" w-[361px] h-[140px] rounded-[12px] pt-[20px] px-[20px] flex flex-col items-center">
-      {/* user */}
-      <div className="flex flex-col gap-[24px] pb-[24px] items-center ">
-        <div className="w-[92px] h-[92px] bg-primary-4 rounded-[50%]" />
-        <div className="flex flex-col items-center">
-          <h1 className="font-bold text-[20px] text-gray-100">유저 이름</h1>
-          <p className="font-medium text-[16px] text-gray-40">
-            9ooromthon@goorom.com
-          </p>
+    <div className="flex flex-col items-center ">
+      <div className="py-[24px] px-[20px] mb-[373px] bg-white w-[353px] h-[270px]  rounded-[12px] flex flex-col items-center shadow-[0_0_8px_#E7E9EECC]">
+        {/* user */}
+        <div className="flex flex-col gap-[24px] pb-[24px] items-center ">
+          <div className="w-[92px] h-[92px] bg-primary-4 rounded-[50%]" />
+          <div className="flex flex-col items-center">
+            <h1 className="font-bold text-[20px] text-gray-100">유저 이름</h1>
+            <p className="font-medium text-[16px] text-gray-40">
+              9ooromthon@goorom.com
+            </p>
+          </div>
         </div>
-      </div>
-      {/* 나의 초기 자금 */}
-      <div className=" w-[353px] h-[72px] rounded-[12px] py-[24px] px-[20px] flex justify-between bg-white shadow-[0_0_8px_#E7E9EE] mb-[350px]">
-        <h1 lassName="text-gray-100 text-[16px] font-medium">나의 초기 자금</h1>
-        <button className="flex items-center gap-[3px]">
-          <h1 className="text-gray-100 text-[16px] font-bold">7,200,000 원</h1>
+        {/* 자산 최신화하기 */}
+        <div className="w-[124px] h-[30px] flex gap-[4px] border-[1px] border-gray-5 rounded-[16px]  justify-center items-center">
+          <p className="text-gray-40 font-normal text-[12px]">
+            자산 최신화하기
+          </p>
           <img
-            src={pencilIcon}
-            alt="pencilIcon"
-            className="w-[16px] h-[16px]"
+            src={seeMoreBtn}
+            alt="seeMoreBtn"
+            className="w-[16px] h-[16px] "
           />
-        </button>
+        </div>
       </div>
       {/* logout */}
       <Link
