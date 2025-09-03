@@ -26,7 +26,7 @@ const FOOTER_TAB = [
   },
   {
     title: 'AI 자산 설계',
-    link: '/ai-asset-plan',
+    link: '/home/AI-asset-plan',
     activeIcon: activeAssetPlanIcon,
     inactiveIcon: inactiveAssetPlanIcon,
   },

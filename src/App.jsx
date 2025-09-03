@@ -9,6 +9,8 @@ import {
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import MyPage from './pages/MyPage';
+import AIAssetPlanPage from './pages/AIAssetPlanPage';
+import ETFExplanation from './pages/AIAssetPlanPage/ETFExplanation';
 
 function RootLayout() {
   return <Outlet />;
@@ -24,6 +26,8 @@ const router = createBrowserRouter([
       { path: 'home/inform', element: <div></div> },
       { path: 'login', element: <LoginPage /> },
       { path: 'my-page', element: <MyPage /> },
+      { path: 'home/AI-asset-plan', element: <AIAssetPlanPage /> },
+      { path: 'home/AI-asset-plan/ETF', element: <ETFExplanation /> },
     ],
   },
 ]);
