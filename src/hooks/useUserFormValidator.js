@@ -22,7 +22,12 @@ const validate = (key, value) => {
                 return "유효하지 않은 휴대폰 번호입니다.";
             }
             return null;
-
+        // 👇 금융사 선택 검증 규칙 추가
+        case 'financialInstitutions':
+            if (!value || value.length === 0) {
+                return "금융사를 하나 이상 선택해주세요.";
+            }
+            return null;
         default:
             return null; // 검증 규칙이 없는 경우
     }

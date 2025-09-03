@@ -1,7 +1,7 @@
 import React from 'react';
 import ResidentNumberInput from "@/components/UserInformPage/ResidentNumberInput.jsx";
 import PhoneNumberInput from "@/components/UserInformPage/PhoneNumberInput.jsx";
-
+import MultiSelectGrid from "@/components/UserInformPage/MultiSelectGrid.jsx";
 // 일반 텍스트 입력 필드 컴포넌트
 const TextInput = ({ value, onChange, placeholder }) => (
     <input
@@ -76,8 +76,15 @@ export default function FormStep({ stepData, value, onChange, error, setError })
                         error={error && error[stepData.key]}
                     />
                 );
-            // TODO: 'multi-select-grid' 타입에 대한 case 추가 예정
-
+            case 'multi-select-grid':
+                return (
+                    <MultiSelectGrid
+                        options={stepData.options}
+                        value={value}
+                        onChange={(newValue) => onChange(stepData.key, newValue)}
+                        error={error && error[stepData.key]}
+                    />
+                );
             default:
                 return <div>지원하지 않는 입력 타입입니다: {type}</div>;
         }
