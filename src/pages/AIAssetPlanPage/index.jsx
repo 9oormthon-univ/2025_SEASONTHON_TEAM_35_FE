@@ -53,13 +53,13 @@ export default function AIAssetPlanPage() {
         </div>
       </div>
       {onClicked === '자산 설계' ? (
-        <div className="h-full bg-graduation flex flex-col overflow-y-scroll scrollbar-hide">
+        <div className="h-full bg-graduation flex flex-col overflow-y-scroll ">
           <AIRecommendAssetCard />
           <AIAssetOpinionCard />
           <MyInfoCard />
         </div>
       ) : (
-        <div className="h-full bg-graduation flex flex-col overflow-y-scroll scrollbar-hide">
+        <div className="h-full bg-graduation flex flex-col overflow-y-scroll">
           <AIPortfolio />
           <AIInvestmentOpinion />
           <Portfolio />

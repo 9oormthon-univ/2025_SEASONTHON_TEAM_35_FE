@@ -6,7 +6,9 @@ export default function Layout({ children, title }) {
     <div className="bg-background h-[852px] overflow-y-auto">
       <Header title={title} />
 
-      <main className="flex-1 overflow-y-auto pb-[90px]">{children}</main>
+      <main className="flex-1 overflow-y-auto pb-[90px] scrollbar-hide">
+        {children}
+      </main>
 
       <Footer />
     </div>
