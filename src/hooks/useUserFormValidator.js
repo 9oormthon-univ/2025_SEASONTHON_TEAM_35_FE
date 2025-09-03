@@ -6,9 +6,13 @@ const validate = (key, value) => {
         case 'name':
             // 이름은 수정 불가하므로 항상 유효하다고 처리
             return null
+        case 'residentNumber':
+            if (!value || String(value.part1 || '').length !== 6 || String(value.part2 || '').length !== 7) {
+                return "유효하지 않은 주민번호입니다.";
+            }
+            return null;
 
-
-        // TODO: 추후 주민번호, 휴대폰 번호 검증 로직 추가
+        // TODO:  휴대폰 번호 검증 로직 추가
 
         default:
             return null; // 검증 규칙이 없는 경우

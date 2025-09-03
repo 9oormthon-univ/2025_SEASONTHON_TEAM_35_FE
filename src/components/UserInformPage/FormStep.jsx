@@ -1,5 +1,5 @@
 import React from 'react';
-
+import ResidentNumberInput from "@/components/UserInformPage/ResidentNumberInput.jsx";
 // 일반 텍스트 입력 필드 컴포넌트
 const TextInput = ({ value, onChange, placeholder }) => (
     <input
@@ -50,6 +50,7 @@ export default function FormStep({ stepData, value, onChange, error, setError })
                         />
                     );
                 }
+
                 return (
                     <TextInput
                         value={value}
@@ -57,7 +58,14 @@ export default function FormStep({ stepData, value, onChange, error, setError })
                         placeholder={placeholder}
                     />
                 );
-
+            case 'resident':
+                return (
+                    <ResidentNumberInput
+                        value={value}
+                        onChange={(newValue) => onChange(stepData.key, newValue)}
+                        error={error && error[stepData.key]}
+                    />
+                );
             // TODO: 'resident', 'phone', 'multi-select-grid' 타입에 대한 case 추가 예정
 
             default:
