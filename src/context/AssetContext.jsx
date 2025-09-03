@@ -1,7 +1,6 @@
 import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
-import apiClient from '../api/'; // 👈 1. API 클라이언트 import
 import {getAssetSummary, registerNewAssets, modifyCashAsset,modifyInvestmentAsset,modifyOtherAsset} from "../api/assetApi.js";
-
+import apiClient from "@/api/client.js";
 // GET /summary API 응답을 프론트엔드 형식으로 변환하는 함수
  const transformSummaryResponse = (apiResult) => {
     if (!apiResult) return null;

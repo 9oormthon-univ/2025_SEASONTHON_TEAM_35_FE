@@ -8,12 +8,13 @@ export default function UserInformWizard(props) {
             {...props}
             // 👇 사용자 정보 입력은 'plan' 페이로드와 유사한 플랫 객체를 사용
             payloadType="plan"
-            renderStep={({ stepData, value, onChange, error }) => (
+            renderStep={({ stepData, value, onChange, error, setError }) => (
                 <FormStep
                     stepData={stepData}
                     value={value}
                     onChange={onChange}
                     error={error}
+                    setError={setError}
                 />
             )}
         />

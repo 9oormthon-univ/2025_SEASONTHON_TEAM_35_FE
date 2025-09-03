@@ -2,16 +2,17 @@ import WizardHeader from "@/components/common/WizardHeader.jsx";
 import WizardProgress from "@/components/common/WizardProgress.jsx";
 import WizardContent from "@/components/common/wizard/WizardContent.jsx";
 import WizardFooter from "@/components/common/WizardFooter.jsx";
-import { useAmountWizard } from "@/hooks/useAmountWizard.js"; // 훅 이름은 추후 useWizard로 리네임 고려
+import { useWizard } from "@/hooks/useWizard.js"; // 훅 이름은 추후 useWizard로 리네임 고려
 
 export default function BaseWizard({
-                                       wizardSteps,
-                                       initialData,
-                                       onComplete,
-                                       onClose,
-                                       showPrevButton,
-                                       submitButtonText,
-                                       renderStep,
+                                        wizardSteps,
+                                        initialData,
+                                        onComplete,
+                                        onClose,
+                                        showPrevButton,
+                                        submitButtonText,
+                                        renderStep,
+                                        initialFormValues,
                                    }) {
     // ✅ 초반 가드: 잘못된 props 방지
     if (!Array.isArray(wizardSteps) || wizardSteps.length === 0) {
@@ -26,11 +27,11 @@ export default function BaseWizard({
     }
 
     const {
-        step, totalSteps, currentStepData, form, error, direction,
+        step, totalSteps, currentStepData, form, error, setError, direction,
         next, prev, updateValue,
-    } = useAmountWizard(wizardSteps, {
+    } = useWizard(wizardSteps, {
         onComplete,
-        initialFormValues: initialData ?? {}, // ✅ null 방지
+        initialFormValues, // ✅ null 방지
         memberId: 123,
     });
 
@@ -57,7 +58,7 @@ export default function BaseWizard({
                     stepData: currentStepData,
                     value: form[currentStepData.key],
                     onChange: (key, v) => updateValue(key, v),
-                    error,
+                    error, setError
                 })}
             </WizardContent>
 
