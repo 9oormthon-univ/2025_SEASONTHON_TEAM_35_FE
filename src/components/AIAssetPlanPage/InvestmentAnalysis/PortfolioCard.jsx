@@ -12,7 +12,7 @@ export default function PortfolioCard({
 }) {
   const [onClicked, setOnClicked] = useState(false);
   return (
-    <div className="bg-wthie w-[345px] border-[1px] border-gray-5 py-[16px] rounded-[12px] px-[20px] flex flex-col">
+    <div className="bg-white w-[345px] border-[1px] border-gray-5 py-[16px] rounded-[12px] px-[20px] flex flex-col">
       <div className="mb-[16px] flex justify-between">
         <div className="flex flex-col gap-[4px]">
           <h1 className="text-gray-90 text-[18px font-bold">{title}</h1>

@@ -2,7 +2,7 @@ import PortfolioCard from './PortfolioCard';
 
 export default function Portfolio() {
   return (
-    <div className="px-[24px] py-[20px] bg-white">
+    <div className="px-[24px] py-[20px]">
       <div className="w-[345px] flex justify-between mb-[16px] items-center">
         <h1 className="text-gray-90 text-[16px] font-bold">포트폴리오</h1>
         <p className="text-gray-40 font-medium text-[12px]">

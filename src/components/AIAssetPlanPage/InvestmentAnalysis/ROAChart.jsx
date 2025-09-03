@@ -83,7 +83,7 @@ export default function ROAChart() {
                     y={y - 19}
                     textAnchor="middle"
                     fill="#00D6B3"
-                    fontSize={fontSize}
+                    fontSize={12}
                     fontWeight={600}
                     dominantBaseline="middle"
                   >
@@ -98,10 +98,10 @@ export default function ROAChart() {
               return (
                 <text
                   x={x + width / 2}
-                  y={y - 8} // 🔥 막대 위에 딱 붙도록 수정
+                  y={y - 11} // 🔥 막대 위에 딱 붙도록 수정
                   textAnchor="middle"
                   fill="#A7AEB3"
-                  fontSize={fontSize}
+                  fontSize={16}
                   fontWeight={700}
                   dominantBaseline="middle"
                 >

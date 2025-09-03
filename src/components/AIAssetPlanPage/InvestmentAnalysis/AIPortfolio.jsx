@@ -48,7 +48,7 @@ export default function AIPortfolio() {
     최대낙폭: false,
   });
   return (
-    <div className="px-[24px] py-[20px] bg-white">
+    <div className="px-[24px] py-[20px]">
       <div className="flex justify-between">
         <div>
           <h1 className="text-[16px] text-gray-90 font-bold">
@@ -119,12 +119,18 @@ export default function AIPortfolio() {
               </button>
             </div>
             <p
-              className={`${
-                item.title === '예상 연 수익률' ||
-                item.title === '예상 연변동성'
-                  ? 'text-primary-2'
-                  : 'text-gray-80'
-              } text-[20px] font-bold`}
+              className="text-[20px] font-bold"
+              style={{
+                color:
+                  item.title === '예상 연 수익률' ||
+                  item.title === '예상 연변동성'
+                    ? '#0073FF'
+                    : item.title === '샤프지수'
+                    ? '#171F27'
+                    : item.title === '최대낙폭'
+                    ? '#FF0000'
+                    : '#171F27',
+              }}
             >
               {item.value.toFixed(2)}%
             </p>

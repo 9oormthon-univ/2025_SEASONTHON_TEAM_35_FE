@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import profileIcon from '../../assets/AIAssetPlan/profile.png';
 import Footer from '../../components/layout/Footer';
 
 // 자산 설계
@@ -23,30 +25,41 @@ const ASSET_PALN_BTN = [
 export default function AIAssetPlanPage() {
   const [onClicked, setOnClicked] = useState('자산 설계');
   return (
-    <div className="h-[762px] flex flex-col justify-end">
-      <div className="flex gap-[8px] border-b-[1px] bordergray-5 py-[8px] px-[20px]">
-        {ASSET_PALN_BTN.map((item, idx) => (
-          <button
-            key={idx}
-            onClick={() => setOnClicked(item.title)}
-            className={`w-[69px] h-[32px] rounded-[12px] text-[12px] flex justify-center items-center font-semibold ${
-              item.title === onClicked
-                ? 'bg-gray-70 text-white'
-                : 'bg-background text-gray-50'
-            }`}
-          >
-            {item.title}
-          </button>
-        ))}
+    <div className="h-[762px] flex flex-col">
+      <div className=" h-[108px] flex items-end px-[20px]">
+        <div className="flex justify-between items-start w-full">
+          <div className="w-[150px] h-[36px] flex gap-[16px]">
+            {ASSET_PALN_BTN.map((item, idx) => (
+              <button
+                key={idx}
+                onClick={() => setOnClicked(item.title)}
+                className={`h-[36px] text-[18px] flex font-bold ${
+                  item.title === onClicked
+                    ? 'text-gray-90 border-b-[2px] border-gray-100'
+                    : 'text-gray-30'
+                }`}
+              >
+                {item.title}
+              </button>
+            ))}
+          </div>
+          <Link to="/my-page">
+            <img
+              src={profileIcon}
+              alt="profileIcon"
+              className="w-[24px] h-[24px]"
+            />
+          </Link>
+        </div>
       </div>
       {onClicked === '자산 설계' ? (
-        <div className="h-[606px] bg-background flex flex-col gap-[12px] overflow-y-scroll scrollbar-hide">
+        <div className="h-full bg-graduation flex flex-col overflow-y-scroll scrollbar-hide">
           <AIRecommendAssetCard />
           <AIAssetOpinionCard />
           <MyInfoCard />
         </div>
       ) : (
-        <div className="h-[606px] bg-background flex flex-col gap-[12px] overflow-y-scroll scrollbar-hide">
+        <div className="h-full bg-graduation flex flex-col overflow-y-scroll scrollbar-hide">
           <AIPortfolio />
           <AIInvestmentOpinion />
           <Portfolio />
