@@ -12,7 +12,16 @@ const validate = (key, value) => {
             }
             return null;
 
-        // TODO:  휴대폰 번호 검증 로직 추가
+        // 👇 휴대폰 번호 검증 규칙 추가
+        case 'phoneNumber':
+            if (!value || !value.carrier || !value.number) {
+                return "통신사와 휴대폰 번호를 모두 입력해주세요.";
+            }
+            // 간단한 번호 길이 검증 (예시)
+            if (value.number.length < 10) {
+                return "유효하지 않은 휴대폰 번호입니다.";
+            }
+            return null;
 
         default:
             return null; // 검증 규칙이 없는 경우
