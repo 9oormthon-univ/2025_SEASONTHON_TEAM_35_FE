@@ -1,39 +1,31 @@
 import React from 'react';
-import BaseWizard from '../common/wizard/BaseWizard';
-import FormStep from './FormStep';
+import BaseWizard from '../common/wizard/BaseWizard.jsx';
+import FormStep from './FormStep.jsx';
 import { useWizard } from '@/hooks/useWizard.js';
 
 export default function UserInformWizard(props) {
-    const {
-        wizardSteps,
-        onComplete,
-        initialFormValues,
-        onClose,
-        submitButtonText = '제출하기',  // 🔹 외부에서 오버라이드 가능
-        payloadType = 'user',           // 🔹 기본은 user로 두는 걸 권장 (페이지 성격별 구분)
-    } = props;
-
+    const { wizardSteps, onComplete, initialFormValues, onClose } = props;
 
     const wizard = useWizard(wizardSteps, {
         onComplete,
         initialFormValues,
-        payloadType: 'user'
+        payloadType: 'user' // 페이로드 타입을 'user'로 지정
     });
 
     const isLastStep = wizard.step === wizard.totalSteps - 1;
-    const buttonText = isLastStep ? "제출하기" : "다음";
 
     return (
         <BaseWizard
             wizard={wizard}
             wizardSteps={wizardSteps}
             onClose={onClose}
-            buttonText={buttonText}
+            submitButtonText={isLastStep ? "제출하기" : "다음"}
             renderStep={({ stepData, value, onChange, error, setError }) => (
                 <FormStep
                     stepData={stepData}
                     value={value}
-                    onChange={onChange}
+                    // onChange prop을 newValue만 받아서 처리하는 새로운 함수로 만들어 전달
+                    onChange={(newValue) => onChange(stepData.key, newValue)}
                     error={error}
                     setError={setError}
                 />

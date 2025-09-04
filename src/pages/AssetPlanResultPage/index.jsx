@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AnalysisLayout from '../../components/AssetPlanInformPage/AnalysisLayout.jsx';
-// TODO: 실제 로딩 스피너, 체크 아이콘으로 교체
-const Spinner = () => <div className="w-16 h-16 mb-20 border-4 border-primary-1 border-t-transparent rounded-full animate-spin" />;
-const CheckIcon = () => <svg className="w-20 h-20 text-primary-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
+import StatusAnimation from '@/components/common/animations/StatusAnimation.jsx';
 
 // 로딩 중에 보일 회색 박스 리스트
 const loadingSteps = ["보유 자산 확인 중...", "목표 분석 중...", "맞춤형 자산 설계 중..."];
@@ -28,7 +26,7 @@ export default function AssetPlanResultPage() {
     if (status === 'loading') {
         return (
             <AnalysisLayout
-                icon={<Spinner />}
+                icon={<StatusAnimation type="loading" size={200} className="flex justify-center mb-10" />}
                 title="자산 분석 중..."
                 subtitle={"AI가 입력하신 정보를 토대로\n가장 알맞은 자산 비율을 찾고 있어요!"}
                 buttonText="완료"
@@ -52,6 +50,7 @@ export default function AssetPlanResultPage() {
         return (
             <AnalysisLayout
                 title="분석 완료"
+                icon={<StatusAnimation type="complete" size={200} className="flex justify-center mb-14" />}
                 subtitle={"입력하신 정보를 바탕으로\n맞춤형 자산 설계가 완료되었어요!"}
                 buttonText="완료"
                 onButtonClick={() => navigate('/asset/main')} // 완료 버튼 클릭 시 메인으로 이동

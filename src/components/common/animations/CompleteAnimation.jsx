@@ -6,9 +6,9 @@ export default function CompleteAnimation() {
         <div className="flex justify-center items-center">
             <Player
                 autoplay
-                loop={2}             // 반복 X, 한 번만 실행
+                loop={false}             // 반복 X, 한 번만 실행
                 src={animationData}      // JSON 파일 불러오기
-                style={{ height: "200px", width: "200px" }}
+                style={{ height: "160px", width: "160px"}}
             />
         </div>
     );

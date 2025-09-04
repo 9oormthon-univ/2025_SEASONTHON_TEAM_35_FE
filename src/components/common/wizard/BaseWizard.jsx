@@ -79,7 +79,7 @@ export default function BaseWizard(props) {
                 </WizardContent>
             </div>
             <WizardFooter
-                onNext={next} // next/submit을 구분할 필요 없이 wizard.next를 그대로 전달
+                onNext={wizard.next} // next/submit을 구분할 필요 없이 wizard.next를 그대로 전달
                 buttonText={buttonText}
                 isNextDisabled={isNextDisabled}
             />

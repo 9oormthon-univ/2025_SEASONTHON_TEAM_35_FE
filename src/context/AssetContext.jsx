@@ -1,11 +1,4 @@
 import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
-// import {
-//     getAssetSummary,
-//     registerNewAssets,
-//     modifyCashAsset,
-//     modifyInvestmentAsset,
-//     modifyOtherAsset,
-// } from "../api/assetApi.js";
 import { submitPlan as submitPlanApi } from '../api/planApi';
 import {MOCK_SUMMARY} from "@/mocks/assetMock.js";
 
@@ -13,7 +6,6 @@ import {MOCK_SUMMARY} from "@/mocks/assetMock.js";
 // (옵션) 모킹 토글: .env에서 VITE_USE_MOCK=true 로 설정 시 가짜 데이터 사용
 const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true';
 
-// ---- (선택) 모킹 데이터 ----
 // API 응답을 프론트엔드 형식으로 변환하는 새로운 함수
 const transformAssetData = (apiResult) => {
     if (!apiResult) return null;
@@ -54,8 +46,7 @@ export function AssetProvider({ children }) {
     const fetchAssetSummary = useCallback(async () => {
         setLoading(true);
         try {
-            // 🚨 나중에 실제 API로 교체: const response = await getAssetSummary();
-            // 지금은 Mock 데이터를 사용합니다.
+            // 나중에 실제 API로 교체: const response = await getAssetSummary();
             const apiResult = MOCK_SUMMARY;
             const transformedData = transformAssetData(apiResult);
             setAssetData(transformedData);

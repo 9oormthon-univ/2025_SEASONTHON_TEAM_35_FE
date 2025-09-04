@@ -44,7 +44,7 @@ const router = createBrowserRouter([
         element: <AssetPlanInformPage />
       },
       {
-        path: "/ai/plan/result",
+        path: "/ai/plan/inform/result",
         element: <AssetPlanResultPage />,
       },
     ],
