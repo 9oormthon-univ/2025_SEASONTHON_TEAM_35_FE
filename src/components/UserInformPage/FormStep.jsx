@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NameInput from './NameInput';
 import ResidentNumberInput from './ResidentNumberInput';
 import PhoneNumberInput from './PhoneNumberInput';
@@ -6,18 +6,26 @@ import MultiSelectGrid from './MultiSelectGrid';
 
 export default function FormStep({ stepData, value, onChange, error, setError }) {
     const { key, type } = stepData;
+    const [warning, setWarning] = useState(null);
 
     const renderInput = () => {
         switch (type) {
             case 'text':
                 if (key === 'name') {
-                    return <NameInput value={value} error={error && error[key]} onClick={() => setError({ [key]: "이름은 변경할 수 없습니다." })} />;
+                    return (
+                        <NameInput
+                            value={value}
+                            error={warning?.[key]}
+                            onClick={() => setWarning({ [key]: "이름은 변경할 수 없습니다." })}
+                        />
+                    );
                 }
-                break; // Fallback for other text inputs if any
+                break;
             case 'resident':
-                return <ResidentNumberInput value={value} onChange={onChange} error={error && error[key]} />;
+                // 옵셔널 체이닝을 사용해 안전하게 에러를 전달
+                return <ResidentNumberInput value={value} onChange={onChange} error={error?.[key]} />;
             case 'phone':
-                return <PhoneNumberInput value={value} onChange={onChange} error={error && error[key]} />;
+                return <PhoneNumberInput value={value} onChange={onChange} error={error?.[key]} />;
             case 'multi-select-grid':
                 return <MultiSelectGrid options={stepData.options} value={value} onChange={onChange} />;
             default:
@@ -25,11 +33,13 @@ export default function FormStep({ stepData, value, onChange, error, setError })
         }
     };
 
+    const messageToShow = error?.[key] || warning?.[key];
+
     return (
         <div>
             {renderInput()}
-            {error && error[key] && (
-                <p className="mt-2 text-sm text-red-500">{error[key]}</p>
+            {messageToShow && (
+                <p className="mt-2 text-sm text-red-500">{messageToShow}</p>
             )}
         </div>
     );
