@@ -150,8 +150,8 @@ export const PLAN_WIZARD_STEPS = [
     },
     {
         key: "emergencyFund",
-        title: "언제든 바로 찾을 수 있는 \n 돈이 필요한가요?",
-        keyword: "돈",
+        title: "언제든 바로 찾을 수 있는 \n돈이 필요한가요?",
+        keyword: "",
         type: 'toggle',
         styleVariant: 'box',
         options: [

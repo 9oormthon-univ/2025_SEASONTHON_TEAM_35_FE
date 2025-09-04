@@ -1,15 +1,15 @@
 import React from 'react';
-import WizardHeader from '../WizardHeader';
-import WizardProgress from '../WizardProgress';
+import WizardHeader from './WizardHeader.jsx';
+import WizardProgress from './WizardProgress.jsx';
 import WizardContent from './WizardContent';
-import WizardFooter from '../WizardFooter';
+import WizardFooter from './WizardFooter.jsx';
 
 export default function BaseWizard(props) {
     const {
         wizard,         // 부모로부터 wizard 훅의 모든 것을 통째로 전달
         renderStep,
         onClose,
-        submitButtonText,
+        buttonText,
     } = props;
 
     // 방어 코드: wizard 객체가 없을 경우를 대비
@@ -40,7 +40,6 @@ export default function BaseWizard(props) {
     const isNextDisabled =
         (currentValue == null || currentValue === '') || // 값이 없거나 비어있을 때
         (error && error[currentStepData.key]); // 유효성 에러가 있을 때
-
 
     return (
         <div className="flex h-full flex-col bg-white">
@@ -80,9 +79,8 @@ export default function BaseWizard(props) {
                 </WizardContent>
             </div>
             <WizardFooter
-                onNext={next}
-                isLastStep={step === totalSteps - 1}
-                submitButtonText={submitButtonText}
+                onNext={next} // next/submit을 구분할 필요 없이 wizard.next를 그대로 전달
+                buttonText={buttonText}
                 isNextDisabled={isNextDisabled}
             />
         </div>

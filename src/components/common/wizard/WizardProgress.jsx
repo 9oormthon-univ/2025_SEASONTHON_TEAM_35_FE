@@ -1,4 +1,4 @@
-import ProgressIndicator from "./ProgressIndicator.jsx";
+import ProgressIndicator from "../ProgressIndicator.jsx";
 
 export default function WizardProgress({ totalSteps, currentStep }) {
     return (

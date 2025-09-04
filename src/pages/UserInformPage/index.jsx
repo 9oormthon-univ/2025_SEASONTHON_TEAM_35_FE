@@ -25,8 +25,8 @@ export default function UserInformPage() {
                 // userNameFromServer 값이 바뀔 때마다 Wizard 전체가 리셋됩니다.
                 wizardSteps={ASSET_INFORM_STEPS}
                 onComplete={handleComplete}
-                submitButtonText="다음"
                 initialFormValues={{ name: userNameFromServer }}
+                payloadType="user"
             />
         </div>
     );

@@ -1,7 +1,5 @@
 // submitButtonText prop 추가, 기본값은 "다음"
-export default function WizardFooter({ onNext, isLastStep, submitButtonText = "다음",isSubmitting = false, isNextDisabled = false }) {
-    const buttonText = isLastStep ? submitButtonText : "다음";
-
+export default function WizardFooter({ onNext, buttonText, isSubmitting = false, isNextDisabled = false }) {
     return (
         <div>
             <button

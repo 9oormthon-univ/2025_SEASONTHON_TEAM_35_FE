@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import WizardHeader from '../../components/common/WizardHeader';
+import WizardHeader from '../../components/common/wizard/WizardHeader.jsx';
 
 export default function AssetPlanStartPage() {
     const navigate = useNavigate();

@@ -22,10 +22,10 @@ export default function TogglePill({ option, isSelected, onClick, disabled = fal
             onClick={() => !disabled && onClick(option.value)}
             disabled={disabled}
             className={[
-                "inline-flex items-center justify-start px-4 py-2 rounded-full border text-[14px] transition-colors",
+                "inline-flex items-center justify-start px-4 py-2 rounded-full border text-[16px] transition-colors",
                 isSelected
                     ? "bg-primary-2 text-white border-primary-2 font-bold"
-                    : "bg-white text-gray-80 border-gray-20 hover:bg-gray-5",
+                    : "bg-background text-gray-100 border-background ",
                 disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer",
             ].join(" ")}
             aria-pressed={isSelected}
@@ -38,7 +38,7 @@ export default function TogglePill({ option, isSelected, onClick, disabled = fal
                 />
             )}
 
-            <span className="ml-1">{option.label}</span>
+            <span className="ml-2">{option.label}</span>
         </button>
     );
 }

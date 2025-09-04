@@ -13,13 +13,14 @@ export default function AIPlanWizard(props) {
     });
 
     const isLastStep = wizard.step === wizard.totalSteps - 1;
+    const buttonText = isLastStep ? "결과보기" : "다음";
 
     return (
         <BaseWizard
             wizard={wizard}
             wizardSteps={wizardSteps}
             onClose={onClose}
-            submitButtonText={isLastStep ? "결과보기" : "다음"}
+            buttonText={buttonText}
             renderStep={({ stepData, value, onChange, error, setError }) => (
                 <PlanQuestionStep
                     stepData={stepData}
