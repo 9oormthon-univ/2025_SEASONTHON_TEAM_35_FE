@@ -38,10 +38,6 @@ const router = createBrowserRouter([
         path: "user/inform/result",
         element: <UserInformResultPage />
       },
-      //{
-       // path: "asset/inform",
-        //element: <AssetInformPage />
-      //},
       // 수정 페이지를 위한 동적 라우트 추가
       {
         path: "asset/edit/:mode",
@@ -56,7 +52,7 @@ const router = createBrowserRouter([
         element: <AssetPlanInformPage />
       },
       {
-        path: "/ai/plan/result", // 👈 2. 결과 페이지 경로 추가
+        path: "/ai/plan/result",
         element: <AssetPlanResultPage />,
       },
     ],

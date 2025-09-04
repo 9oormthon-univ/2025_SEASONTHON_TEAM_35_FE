@@ -6,7 +6,7 @@ import {useAssets} from "../../context/AssetContext.jsx";
 import NoInfo from "../../components/NoInfo/NoInfo.jsx";
 
 export default function AssetPage() {
-    // useAssets 훅에서 loading과 assetData 상태를 가져온다.
+    // useAssets 훅에서 loading과 assetData 상태를 가져옴
     const { loading, assetData } = useAssets();
 
     //  로딩 중
@@ -14,7 +14,6 @@ export default function AssetPage() {
         return <div className="p-4 text-center">자산 정보를 불러오는 중입니다...</div>;
     }
 
-    // 자산이 없을 때 (ASSET404) NoInfo 컴포넌트를 렌더링
     if (assetData === 'no-asset') {
         return <NoInfo />;
     }

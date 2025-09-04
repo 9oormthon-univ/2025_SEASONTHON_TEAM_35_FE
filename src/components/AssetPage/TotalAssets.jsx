@@ -12,7 +12,7 @@ export default function TotalAssets() {
     }
 
     //  assetData에서 총 자산을 계산하고, 없으면 0으로 처리.
-    const totalAmount = assetData?.total_amount || 0;
+    const totalAmount = assetData?.totalAmount || 0;
 
     // 숫자를 콤마가 포함된 문자열로 포맷팅.
     const formattedAmount = totalAmount.toLocaleString('en-US');
