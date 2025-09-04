@@ -5,7 +5,7 @@ export default function NameInput({ value, error, onClick }) {
                 type="text"
                 value={value || ''}
                 readOnly
-                className={`w-full h-[50px] px-4 rounded-lg border text-lg 
+                className={`w-full h-[50px] px-4 rounded-lg border text-[20px]
                            ${error ? 'border-red-500' : 'border-gray-20'} 
                            bg-white text-gray-90`}
             />
