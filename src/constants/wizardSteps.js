@@ -6,6 +6,7 @@ export const ASSET_INFORM_STEPS = [
         keyword: "이름",
         type: 'text',
         placeholder: "홍길동",
+        disableNextOnEmpty: false,
     },
     {
         key: "residentNumber",
@@ -13,6 +14,7 @@ export const ASSET_INFORM_STEPS = [
         keyword: "주민등록번호",
         type: 'resident',
         placeholder: "생년월일 6자리와 성별",
+        disableNextOnEmpty: false,
     },
     {
         key: "phoneNumber",
@@ -20,12 +22,14 @@ export const ASSET_INFORM_STEPS = [
         keyword: "휴대폰 번호",
         type: 'phone', // 휴대폰 번호 형식
         placeholder: "‘-’ 없이 숫자만 입력",
+        disableNextOnEmpty: false,
     },
     {
         key: "financialInstitutions",
         title: "자산을 연결할 금융사를\n선택해 주세요.",
         keyword: "금융사",
         type: 'multi-select-grid',
+        disableNextOnEmpty: false,
         options: [
             {
                 groupTitle: '은행',
@@ -50,6 +54,7 @@ export const ASSET_INFORM_STEPS = [
                 ]
             }
         ]
+
     },
 ];
 
@@ -61,6 +66,7 @@ export const PLAN_WIZARD_STEPS = [
         title: "본인의 월 소득 수준을\n선택해주세요",
         keyword: "월 소득 수준",
         type: 'radio',
+        disableNextOnEmpty: true,
         options: [
             { value: 'BELOW_100',       label: '100만 원 이하' },
             { value: 'BETWEEN_100_200', label: '100 ~ 200만 원' },
@@ -73,6 +79,7 @@ export const PLAN_WIZARD_STEPS = [
         key: "savingRange",
         title: "월 저축 가능 금액을\n선택해주세요",
         keyword: "월 저축 가능 금액",
+        disableNextOnEmpty: true,
         type: 'radio',
         options: [
             { value: 'BELOW_10',        label: '10만 원 이하' },
@@ -86,6 +93,7 @@ export const PLAN_WIZARD_STEPS = [
         key: "profitRange",
         title: "투자 수익에 대한\n목표 금액",
         keyword: "목표 금액",
+        disableNextOnEmpty: true,
         type: 'radio',
         options: [
             { value: 'BELOW_500',        label: '500만 원 이하' },
@@ -100,6 +108,7 @@ export const PLAN_WIZARD_STEPS = [
         key: "investmentPeriod",
         title: "투자 수익에 대한\n목표 시점",
         keyword: "목표 시점",
+        disableNextOnEmpty: true,
         type: 'radio',
         options: [
             { value: 'UNDER_6_MONTHS', label: '6개월 이내' },
@@ -118,6 +127,7 @@ export const PLAN_WIZARD_STEPS = [
         title: "본인의 투자 성향을\n선택해주세요",
         keyword: "투자 성향",
         type: 'toggle',
+        disableNextOnEmpty: true,
         styleVariant: 'card',
         options: [
             // 각 option을 객체로 만들어서 description과 icon 정보를 추가
@@ -152,6 +162,7 @@ export const PLAN_WIZARD_STEPS = [
         key: "emergencyFund",
         title: "언제든 바로 찾을 수 있는 \n돈이 필요한가요?",
         keyword: "",
+        disableNextOnEmpty: true,
         type: 'toggle',
         styleVariant: 'box',
         options: [
@@ -173,6 +184,7 @@ export const PLAN_WIZARD_STEPS = [
         key: "investmentPurpose",
         title: "현재 가장 중요하게 생각하는\n주요 목표는 무엇인가요?",
         keyword: "주요 목표",
+        disableNextOnEmpty: true,
         type: 'toggle',
         styleVariant: 'pill',
         options: [
