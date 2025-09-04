@@ -1,6 +1,5 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider, Navigate, Outlet, Routes, Route } from "react-router-dom";
-import AssetInformPage from "./pages/AssetInformPage/index.jsx";
 import AssetPage from "./pages/AssetPage/index.jsx";
 import AssetEditPage from "./pages/AssetEditPage/index.jsx";
 import {AssetProvider} from "./context/AssetContext.jsx";
@@ -11,6 +10,7 @@ import UserInformResultPage from "@/pages/UserInformResultPage/index.jsx";
 // import AssetPlanResultPage from "@/pages/AssetPlanResultPage/index.jsx";
 import AssetPlanStartPage from "@/pages/AssetPlanStartPage/index.jsx";
 import AssetPlanResultPage from "@/pages/AssetPlanResultPage/index.jsx";
+import TempPage from "@/pages/TempPage.jsx";
 
 function RootLayout() {
   return <Outlet />;
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
 
       {
         index: true,
-        element: <Navigate to="user/inform" replace />
+        element: <TempPage/> //<Navigate to="user/inform" replace />
       },
       {
         path: "asset/main",

@@ -6,29 +6,38 @@ import ToggleBox from "./ToggleBox.jsx";
 export default function QuestionRenderer({ stepData, value, onChange }) {
     const { key, type, options = [] } = stepData;
 
-    const handleInputChange = (e) => onChange(key, e.target.value);
-    const handleValueChange = (newValue) => onChange(key, newValue);
-
     switch (type) {
         case 'radio':
             return (
                 <div className="space-y-1">
                     {options.map((option) => (
-                        <CustomRadio key={option.value} name={key} option={option} value={value} onChange={handleInputChange} />
+                        <CustomRadio
+                            key={option.value}
+                            name={key}
+                            option={option}
+                            value={value}
+                            onChange={(e) => onChange(e.target.value)}
+                        />
                     ))}
                 </div>
             );
 
         case 'toggle':
+            // 모든 styleVariant에서 onClick이 onChange를 직접 호출하도록 수정합니다.
             if (stepData.styleVariant === 'card') {
                 return (
                     <div className="space-y-3">
                         {options.map((option) => (
-                            <ToggleCard key={option.value} option={option} isSelected={value === option.value} onClick={() => handleValueChange(option.value)} />
+                            <ToggleCard
+                                key={option.value}
+                                option={option}
+                                isSelected={value === option.value}
+                                onClick={() => onChange(option.value)}
+                            />
                         ))}
                     </div>
                 );
-            }else if (stepData.styleVariant === 'box') {
+            } else if (stepData.styleVariant === 'box') {
                 return (
                     <div className="flex items-center gap-3">
                         {options.map((option) => (
@@ -36,12 +45,12 @@ export default function QuestionRenderer({ stepData, value, onChange }) {
                                 key={option.value}
                                 option={option}
                                 isSelected={value === option.value}
-                                onClick={() => handleValueChange(option.value)}
+                                onClick={() => onChange(option.value)}
                             />
                         ))}
                     </div>
                 );
-            }else if (stepData.styleVariant === 'pill') {
+            } else if (stepData.styleVariant === 'pill') {
                 return (
                     <div className="flex-wrap space-y-2">
                         {options.map((option) => {
@@ -49,7 +58,7 @@ export default function QuestionRenderer({ stepData, value, onChange }) {
                             return (
                                 <button
                                     key={option.value}
-                                    onClick={() => handleValueChange(option.value)}
+                                    onClick={() => onChange(option.value)}
                                     className={`flex items-center justify-center px-4 py-2 rounded-full border text-Medium transition-colors
                                                     ${isSelected
                                         ? 'bg-primary-2 text-white border-primary-2 font-bold'

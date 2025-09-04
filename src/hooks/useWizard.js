@@ -1,17 +1,17 @@
+// src/hooks/useWizard.js
 import { useState } from "react";
-import { useUserFormValidator } from './useUserFormValidator';
+import { useValidator } from './useValidator';
 
 export function useWizard(steps, options = {}) {
     const { onComplete, initialFormValues = {}, payloadType = 'plan', memberId } = options;
-    const { error, setError, validateField, validateAll } = useUserFormValidator();
-    console.log("3. useWizard 훅이 받은 options:", initialFormValues);
+    const { error, setError, validateAll } = useValidator();
+
     const [step, setStep] = useState(0);
     const [direction, setDirection] = useState(1);
     const [form, setForm] = useState(initialFormValues || {});
 
     const updateValue = (key, val, shouldValidate = false) => {
         setForm((prevForm) => ({ ...prevForm, [key]: val }));
-
         if (shouldValidate) {
             validateField(key, val);
         } else if (error) {
@@ -20,18 +20,11 @@ export function useWizard(steps, options = {}) {
     };
 
     const buildPayload = () => {
+        // ... (이 부분은 수정할 필요 없습니다)
         if (payloadType === 'amount') {
-            const parseAmount = (s) => Number((s || "").replace(/,/g, "")) || 0;
-            const amounts = Object.fromEntries(
-                Object.entries(form).map(([k, v]) => [k, parseAmount(v)])
-            );
-            return { memberId, amounts };
-        } else { // 'plan' 타입 (사용자 정보, AI 설계 등)
-            const processedForm = { ...form };
-            if (processedForm.emergencyFund) {
-                processedForm.emergencyFund = processedForm.emergencyFund === 'true';
-            }
-            return { memberId, ...processedForm };
+            // ... amount 로직 ...
+        } else {
+            // ... plan 로직 ...
         }
     };
 
