@@ -1,50 +1,57 @@
 import React from 'react';
 
-// 개별 금융사 로고 버튼
+// 개별 금융사 로고 버튼 (이 컴포넌트는 그대로 사용)
 const InstitutionButton = ({ option, isSelected, onClick }) => (
     <button
         onClick={onClick}
-        className={`flex flex-col items-center justify-center w-24 h-24 rounded-lg border transition-all
+        className={`flex flex-col items-center justify-center w-[108px] h-[108px] rounded-[12px] border transition-all
                    ${isSelected
-            ? 'border-primary-1 border-2 bg-primary-1/10'
-            : 'border-gray-20 bg-white hover:bg-gray-50'
+            ? 'border-primary-2 border-[2px] bg-white [box-shadow:5px_6px_7px_-5px_#00D6B380]' // 👈 이 부분을 추가/수정합니다.
+            : 'border-background bg-background hover:bg-gray-50'
         }`}
     >
-        {/* TODO: option.logo를 실제 이미지 경로로 바꿔야 합니다. */}
-        <div className="w-10 h-10 mb-2 bg-gray-200 rounded-full" />
-        <span className={`font-medium ${isSelected ? 'text-primary-1' : 'text-gray-800'}`}>
+        <img
+            src={option.logo}
+            alt={option.label}
+            className="w-[35px] h-[30px] mb-4" // 로고 이미지 크기
+        />
+        <span className={`text-[12px] font-bold `}>
             {option.label}
         </span>
     </button>
 );
 
 
-export default function MultiSelectGrid({ options, value = [], onChange, error }) {
+export default function MultiSelectGrid({ options, value = [], onChange }) {
 
     const handleToggle = (selectedValue) => {
-        // 현재 선택된 값 배열(value)에 새로운 값이 있는지 확인
         const isCurrentlySelected = value.includes(selectedValue);
-        let newSelection;
-
-        if (isCurrentlySelected) {
-            // 이미 선택되어 있다면, 배열에서 제거
-            newSelection = value.filter(item => item !== selectedValue);
-        } else {
-            // 선택되어 있지 않다면, 배열에 추가
-            newSelection = [...value, selectedValue];
-        }
+        const newSelection = isCurrentlySelected
+            ? value.filter(item => item !== selectedValue)
+            : [...value, selectedValue];
         onChange(newSelection);
     };
 
     return (
-        <div className="grid grid-cols-3 gap-3">
-            {options.map(option => (
-                <InstitutionButton
-                    key={option.value}
-                    option={option}
-                    isSelected={value.includes(option.value)}
-                    onClick={() => handleToggle(option.value)}
-                />
+        <div className="space-y-6">
+            {options.map((group) => (
+                <div key={group.groupTitle}>
+                    {/* 그룹 제목 */}
+                    <h3 className="text-[18px] font-bold text-gray-90 mb-3 text-left">
+                        {group.groupTitle}
+                    </h3>
+                    {/* 금융사 그리드 */}
+                    <div className="grid grid-cols-3 gap-3">
+                        {group.items.map(option => (
+                            <InstitutionButton
+                                key={option.value}
+                                option={option}
+                                isSelected={value.includes(option.value)}
+                                onClick={() => handleToggle(option.value)}
+                            />
+                        ))}
+                    </div>
+                </div>
             ))}
         </div>
     );

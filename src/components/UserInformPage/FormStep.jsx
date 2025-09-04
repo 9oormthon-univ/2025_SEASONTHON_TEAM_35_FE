@@ -91,24 +91,11 @@ export default function FormStep({ stepData, value, onChange, error, setError })
     };
 
     return (
-        <div className="p-5 pt-8">
-            <h2 className="mt-1 mb-8 whitespace-pre-wrap text-2xl font-bold leading-tight">
-                {keyword ? (
-                    <>
-                        {titleParts[0]}
-                        <span className="text-primary-1">{keyword}</span>
-                        {titleParts[1]}
-                    </>
-                ) : (
-                    title
-                )}
-            </h2>
-            <div>
-                {renderInput()}
-                {error && error[stepData.key] && (
-                    <p className="mt-2 text-sm text-red">{error[stepData.key]}</p>
-                )}
-            </div>
+        <div>
+            {renderInput()}
+            {error && error[key] && (
+                <p className="mt-2 text-sm text-red-500">{error[key]}</p>
+            )}
         </div>
     );
 }

@@ -2,22 +2,22 @@
 export const ASSET_INFORM_STEPS = [
     {
         key: "name",
-        title: "고객님의 이름을\n입력해주세요.",
+        title: "이름을\n입력해주세요.",
         keyword: "이름",
-        type: 'text', // 일반 텍스트 입력
+        type: 'text',
         placeholder: "홍길동",
     },
     {
         key: "residentNumber",
         title: "주민등록번호를\n입력해주세요.",
         keyword: "주민등록번호",
-        type: 'resident', // 주민번호 형식 (예: 123456-1******)
+        type: 'resident',
         placeholder: "생년월일 6자리와 성별",
     },
     {
         key: "phoneNumber",
-        title: "사용하고 있는 휴대폰\n번호를 입력해주세요.",
-        keyword: "휴대폰\n번호",
+        title: "휴대폰 번호를\n입력해주세요.",
+        keyword: "휴대폰 번호",
         type: 'phone', // 휴대폰 번호 형식
         placeholder: "‘-’ 없이 숫자만 입력",
     },
@@ -25,15 +25,31 @@ export const ASSET_INFORM_STEPS = [
         key: "financialInstitutions",
         title: "자산을 연결할 금융사를\n선택해 주세요.",
         keyword: "금융사",
-        type: 'multi-select-grid', // 여러 금융사를 격자 형태로 선택
+        type: 'multi-select-grid',
+        // 👇 options를 그룹화된 구조로 수정합니다.
         options: [
-            // TODO: 나중에 실제 금융사 목록으로 교체해야 합니다.
-            { value: 'KB', label: 'KB국민은행', logo: '/logos/kb.png' },
-            { value: 'SHINHAN', label: '신한은행', logo: '/logos/shinhan.png' },
-            { value: 'HANA', label: '하나은행', logo: '/logos/hana.png' },
-            { value: 'WOORI', label: '우리은행', logo: '/logos/woori.png' },
-            { value: 'TOSS', label: '토스뱅크', logo: '/logos/toss.png' },
-            { value: 'KAKAO', label: '카카오뱅크', logo: '/logos/kakao.png' },
+            {
+                groupTitle: '은행',
+                items: [
+                    { value: 'KB', label: 'KB국민은행', logo: '/logos/kb.png' },
+                    { value: 'SHINHAN', label: '신한은행', logo: '/logos/shinhan.png' },
+                    { value: 'WOORI', label: '우리은행', logo: '/logos/woori.png' },
+                    { value: 'HANA', label: '하나은행', logo: '/logos/hana.png' },
+                    { value: 'IBK', label: 'IBK기업은행', logo: '/logos/ibk.png' },
+                    { value: 'TOSS_BANK', label: '토스뱅크', logo: '/logos/toss.png' },
+                    { value: 'KAKAO_BANK', label: '카카오뱅크', logo: '/logos/kakao.png' },
+                    { value: 'K_BANK', label: '케이뱅크', logo: '/logos/kbank.png' },
+                ]
+            },
+            {
+                groupTitle: '증권사',
+                items: [
+                    { value: 'SAMSUNG_SEC', label: '삼성증권', logo: '/logos/samsung.png' },
+                    { value: 'TOSS_SEC', label: '토스증권', logo: '/logos/toss.png' },
+                    { value: 'KIWOOM_SEC', label: '키움증권', logo: '/logos/kiwoom.png' },
+                    { value: 'MIRAE_ASSET', label: '미래에셋증권', logo: '/logos/mirae.png' },
+                ]
+            }
         ]
     },
 ];
