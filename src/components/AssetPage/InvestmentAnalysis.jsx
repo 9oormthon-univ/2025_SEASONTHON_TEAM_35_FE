@@ -8,7 +8,7 @@ export default function InvestmentAnalysis() {
                 <h2 className="text-base font-bold pl-[4px]">투자 분석</h2>
             </div>
             {/* 컨텐츠 카드 */}
-            <div className="w-[353px] h-[170px] bg-white rounded-xl shadow-sm p-3 flex items-center justify-center">
+            <div className="w-[353px] h-[172px] bg-white rounded-xl shadow-sm p-3 flex items-center justify-center">
                 <AssetDonutChart />
             </div>
         </div>
