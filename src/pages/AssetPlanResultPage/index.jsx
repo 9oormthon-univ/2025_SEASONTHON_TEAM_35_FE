@@ -26,7 +26,7 @@ export default function AssetPlanResultPage() {
     if (status === 'loading') {
         return (
             <AnalysisLayout
-                icon={<StatusAnimation type="loading" size={200} className="flex justify-center mb-10" />}
+                icon={<StatusAnimation type="loading" size={120} className="flex justify-center mb-10" />}
                 title="자산 분석 중..."
                 subtitle={"AI가 입력하신 정보를 토대로\n가장 알맞은 자산 비율을 찾고 있어요!"}
                 buttonText="완료"
@@ -50,7 +50,7 @@ export default function AssetPlanResultPage() {
         return (
             <AnalysisLayout
                 title="분석 완료"
-                icon={<StatusAnimation type="complete" size={200} className="flex justify-center mb-14" />}
+                icon={<StatusAnimation type="complete" size={120} className="flex justify-center mb-10" />}
                 subtitle={"입력하신 정보를 바탕으로\n맞춤형 자산 설계가 완료되었어요!"}
                 buttonText="완료"
                 onButtonClick={() => navigate('/asset/main')} // 완료 버튼 클릭 시 메인으로 이동

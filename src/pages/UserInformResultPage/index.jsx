@@ -18,7 +18,7 @@ export default function UserInformResultPage() {
     if (status === 'loading') {
         return (
             <AnalysisLayout
-                icon={<StatusAnimation type="loading" size={200} />}
+                icon={<StatusAnimation type="loading" size={120} className="flex justify-center mb-10"/>}
                 title="자산 연동 중..."
                 subtitle={"입력하신 개인정보를 바탕으로\n자산을 연동하고 있어요!"}
                 buttonText="완료"
@@ -30,7 +30,7 @@ export default function UserInformResultPage() {
     if (status === 'success') {
         return (
             <AnalysisLayout
-                icon={<StatusAnimation type="complete" size={220} />}
+                icon={<StatusAnimation type="complete" size={120} className="flex justify-center mb-10" />}
                 title="자산 연동이 완료되었습니다"
                 subtitle={"지금 바로 연동된 자산을 바탕으로\nAI 자산 기능을 이용해보세요!"}
                 buttonText="완료"
