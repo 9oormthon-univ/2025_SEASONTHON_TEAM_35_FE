@@ -4,7 +4,7 @@ export default function ChoiceStep({ title, keyword, options = [], value, onChan
 
     return (
         <div className="p-5 pt-8">
-            <h2 className="mt-1 mb-6 whitespace-pre-wrap text-2xl font-bold leading-tight">
+            <h2 className="mt-1 mb-6 whitespace-pre-wrap text-[24px] font-bold leading-tight tracking-wide ">
                 {keyword ? (<>{titleParts[0]}<span className="text-primary-1">{keyword}</span>{titleParts[1]}</>) : title}
             </h2>
 

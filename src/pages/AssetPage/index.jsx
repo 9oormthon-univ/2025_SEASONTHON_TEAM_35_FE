@@ -4,6 +4,7 @@ import AssetAnalysis from '../../components/AssetPage/AssetAnalysis';
 import InvestmentAnalysis from '../../components/AssetPage/InvestmentAnalysis';
 import {useAssets} from "../../context/AssetContext.jsx";
 import NoInfo from "../../components/NoInfo/NoInfo.jsx";
+
 export default function AssetPage() {
     // useAssets 훅에서 loading과 assetData 상태를 가져온다.
     const { loading, assetData } = useAssets();

@@ -19,7 +19,7 @@ export default function AmountStep({ title, keyword, value, onChange, error }) {
         <div className="p-5 pt-8">
             {/* 제목 */}
             <h2 className="mt-1 mb-8 whitespace-pre-wrap text-2xl font-bold leading-tight">
-                {/* keyword에는 강조 표시 */}
+                {/* keyword 강조 표시 */}
                 {keyword ? (
                     <>
                         {titleParts[0]}

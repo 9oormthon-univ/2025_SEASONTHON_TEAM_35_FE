@@ -5,6 +5,7 @@ export default function AmountWizardCompat(props) {
     return (
         <BaseWizard
             {...props}
+            payloadType="amount"
             renderStep={({ stepData, value, onChange, error }) => (
                 <AmountStep
                     title={stepData.title}

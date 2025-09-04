@@ -1,6 +1,8 @@
 import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
 import {getAssetSummary, registerNewAssets, modifyCashAsset,modifyInvestmentAsset,modifyOtherAsset} from "../api/assetApi.js";
 import apiClient from "@/api/client.js";
+import { submitPlan as submitPlanApi } from '../api/planApi';
+
 // GET /summary API 응답을 프론트엔드 형식으로 변환하는 함수
  const transformSummaryResponse = (apiResult) => {
     if (!apiResult) return null;
@@ -170,9 +172,30 @@ export function AssetProvider({ children }) {
         //registerAssets, // 자산 등록 함수
         //modifyAssets,
     };
-
+    const submitAssetPlan = async (payload) => {
+        setError(null);
+        setIsSubmitting(true);
+        try {
+            const response = await submitPlanApi(payload);
+            if (response.isSuccess) {
+                console.log("AI 자산 설계 제출 성공:", response);
+                return true; // 성공 여부를 반환
+            } else {
+                setError(response.message || "자산 설계 제출에 실패했습니다.");
+                return false;
+            }
+        } catch (e) {
+            setError("네트워크 오류가 발생했습니다. 다시 시도해 주세요.");
+            return false;
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
     return (
-        <AssetContext.Provider value={value}>
+        <AssetContext.Provider value={{
+            ...value, // 👈 1. 기존 value 객체의 모든 내용을 여기에 복사하고,
+            submitAssetPlan, // 👈 2. 새로운 함수를 추가합니다.
+        }}>
             {children}
         </AssetContext.Provider>
     );

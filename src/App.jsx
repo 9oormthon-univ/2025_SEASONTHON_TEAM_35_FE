@@ -1,5 +1,6 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider, Navigate, Outlet, Routes, Route } from "react-router-dom";
+import AssetInformPage from "./pages/AssetInformPage/index.jsx";
 import AssetPage from "./pages/AssetPage/index.jsx";
 import AssetEditPage from "./pages/AssetEditPage/index.jsx";
 import {AssetProvider} from "./context/AssetContext.jsx";
@@ -8,6 +9,8 @@ import UserInformPage from "@/pages/UserInformPage/index.jsx";
 import UserInformResultPage from "@/pages/UserInformResultPage/index.jsx";
 // import AssetPlanStartPage from "@/pages/AssetPlanStartPage/index.jsx";
 // import AssetPlanResultPage from "@/pages/AssetPlanResultPage/index.jsx";
+import AssetPlanStartPage from "@/pages/AssetPlanStartPage/index.jsx";
+import AssetPlanResultPage from "@/pages/AssetPlanResultPage/index.jsx";
 
 function RootLayout() {
   return <Outlet />;
@@ -45,8 +48,16 @@ const router = createBrowserRouter([
         element: <AssetEditPage />
       },
       {
+        path: "ai/plan/start",
+        element: <AssetPlanStartPage />
+      },
+      {
         path: "ai/plan/inform",
         element: <AssetPlanInformPage />
+      },
+      {
+        path: "/ai/plan/result", // 👈 2. 결과 페이지 경로 추가
+        element: <AssetPlanResultPage />,
       },
     ],
   },
