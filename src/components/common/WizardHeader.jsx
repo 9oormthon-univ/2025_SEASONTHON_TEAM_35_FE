@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import BackIcon from "@/assets/icons/back.svg?react";
-import ClosePng from "@/assets/icons/close.png";
+import BackIcon from "@/assets/Header/back.svg?react";
+import ClosePng from "@/assets/Header/close.png";
 
 export default function WizardHeader({ onPrev, isPrevDisabled, showPrevButton = true, onClose }) {
     const navigate = useNavigate();

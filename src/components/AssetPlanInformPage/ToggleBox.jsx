@@ -1,12 +1,10 @@
-import React from 'react';
+import piggyBankIcon from '../../assets/AssetPlanInform/돼지저금통.png';
+import safeIcon from '../../assets/AssetPlanInform/금고.png';
 
-// 아이콘을 임시로 렌더링하는 부분
-const TempIcon = ({ icon }) => (
-    <div className="w-10 h-10 mb-3 flex items-center justify-center">
-        <span className="text-3xl">{icon}</span>
-    </div>
-);
-
+const ICONS = {
+    piggyBank: piggyBankIcon,
+    safe: safeIcon,
+};
 export default function ToggleBox({ option, isSelected, onClick }) {
     const { label, description, icon } = option;
 
@@ -14,8 +12,8 @@ export default function ToggleBox({ option, isSelected, onClick }) {
         w-[170px] h-[174px] rounded-lg border p-4
         transition-all duration-200
         ${isSelected
-        ? 'border-primary-2 border-[2px] bg-white shadow-sm'
-        : 'border-gray-20 bg-gray-5 hover:bg-gray-10'
+        ? 'border-primary-2 border-[2px] shadow-[0_0_8px_rgba(0,214,179,0.5)]'
+        : 'border-gray-5 border-[2px] bg-white'}
     }
     `;
 
@@ -24,9 +22,15 @@ export default function ToggleBox({ option, isSelected, onClick }) {
     return (
         <button onClick={onClick} className={containerClasses}>
             <div className="flex flex-col items-start justify-start w-full h-full text-left">
-                <TempIcon icon={icon} />
+                {ICONS[icon] && (
+                    <img
+                        src={ICONS[icon]}
+                        alt={label}
+                        className="w-12 h-12 mt-3 object-contain"
+                    />
+                )}
 
-                <p className={`text-[16px] text-gray-100 font-bold  `}>
+                <p className={`text-[16px] text-gray-100 font-bold mt-3 `}>
                     {option.label}
                 </p>
 

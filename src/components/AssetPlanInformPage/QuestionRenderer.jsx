@@ -1,7 +1,7 @@
-import React from 'react';
 import CustomRadio from './CustomRadio';
 import ToggleCard from './ToggleCard';
 import ToggleBox from "./ToggleBox.jsx";
+import TogglePill from "./TogglePill.jsx";
 
 export default function QuestionRenderer({ stepData, value, onChange }) {
     const { key, type, options = [] } = stepData;
@@ -23,7 +23,7 @@ export default function QuestionRenderer({ stepData, value, onChange }) {
             );
 
         case 'toggle':
-            // 모든 styleVariant에서 onClick이 onChange를 직접 호출하도록 수정합니다.
+            // 모든 styleVariant에서 onClick이 onChange를 직접 호출하도록 수정
             if (stepData.styleVariant === 'card') {
                 return (
                     <div className="space-y-3">
@@ -52,23 +52,15 @@ export default function QuestionRenderer({ stepData, value, onChange }) {
                 );
             } else if (stepData.styleVariant === 'pill') {
                 return (
-                    <div className="flex-wrap space-y-2">
-                        {options.map((option) => {
-                            const isSelected = value === option.value;
-                            return (
-                                <button
-                                    key={option.value}
-                                    onClick={() => onChange(option.value)}
-                                    className={`flex items-center justify-center px-4 py-2 rounded-full border text-Medium transition-colors
-                                                    ${isSelected
-                                        ? 'bg-primary-2 text-white border-primary-2 font-bold'
-                                        : 'bg-white text-gray-80 border-gray-20 hover:bg-gray-5'
-                                    }`}
-                                >
-                                    <span className="ml-1">{option.label}</span>
-                                </button>
-                            );
-                        })}
+                    <div className="flex-col items-start inline-flex gap-2 ">
+                        {options.map((option) => (
+                            <TogglePill
+                                key={option.value}
+                                option={option}
+                                isSelected={value === option.value}
+                                onClick={onChange}
+                            />
+                        ))}
                     </div>
                 );
             }

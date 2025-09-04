@@ -1,8 +1,8 @@
-import cashIcon from '../../../assets/icons/cash.png';
-import depositIcon from '../../../assets/icons/deposit.png';
-import savingsIcon from '../../../assets/icons/savings.png';
-import investmentIcon from '../../../assets/icons/investment.png';
-import etcIcon from '../../../assets/icons/etc.png';
+import cashIcon from '../../../assets/AssetPage/cash.png';
+import depositIcon from '../../../assets/AssetPage/deposit.png';
+import savingsIcon from '../../../assets/AssetPage/savings.png';
+import investmentIcon from '../../../assets/AssetPage/investment.png';
+import etcIcon from '../../../assets/AssetPage/etc.png';
 
 const ICONS = {
     cash: cashIcon,

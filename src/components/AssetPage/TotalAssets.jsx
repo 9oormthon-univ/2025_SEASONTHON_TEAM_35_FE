@@ -1,5 +1,4 @@
 import { useAssets } from '../../context/AssetContext.jsx';
-import goIcon from "../../assets/icons/goIcon.png";
 import {Link} from "react-router-dom"; //
 
 export default function TotalAssets() {

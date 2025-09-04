@@ -35,7 +35,7 @@ export default function BaseWizard(props) {
         ? currentStepData.title.split(currentStepData.keyword)
         : [currentStepData.title];
 
-    // 👇 유실되었던 버튼 비활성화 로직을 추가합니다.
+    //  버튼 비활성화 로직
     const currentValue = form[currentStepData.key];
     const isNextDisabled =
         (currentValue == null || currentValue === '') || // 값이 없거나 비어있을 때
@@ -53,7 +53,6 @@ export default function BaseWizard(props) {
 
             <WizardProgress totalSteps={totalSteps} currentStep={step} />
 
-            {/* 제목을 BaseWizard에서 직접 렌더링 (고정 영역) */}
             <div className="p-5 pb-0">
                 <h2 className="mt-1 mb-8 whitespace-pre-wrap text-2xl font-bold leading-tight">
                     {currentStepData.keyword ? (
@@ -84,7 +83,6 @@ export default function BaseWizard(props) {
                 onNext={next}
                 isLastStep={step === totalSteps - 1}
                 submitButtonText={submitButtonText}
-                // 👇 계산된 비활성화 상태를 Footer로 전달합니다.
                 isNextDisabled={isNextDisabled}
             />
         </div>

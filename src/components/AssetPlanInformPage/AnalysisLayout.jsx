@@ -17,7 +17,7 @@ export default function AnalysisLayout({
             {/* 버튼을 제외한 전체 컨텐츠 영역 */}
             <div className="flex-1 flex flex-col">
 
-                {/* 1. 상단 컨텐츠: 제목과 아이콘 (위치 고정) */}
+                {/* 상단 컨텐츠: 제목과 아이콘 (위치 고정) */}
                 <div className="pt-60">
                     <div className="w-20 h-20 mx-auto flex items-center justify-center">
                         {icon}
@@ -26,7 +26,7 @@ export default function AnalysisLayout({
                     <p className="mt-4 text-base text-gray-40 whitespace-pre-wrap">{subtitle}</p>
                 </div>
 
-                {/* 2. 중간 컨텐츠: 회색 박스 (남는 공간 차지) */}
+                {/* 중간 컨텐츠: 회색 박스 (남는 공간 차지) */}
                 {/* 이 영역이 남은 공간을 모두 차지하며, 내부 컨텐츠를 위쪽(justify-start)으로 정렬합니다. */}
                 <div className="flex-1 flex flex-col justify-start mt-5">
                     {children}

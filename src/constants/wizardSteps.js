@@ -26,7 +26,6 @@ export const ASSET_INFORM_STEPS = [
         title: "자산을 연결할 금융사를\n선택해 주세요.",
         keyword: "금융사",
         type: 'multi-select-grid',
-        // 👇 options를 그룹화된 구조로 수정합니다.
         options: [
             {
                 groupTitle: '은행',
@@ -123,22 +122,29 @@ export const PLAN_WIZARD_STEPS = [
         options: [
             // 각 option을 객체로 만들어서 description과 icon 정보를 추가
             {
-                value: 'STABLE',
-                label: '안정형',
-                description: '안전하게, 원금 중심으로 투자하고 싶어요.',
-                icon: 'ShieldIcon' // (아이콘 이름은 임시)
-            },
-            {
-                value: 'COMMON',
-                label: '중립형',
-                description: '안정과 수익, 적당히 섞어 투자하고 싶어요.',
-                icon: 'BalanceIcon'
+                value: 'AGGRESSIVE',
+                label: '공격투자형',
+                description: '높은 수익을 위해 위험을 감수할 수 있어요.',
             },
             {
                 value: 'ACTIVE',
-                label: '공격형',
-                description: '높은 수익을 목표로 적극적으로 투자하고 싶어요.',
-                icon: 'RocketIcon'
+                label: '적극투자형',
+                description: '수익을 중시하며 적극적으로 투자하고 싶어요.',
+            },
+            {
+                value: 'NEUTRAL',
+                label: '위험중립형',
+                description: '수익과 안정성의 균형 잡힌 투자를 원해요.',
+            },
+            {
+                value: 'CONSERVATIVE',
+                label: '안정추구형',
+                description: '안정성을 더 중시하며 투자를 하고 싶어요.',
+            },
+            {
+                value: 'STABLE',
+                label: '안정형',
+                description: '위험을 최소화하고 안전하게 투자할래요.',
             },
         ],
     },
@@ -153,13 +159,13 @@ export const PLAN_WIZARD_STEPS = [
                 value: 'true',
                 label: '단기 자금',
                 description: '언제든 인출 가능한\n안정적인 자금이 필요해요.',
-                icon: '⏳'
+                icon: 'piggyBank'
             },
             {
                 value: 'false',
                 label: '장기 자금',
                 description: '유동성이 낮아도\n장기간 운용할 수 있어요.',
-                icon: '📈'
+                icon: 'safe'
             },
         ],
     },
@@ -170,12 +176,12 @@ export const PLAN_WIZARD_STEPS = [
         type: 'toggle',
         styleVariant: 'pill',
         options: [
-            { value: 'SAVINGS',          label: '저축',           icon: '💰' },
-            { value: 'HOME_OWNERSHIP',   label: '내 집 마련',     icon: '🏠' },
-            { value: 'CAR_PURCHASE',     label: '차량 구매',       icon: '🚗' },
-            { value: 'TRAVEL',           label: '여행',           icon: '✈️' },
-            { value: 'MARRIAGE',         label: '결혼',           icon: '💍' },
-            { value: 'SELF_DEVELOPMENT', label: '자기계발',       icon: '📚' },
+            { value: 'SAVINGS',          label: '저축',           icon: 'save' },
+            { value: 'HOME_OWNERSHIP',   label: '내 집 마련',     icon: 'house' },
+            { value: 'CAR_PURCHASE',     label: '차량 구매',       icon: 'car' },
+            { value: 'TRAVEL',           label: '여행',           icon: 'travel' },
+            { value: 'MARRIAGE',         label: '결혼',           icon: 'marry' },
+            { value: 'SELF_DEVELOPMENT', label: '자기계발',       icon: 'grow' },
         ],
     },
 ];

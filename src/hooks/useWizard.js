@@ -1,4 +1,3 @@
-// src/hooks/useWizard.js
 import { useState } from "react";
 import { useValidator } from './useValidator';
 
@@ -20,7 +19,6 @@ export function useWizard(steps, options = {}) {
     };
 
     const buildPayload = () => {
-        // ... (이 부분은 수정할 필요 없습니다)
         if (payloadType === 'amount') {
             // ... amount 로직 ...
         } else {

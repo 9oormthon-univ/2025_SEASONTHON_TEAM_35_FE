@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionRenderer from './QuestionRenderer'; // 👈 분리한 컴포넌트 import
+import QuestionRenderer from './QuestionRenderer';
 
 export default function PlanQuestionStep({ stepData, value, onChange, error }) {
     const { keyword, title } = stepData;

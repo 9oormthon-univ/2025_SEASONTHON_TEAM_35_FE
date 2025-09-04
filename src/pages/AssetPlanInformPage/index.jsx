@@ -17,7 +17,6 @@ export default function AssetPlanInformPage() {
 
     return (
         <div className="h-full bg-white">
-            {/* 👇 2. BaseWizard 대신 AIPlanWizard를 사용합니다. */}
             <AIPlanWizard
                 wizardSteps={PLAN_WIZARD_STEPS}
                 onComplete={handlePlanComplete}

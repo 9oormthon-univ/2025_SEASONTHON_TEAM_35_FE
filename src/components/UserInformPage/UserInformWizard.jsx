@@ -17,7 +17,6 @@ export default function UserInformWizard(props) {
             wizard={wizard}
             wizardSteps={wizardSteps}
             onClose={onClose}
-            // 👇 "제출하기" 라는 텍스트 재료만 전달합니다.
             submitButtonText="제출하기"
             renderStep={({ stepData, value, onChange, error, setError }) => (
                 <FormStep
