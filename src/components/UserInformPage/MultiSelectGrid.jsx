@@ -1,11 +1,9 @@
-import React from 'react';
-
-// 개별 금융사 로고 버튼 (이 컴포넌트는 그대로 사용)
+// 개별 금융사 로고 버튼
 const InstitutionButton = ({ option, isSelected, onClick }) => (
     <button
         onClick={onClick}
         className={`flex flex-col items-center justify-center w-[108px] h-[108px] rounded-[12px] border transition-all
-                   ${isSelected
+            ${isSelected
             ? 'border-primary-2 border-[2px] bg-white shadow-[0_0_10px_#00D6B380]' 
             : 'border-background bg-background '
         }`}
@@ -20,7 +18,6 @@ const InstitutionButton = ({ option, isSelected, onClick }) => (
         </span>
     </button>
 );
-
 
 export default function MultiSelectGrid({ options, value = [], onChange }) {
 

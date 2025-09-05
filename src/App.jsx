@@ -24,7 +24,6 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     children: [
-
       {
         index: true,
         element: <Layout title="홈"><HomePage /></Layout>
@@ -69,7 +68,7 @@ const router = createBrowserRouter([
         element: <AssetPlanResultPage />,
       },
       { path: 'goal-setting',
-        element: <Layout title="목표 설정"><GoalSettingPage /></Layout>
+        element: <Layout title="목표 관리"><GoalSettingPage /></Layout>
       },
     ],
   },
