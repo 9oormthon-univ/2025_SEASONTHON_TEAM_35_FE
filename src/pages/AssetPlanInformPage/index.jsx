@@ -29,7 +29,7 @@ export default function AssetPlanInformPage() {
             <AIPlanWizard
                 wizardSteps={PLAN_WIZARD_STEPS}
                 onComplete={handlePlanComplete}
-                onClose={() => navigate('/asset/main')}
+                onClose={() => navigate('/home/AI-asset-plan')}
             />
         </div>
     );

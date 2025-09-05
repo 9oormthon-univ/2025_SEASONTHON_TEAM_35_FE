@@ -18,7 +18,7 @@ export default function AssetPlanStartPage() {
 
     return (
         <div className="h-full">
-            <WizardHeader showPrevButton={true} onClose={() => navigate('/asset/main')} />
+            <WizardHeader showPrevButton={false} onClose={() => navigate('/home/AI-asset-plan')} />
             <PlanStart
                 title={pageData.title}
                 keyword={pageData.keyword}

@@ -22,7 +22,7 @@ export default function FormStep({ stepData, value, onChange, error, setError })
                 }
                 break;
             case 'resident':
-                // 옵셔널 체이닝을 사용해 안전하게 에러를 전달
+                // 옵셔널 체이닝을 사용해 안전하게 에러 전달
                 return <ResidentNumberInput value={value} onChange={onChange} error={error?.[key]} />;
             case 'phone':
                 return <PhoneNumberInput value={value} onChange={onChange} error={error?.[key]} />;

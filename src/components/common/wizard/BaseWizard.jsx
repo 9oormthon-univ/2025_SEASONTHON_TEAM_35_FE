@@ -1,4 +1,3 @@
-import React from 'react';
 import WizardHeader from './WizardHeader';
 import WizardProgress from './WizardProgress';
 import WizardContent from './WizardContent';
