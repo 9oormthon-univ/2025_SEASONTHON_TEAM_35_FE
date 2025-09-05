@@ -1,4 +1,5 @@
 import React from 'react';
+import Layout from "@/components/layout/Layout.jsx";
 import { createBrowserRouter, RouterProvider, Navigate, Outlet, Routes, Route } from "react-router-dom";
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
@@ -13,7 +14,6 @@ import UserInformPage from "@/pages/UserInformPage/index.jsx";
 import UserInformResultPage from "@/pages/UserInformResultPage/index.jsx";
 import AssetPlanStartPage from "@/pages/AssetPlanStartPage/index.jsx";
 import AssetPlanResultPage from "@/pages/AssetPlanResultPage/index.jsx";
-import TempPage from "@/pages/TempPage.jsx";
 
 function RootLayout() {
   return <Outlet />;
@@ -27,7 +27,13 @@ const router = createBrowserRouter([
 
       {
         index: true,
-        element: <TempPage/> //<Navigate to="user/inform" replace />
+        element: <Layout title="홈"><HomePage /></Layout> //<Navigate to="user/inform" replace />
+      },
+      { path: 'login',
+        element: <LoginPage />
+      },
+      { path: 'my-page',
+        element: <MyPage />
       },
       {
         path: "asset/main",
@@ -41,6 +47,12 @@ const router = createBrowserRouter([
         path: "user/inform/result",
         element: <UserInformResultPage />
       },
+      { path: 'home/AI-asset-plan',
+        element: <AIAssetPlanPage />
+      },
+      { path: 'home/AI-asset-plan/ETF',
+        element: <ETFExplanation />
+      },
       {
         path: "ai/plan/start",
         element: <AssetPlanStartPage />
@@ -53,14 +65,9 @@ const router = createBrowserRouter([
         path: "/ai/plan/inform/result",
         element: <AssetPlanResultPage />,
       },
-      { index: true, element: <Navigate to="/login" replace /> },
-      { path: 'home', element: <HomePage /> },
-      { path: 'home/inform', element: <div></div> },
-      { path: 'login', element: <LoginPage /> },
-      { path: 'my-page', element: <MyPage /> },
-      { path: 'goal-setting', element: <GoalSettingPage /> },
-      { path: 'home/AI-asset-plan', element: <AIAssetPlanPage /> },
-      { path: 'home/AI-asset-plan/ETF', element: <ETFExplanation /> },
+      { path: 'goal-setting',
+        element: <Layout title="목표 설정"><GoalSettingPage /></Layout>
+      },
     ],
   },
 ]);

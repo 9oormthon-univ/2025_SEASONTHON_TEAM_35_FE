@@ -5,8 +5,6 @@ import {useMemo} from "react";
 
 export default function UserInformPage() {
     const navigate = useNavigate();
-
-    // TODO: 실제로는 서버나 상태 관리 라이브러리에서 가져와야 합니다.
     const userNameFromServer = "김민서";
 
     // 👇 2. useMemo를 사용해서 userNameFromServer 값이 바뀔 때만 객체를 새로 만듭니다.
