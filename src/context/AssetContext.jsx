@@ -134,7 +134,7 @@ export function AssetProvider({ children }) {
         } finally {
             setLoading(false);
         }
-    }, [loading])
+    }, [])
 
     // 자산 요약 정보 가져오기 (UserInformResultPage에서 사용)
     const fetchAssetSummary = useCallback(async () => {
@@ -156,7 +156,7 @@ export function AssetProvider({ children }) {
         } finally {
             setLoading(false);
         }
-    }, [loading]);
+    }, []);
 
     // 자산 설계 제출 페이지
     const submitAssetPlan = async (payload) => {

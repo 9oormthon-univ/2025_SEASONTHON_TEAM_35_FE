@@ -1,26 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion'; // 👈 1. framer-motion을 import 합니다.
 import AnalysisLayout from '../../components/AssetPlanInformPage/AnalysisLayout.jsx';
 import StatusAnimation from '@/components/common/animations/StatusAnimation.jsx';
 
-// 로딩 중에 보일 회색 박스 리스트
 const loadingSteps = ["보유 자산 확인 중...", "목표 분석 중...", "맞춤형 자산 설계 중..."];
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 1.2, // 시간 간격 두고 순차적으로 애니메이션 실행
+            staggerDirection: -1, // 맨 아래 박스부터 올라오도록
+        },
+    },
+};
+
+const itemVariants = {
+    hidden: { y: 20, opacity: 0 }, // 처음에 살짝 흐렸다가
+    visible: {
+        y: 0,
+        opacity: 1, // 제자리로 올라오면서 선명해짐
+        transition: {
+            type: 'spring', // 통통 튀는 느낌으로
+            stiffness: 100,
+        },
+    },
+};
 
 export default function AssetPlanResultPage() {
     const navigate = useNavigate();
-    // API 통신 상태를 관리합니다: 'loading', 'success', 'error'
     const [status, setStatus] = useState('loading');
 
-    // API 호출을 시뮬레이션합니다.
     useEffect(() => {
-        // 3초 후에 'loading' 상태를 'success'로 변경합니다.
         const timer = setTimeout(() => {
             setStatus('success');
-        }, 3000);
+        }, 4000);
 
-        // 컴포넌트가 언마운트될 때 타이머를 정리합니다.
         return () => clearTimeout(timer);
-    }, []); // 빈 배열을 전달하여 컴포넌트가 처음 렌더링될 때만 실행되도록 합니다.
+    }, []);
 
 
     if (status === 'loading') {
@@ -32,16 +51,22 @@ export default function AssetPlanResultPage() {
                 buttonText="완료"
                 isButtonDisabled={true}
             >
-                {/* 로딩 중에만 보이는 회색 박스들 */}
-                <div className="space-y-2 mt-20">
+                <motion.div
+                    className="space-y-2 mt-20"
+                    variants={containerVariants}
+                    initial="hidden" // 처음엔 hidden 상태
+                    animate="visible" // 그 다음 visible 상태로 애니메이션
+                >
                     {loadingSteps.map((text, index) => (
-                        <div
+                        <motion.div
                             key={index}
                             className="w-full h-[50px] p-4 bg-[#F5F7FA] rounded-lg text-left text-gray-40"
-                        > {text}
-                        </div>
+                            variants={itemVariants} // 각 아이템에도 variants 적용
+                        >
+                            {text}
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </AnalysisLayout>
         );
     }
@@ -53,11 +78,10 @@ export default function AssetPlanResultPage() {
                 icon={<StatusAnimation type="complete" size={120} className="flex justify-center mb-10" />}
                 subtitle={"입력하신 정보를 바탕으로\n맞춤형 자산 설계가 완료되었어요!"}
                 buttonText="완료"
-                onButtonClick={() => navigate('/home/AI-asset-plan')} // 완료 버튼 클릭 시 메인으로 이동
+                onButtonClick={() => navigate('/home/AI-asset-plan')}
             />
         );
     }
 
-    // TODO: 에러 상태일 때의 UI도 추가하면 좋습니다.
     return <div>오류가 발생했습니다.</div>;
 }

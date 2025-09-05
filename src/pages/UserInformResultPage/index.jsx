@@ -29,14 +29,13 @@ export default function UserInformResultPage() {
     }, [fetchAssetSummary]);
 
     // --- UI 렌더링 ---
-
     if (status === 'error') {
         return (
             <AnalysisLayout
                 icon={<StatusAnimation type="error" size={120} className="flex justify-center mb-10" />}
                 title="자산 연동 실패"
                 subtitle={"자산 정보를 불러오는 데 실패했습니다.\n잠시 후 다시 시도해주세요."}
-                buttonText="홈으로 돌아가기"
+                buttonText="돌아가기"
                 onButtonClick={() => navigate('/home')}
             />
         );

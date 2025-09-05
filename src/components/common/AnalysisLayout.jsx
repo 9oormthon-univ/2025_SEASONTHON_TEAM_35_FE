@@ -39,7 +39,7 @@ export default function AnalysisLayout({
                 <button
                     onClick={onButtonClick || (() => navigate('/asset/main'))}
                     disabled={isButtonDisabled}
-                    className={`w-full h-[90px] text-white font-bold text-[20px] rounded-t-[16px] pt-[3px] pb-[24px] px-[167px] transition-colors
+                    className={`w-full h-[90px] text-white font-bold text-[20px] rounded-t-[16px] pt-[3px] pb-[24px] px-[150px] transition-colors
                                ${isButtonDisabled ? 'bg-gray-20' : 'bg-primary-2'}`}
                 >
                     {buttonText}
