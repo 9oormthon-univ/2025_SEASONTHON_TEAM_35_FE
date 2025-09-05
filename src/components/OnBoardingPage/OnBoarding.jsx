@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import {useNavigate} from 'react-router-dom';
+import {useAssets} from "@/context/AssetContext.jsx";
 
 const ONBORADING_STEPS = [
   {
@@ -19,7 +20,20 @@ const ONBORADING_STEPS = [
 
 export default function OnBoarding() {
   const [step, setStep] = useState(0);
+  const navigate = useNavigate();
+  const { userName, fetchUserName } = useAssets();
 
+  // 👇 [로그 3] OnboardingPage가 Context로부터 받은 이름 확인
+  console.log("3. OnboardingPage: Context로부터 받은 userName:", userName);
+
+  // 페이지가 렌더링될 때 사용자 이름을 비동기적으로 가져옵니다.
+  useEffect(() => {
+    fetchUserName();
+  }, [fetchUserName]);
+
+  const handleStart = () => {
+    navigate('/user/inform');
+  };
   useEffect(() => {
     if (step < ONBORADING_STEPS.length - 1) {
       const timer = setTimeout(() => {
@@ -49,12 +63,13 @@ export default function OnBoarding() {
           )}
         </motion.div>
         {step === 2 && (
-          <Link
-            to="/login"
-            className="text-white bg-primary-2 w-[353px] h-[55px] rounded-[12px] flex justify-center items-center text-[20px] mb-[50px]"
-          >
-            시작하기
-          </Link>
+            <button onClick={handleStart}>시작하기</button>
+          // <Link
+          //   to="/login"
+          //   className="text-white bg-primary-2 w-[353px] h-[55px] rounded-[12px] flex justify-center items-center text-[20px] mb-[50px]"
+          // >
+          //   시작하기
+          // </Link>
         )}
       </AnimatePresence>
     </div>

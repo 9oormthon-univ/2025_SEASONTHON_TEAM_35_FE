@@ -10,7 +10,7 @@ export default function LoginPage() {
         <h2 className="text-primary-2">그로우플랜</h2>
       </div>
       <Link
-        to="/home"
+        to="/on-boarding"
         className="w-[350px] h-[56px] rounded-[12px] bg-[#FFEB3B] flex text-[16px] text-[#111111] font-bold justify-center items-center mb-[179px] self-center"
       >
         <img

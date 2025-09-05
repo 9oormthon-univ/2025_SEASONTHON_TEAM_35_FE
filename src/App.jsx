@@ -14,6 +14,8 @@ import UserInformPage from "@/pages/UserInformPage/index.jsx";
 import UserInformResultPage from "@/pages/UserInformResultPage/index.jsx";
 import AssetPlanStartPage from "@/pages/AssetPlanStartPage/index.jsx";
 import AssetPlanResultPage from "@/pages/AssetPlanResultPage/index.jsx";
+import OnBoarding from "@/components/OnBoardingPage/OnBoarding.jsx";
+import OnBoardingPage from "@/pages/OnBoardingPage/index.jsx";
 
 function RootLayout() {
   return <Outlet />;
@@ -28,11 +30,14 @@ const router = createBrowserRouter([
         index: true,
         element: <Layout title="홈"><HomePage /></Layout>
       },
-      { path: 'home',
-        element: <Layout title="홈"><HomePage /></Layout>
-      },
       { path: 'login',
         element: <LoginPage />
+      },
+      { path: 'on-boarding',
+        element: <OnBoardingPage />,
+      },
+      { path: 'home',
+        element: <Layout title="홈"><HomePage /></Layout>
       },
       { path: 'mypage',
         element: <MyPage />

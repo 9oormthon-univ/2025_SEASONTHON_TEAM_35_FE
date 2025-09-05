@@ -2,15 +2,18 @@ import { useNavigate} from 'react-router-dom';
 import UserInformWizard from '../../components/UserInformPage/UserInformWizard.jsx';
 import { ASSET_INFORM_STEPS } from '@/constants/wizardSteps.js';
 import {useMemo} from "react";
+import {useAssets} from "@/context/AssetContext.jsx";
 
 export default function UserInformPage() {
     const navigate = useNavigate();
-    const userNameFromServer = "김민서";
+    const { userName } = useAssets();
 
-    // 👇 2. useMemo를 사용해서 userNameFromServer 값이 바뀔 때만 객체를 새로 만듭니다.
+    console.log("4. UserInformPage: Context로부터 받은 userName:", userName);
+
+    // userName이 변경될 때만 initialFormValues 객체를 새로 만듭니다.
     const initialFormValues = useMemo(() => ({
-        name: userNameFromServer,
-    }), [userNameFromServer]);
+        name: userName || '', // 👈 3. 가져온 userName을 초기값으로 설정
+    }), [userName]);
 
     const handleComplete = (payload) => {
         console.log("최종 제출 데이터:", payload);
@@ -23,7 +26,7 @@ export default function UserInformPage() {
                 // userNameFromServer 값이 바뀔 때마다 Wizard 전체가 리셋됩니다.
                 wizardSteps={ASSET_INFORM_STEPS}
                 onComplete={handleComplete}
-                initialFormValues={{ name: userNameFromServer }}
+                initialFormValues={ initialFormValues }
                 payloadType="user"
             />
         </div>
