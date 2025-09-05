@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const ONBORADING_STEPS = [
   {
@@ -23,30 +24,39 @@ export default function OnBoarding() {
     if (step < ONBORADING_STEPS.length - 1) {
       const timer = setTimeout(() => {
         setStep(step + 1);
-      }, 1500);
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, [step]);
   return (
     <div className="flex flex-col items-center">
-      <div className="flex flex-col items-center gap-[18px] mb-[456px] ">
-        <h1 className="text-gray-100 font-bold text-[24px] mt-[219px] whitespace-pre-line text-center">
-          {ONBORADING_STEPS[step].title}
-        </h1>
-        {ONBORADING_STEPS[step].desription && (
-          <p className="text-gray-50 font-medium tetxt-[18px]">
-            {ONBORADING_STEPS[step].desription}
-          </p>
-        )}
-      </div>
-      {step === 2 && (
-        <Link
-          to="/login"
-          className="text-white bg-primary-2 w-[353px] h-[55px] rounded-[12px] flex justify-center items-center text-[20px] mb-[50px]"
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={step} // step이 바뀔 때마다 애니메이션 적용
+          className="flex flex-col items-center gap-[18px] mb-[456px]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
         >
-          시작하기
-        </Link>
-      )}
+          <h1 className="text-gray-100 font-bold text-[24px] mt-[219px] whitespace-pre-line text-center">
+            {ONBORADING_STEPS[step].title}
+          </h1>
+          {ONBORADING_STEPS[step].desription && (
+            <p className="text-gray-50 font-medium tetxt-[18px]">
+              {ONBORADING_STEPS[step].desription}
+            </p>
+          )}
+        </motion.div>
+        {step === 2 && (
+          <Link
+            to="/login"
+            className="text-white bg-primary-2 w-[353px] h-[55px] rounded-[12px] flex justify-center items-center text-[20px] mb-[50px]"
+          >
+            시작하기
+          </Link>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
