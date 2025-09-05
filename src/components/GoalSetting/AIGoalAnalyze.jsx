@@ -1,23 +1,47 @@
 import starIcon from '.././../assets/GoalSetting/starIcon.png';
-
-const ANALYZE = [
-  {
-    title: '저축',
-    description:
-      '현재 자산은 1,200만 원이며, 매달 약 42만 원 저축이 필요합니다.',
-  },
-  {
-    title: '목표 달성',
-    description: '현재 소득과 투자 성향을 고려했을 때 무리가 없는 수준입니다.',
-  },
-  {
-    title: '비상 자금',
-    description:
-      '예상치 못한 지출을 대비해 비상 자금을 최소 200만 원 이상 유지하는 것을 권장드립니다.',
-  },
-];
+import { useEffect, useState } from 'react';
+import { getGoalSettingInfo } from '../../api/goalApi';
 
 export default function AIGoalAnalyze() {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getGoalSettingInfo();
+      if (result) {
+        setData(result);
+      }
+      console.log('📌 getGoalSettingInfo 결과:', result);
+    };
+
+    fetchData();
+  }, []);
+  const formatToManWon = (text) => {
+    if (!text) return '';
+    return text.replace(/\d+/g, (num) => {
+      const n = Number(num);
+      if (n >= 10000) {
+        return `${Math.round(n / 10000)}만`;
+      }
+      return `${n.toLocaleString()}`;
+    });
+  };
+
+  const sentences = data ? data.analysisText.split('\n') : [];
+  console.log(sentences);
+  const ANALYZE = [
+    {
+      title: '저축',
+      description: formatToManWon(sentences[0]),
+    },
+    {
+      title: '목표 달성',
+      description: formatToManWon(sentences[1]),
+    },
+    {
+      title: '비상 자금',
+      description: formatToManWon(sentences[2]),
+    },
+  ];
   return (
     <div className="w-[353px] h-[349px] flex flex-col gap-[20px] pt-[20px] px-[24px] pb-[69px] rounded-[24px] shadow-[0_0_10px_#00d6b27f] border-[1px] border-primary-2 overflow-y-auto scrollbar-hide bg-white">
       <div className="flex gap-[8px]">
@@ -26,7 +50,7 @@ export default function AIGoalAnalyze() {
       </div>
       <div className="flex flex-col gap-[20px]">
         {ANALYZE.map((item) => (
-          <div className="flex flex-col gap-[4px]">
+          <div className="flex flex-col gap-[4px]" key={item.title}>
             <h1 className="text-primary-1 text-[14px] font-bold">
               {item.title}
             </h1>
