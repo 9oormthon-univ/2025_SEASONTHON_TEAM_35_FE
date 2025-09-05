@@ -27,12 +27,15 @@ const router = createBrowserRouter([
 
       {
         index: true,
-        element: <Layout title="홈"><HomePage /></Layout> //<Navigate to="user/inform" replace />
+        element: <Layout title="홈"><HomePage /></Layout>
+      },
+      { path: 'home',
+        element: <Layout title="홈"><HomePage /></Layout>
       },
       { path: 'login',
         element: <LoginPage />
       },
-      { path: 'my-page',
+      { path: 'mypage',
         element: <MyPage />
       },
       {

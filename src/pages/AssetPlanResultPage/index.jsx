@@ -53,7 +53,7 @@ export default function AssetPlanResultPage() {
                 icon={<StatusAnimation type="complete" size={120} className="flex justify-center mb-10" />}
                 subtitle={"입력하신 정보를 바탕으로\n맞춤형 자산 설계가 완료되었어요!"}
                 buttonText="완료"
-                onButtonClick={() => navigate('/asset/main')} // 완료 버튼 클릭 시 메인으로 이동
+                onButtonClick={() => navigate('/home/AI-asset-plan')} // 완료 버튼 클릭 시 메인으로 이동
             />
         );
     }

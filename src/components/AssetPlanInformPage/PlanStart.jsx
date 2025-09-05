@@ -1,35 +1,31 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
-// '시작하기' 버튼 클릭 시 호출될 onStart 함수를 props로 받습니다.
-export default function PlanStart({ onStart }) {
-    const title = "AI 자산 설계를 통해\n자산을 관리해요";
-    const keyword = "AI 자산 설계";
+export default function PlanStart({ title, keyword, subtitle, onStart }) {
     const titleParts = title.split(keyword);
 
     return (
-        <div className="flex flex-col h-full p-5 pt-16 text-center">
-            {/* 상단 컨텐츠 영역 */}
-            <div className="flex-1 flex flex-col justify-center items-center">
-                <div className="w-48 h-48 mb-8 bg-gray-10 rounded-full" /> {/* 임시 이미지 */}
-
-                <h1 className="text-2xl font-bold whitespace-pre-wrap">
-                    <span className="text-primary-1">{keyword}</span>
-                    {titleParts[1]}
-                </h1>
-
-                <p className="mt-4 text-[18px] text-gray-40">
-                    가장 알맞은 자산 비율을 찾아드려요.
-                </p>
+        <div className="flex flex-col h-full bg-white relative">
+            <div className="flex-1">
+                <div className="p-5 pt-8">
+                    <h1 className="mt-7 mb-4 whitespace-pre-wrap text-2xl font-bold leading-tight">
+                        {titleParts[0]}
+                        <span className="text-primary-1">{keyword}</span>
+                        {titleParts[1]}
+                    </h1>
+                    <p className="mt-2 text-[18px] text-gray-40">
+                        {subtitle}
+                    </p>
+                </div>
             </div>
 
-            {/* 하단 버튼 영역 */}
-            <div className="pb-5">
-                <button
-                    onClick={onStart}
-                    className="w-full h-[60px] bg-primary-2 text-white font-bold text-lg rounded-xl"
+            <div className="absolute bottom-[150px] left-4 right-0">
+                <Link
+                    to="/ai/plan/inform"
+                    className="flex items-center justify-center w-[353px] h-[55px] bg-primary-2 text-white font-bold text-[20px] rounded-[12px] "
                 >
                     시작하기
-                </button>
+                </Link>
             </div>
         </div>
     );

@@ -4,7 +4,7 @@ import ClosePng from "@/assets/Header/close.png";
 
 export default function WizardHeader({ onPrev, isPrevDisabled, showPrevButton = true, onClose }) {
     const navigate = useNavigate();
-    const handleClose = () => (onClose ? onClose() : navigate("/asset/main"));
+    const handleClose = () => (onClose ? onClose() : navigate("home/AI-asset-plan"));
 
     return (
         <div className="h-[100px] flex items-end justify-between text-xl pb-1 px-4">

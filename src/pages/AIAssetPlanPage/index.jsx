@@ -43,7 +43,7 @@ export default function AIAssetPlanPage() {
               </button>
             ))}
           </div>
-          <Link to="/my-page">
+          <Link to="/mypage">
             <img
               src={profileIcon}
               alt="profileIcon"

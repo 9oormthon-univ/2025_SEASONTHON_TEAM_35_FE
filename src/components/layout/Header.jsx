@@ -7,7 +7,7 @@ export default function Header({ title }) {
             <div className="flex justify-between items-center absolute bottom-2 w-full px-5">
                 <h1 className="text-xl font-bold text-gray-90">{title}</h1>
                 <Link to="/mypage" aria-label="마이페이지">
-                    <img src={userIcon} alt="마이페이지" className="w-[24px] h-[24px]" />
+                        <img src={userIcon} alt="마이페이지" className="w-[24px] h-[24px]" />
                 </Link>
             </div>
         </header>

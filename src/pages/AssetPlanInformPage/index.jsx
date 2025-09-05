@@ -8,8 +8,6 @@ export default function AssetPlanInformPage() {
     const navigate = useNavigate();
     const { submitAssetPlan } = useAssets();
 
-
-    // Wizard가 완료되었을 때 호출될 함수
     const handlePlanComplete = async (payload) => {
         console.log("[PLAN][FINAL PAYLOAD]", payload);
               if (!payload || typeof payload !== 'object') {
@@ -17,13 +15,11 @@ export default function AssetPlanInformPage() {
                 alert("제출 데이터가 비어있어요. 다시 시도해주세요.");
                 return;
               }
-        const success = await submitAssetPlan(payload); // (API 호출은 비활성화 상태)
+        const success = await submitAssetPlan(payload);
 
         if (success) {
-            // 👇 3. 성공 시, 결과 페이지로 이동시킵니다.
             navigate("/ai/plan/inform/result");
         } else {
-            // (선택) 실패 시 에러 처리
             alert("제출에 실패했습니다.");
         }
     };
