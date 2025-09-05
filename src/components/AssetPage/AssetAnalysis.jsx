@@ -23,13 +23,17 @@ export default function AssetAnalysis() {
         return () => cancelAnimationFrame(t);
     }, []);
 
-    if (loading || !assetData) return null;
-
     // 자식들이 바로 쓸 수 있도록 colorClass를 주입해서 내려줌
-    const items = useMemo(
-        () => assetData.mainAssets.map(a => ({ ...a, colorClass: COLOR_CLASS[a.colorKey] })),
-        [assetData.mainAssets]
-    );
+    const items = useMemo(() => {
+        // 1. assetData나 assetData.mainAssets가 없을 경우, 빈 배열을 반환하여 에러를 방지합니다.
+        if (!assetData?.mainAssets) {
+            return [];
+        }
+        // 2. 데이터가 있을 때만 map 함수를 실행합니다.
+        return assetData.mainAssets.map(a => ({ ...a, colorClass: COLOR_CLASS[a.colorKey] }));
+    }, [assetData]); // 3. 의존성 배열을 assetData 전체로 변경합니다.
+
+    if (loading || !assetData) return null;
 
     return (
         <div className="w-[353px] flex flex-col gap-2">
