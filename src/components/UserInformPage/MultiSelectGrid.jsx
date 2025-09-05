@@ -6,7 +6,7 @@ const InstitutionButton = ({ option, isSelected, onClick }) => (
         onClick={onClick}
         className={`flex flex-col items-center justify-center w-[108px] h-[108px] rounded-[12px] border transition-all
                    ${isSelected
-            ? 'border-primary-2 border-[2px] bg-white [box-shadow:5px_6px_7px_-5px_#00D6B380]' // 👈 이 부분을 추가/수정합니다.
+            ? 'border-primary-2 border-[2px] bg-white shadow-[0_0_10px_#00D6B380]' 
             : 'border-background bg-background '
         }`}
     >

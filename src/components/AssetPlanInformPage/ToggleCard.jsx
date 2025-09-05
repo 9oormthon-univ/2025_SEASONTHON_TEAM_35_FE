@@ -3,7 +3,7 @@ export default function ToggleCard({ option, isSelected, onClick }) {
     const containerClasses = `
         relative flex items-center w-[353px] h-[76px] p-4 rounded-xl border transition-all duration-300 overflow-hidden
         ${isSelected
-        ? 'border-primary-2 border-[2px] shadow-[0_0_8px_rgba(0,214,179,0.5)]'
+        ? 'border-primary-2 border-[2px] shadow-[0_0_10px_#00D6B380]'
         : 'border-gray-5 border-[2px] bg-white'}
     }
     `;

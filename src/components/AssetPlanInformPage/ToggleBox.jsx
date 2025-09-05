@@ -12,7 +12,7 @@ export default function ToggleBox({ option, isSelected, onClick }) {
         w-[170px] h-[174px] rounded-lg border p-4
         transition-all duration-200
         ${isSelected
-        ? 'border-primary-2 border-[2px] shadow-[0_0_8px_rgba(0,214,179,0.5)]'
+        ? 'border-primary-2 border-[2px] shadow-[0_0_10px_#00D6B380]'
         : 'border-gray-5 border-[2px] bg-white'}
     `;
 
