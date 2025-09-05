@@ -4,6 +4,7 @@ import AssetAnalysis from "@/components/AssetPage/AssetAnalysis.jsx";
 import TotalAssets from "@/components/AssetPage/TotalAssets.jsx";
 import ROA from "@/components/AIAssetPlanPage/InvestmentAnalysis/ROA.jsx";
 export default function Home() {
+
   return (
     <div className="flex flex-col gap-[24px]">
       {/* 총 자산 */}

@@ -7,17 +7,21 @@ import NoInfo from "../../components/NoInfo/NoInfo.jsx";
 import {useEffect} from "react";
 
 export default function AssetPage() {
-    const { loading, assetData, fetchAssetSummary } = useAssets();
+    const { loading, assetData, userName, fetchAssetSummary, fetchUserName } = useAssets();
     useEffect(() => {
-        // assetData가 없을 때만
+        // 자산 데이터가 없으면 자산 정보를 요청
         if (!assetData) {
             fetchAssetSummary();
         }
-    }, [assetData, fetchAssetSummary]);
+        // 사용자 이름이 없으면 사용자 이름 요청
+        if (!userName) {
+            fetchUserName();
+        }
+    }, [assetData, userName, fetchAssetSummary, fetchUserName]);
 
     //  로딩 중
-    if (loading) {
-        return <div className="p-4 text-center">자산 정보를 불러오는 중입니다...</div>;
+    if (loading || !assetData || !userName) {
+        return <div>데이터를 불러오는 중입니다...</div>;
     }
 
     if (assetData === 'no-asset') {

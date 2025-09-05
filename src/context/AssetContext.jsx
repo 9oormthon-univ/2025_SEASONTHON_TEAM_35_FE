@@ -120,6 +120,8 @@ export function AssetProvider({ children }) {
 
     // 사용자 이름 가져오기 (OnboardingPage에서 사용)
     const fetchUserName = useCallback(async () => {
+        if (loading) return;
+
         setLoading(true);
         try {
             const data = await getMemberName(); // { result: { name: "민서" } }
@@ -132,7 +134,8 @@ export function AssetProvider({ children }) {
         } finally {
             setLoading(false);
         }
-    }, []);
+    }, [loading])
+
     // 자산 요약 정보 가져오기 (UserInformResultPage에서 사용)
     const fetchAssetSummary = useCallback(async () => {
         // assetPage에서도 사용하기 위해서 이미 로딩중이면 함수 즉시 종료 로직 추가
