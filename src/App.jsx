@@ -1,3 +1,17 @@
+import React from 'react';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+  Outlet,
+} from 'react-router-dom';
+
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import MyPage from './pages/MyPage';
+import GoalSettingPage from './pages/GoalSettingPage';
+import AIAssetPlanPage from './pages/AIAssetPlanPage';
+import ETFExplanation from './pages/AIAssetPlanPage/ETFExplanation';
 import React from "react";
 import { createBrowserRouter, RouterProvider, Navigate, Outlet, Routes, Route } from "react-router-dom";
 import AssetPage from "./pages/AssetPage/index.jsx";
@@ -47,6 +61,14 @@ const router = createBrowserRouter([
         path: "/ai/plan/inform/result",
         element: <AssetPlanResultPage />,
       },
+      { index: true, element: <Navigate to="/login" replace /> },
+      { path: 'home', element: <HomePage /> },
+      { path: 'home/inform', element: <div></div> },
+      { path: 'login', element: <LoginPage /> },
+      { path: 'my-page', element: <MyPage /> },
+      { path: 'goal-setting', element: <GoalSettingPage /> },
+      { path: 'home/AI-asset-plan', element: <AIAssetPlanPage /> },
+      { path: 'home/AI-asset-plan/ETF', element: <ETFExplanation /> },
     ],
   },
 ]);

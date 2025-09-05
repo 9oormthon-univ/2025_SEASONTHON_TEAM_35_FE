@@ -11,7 +11,7 @@ export default function Layout({ children, title }) {
                 {children}
             </main>
 
-            <Footer />
-        </div>
-    );
+      <Footer />
+    </div>
+  );
 }

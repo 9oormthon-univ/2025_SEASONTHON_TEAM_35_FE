@@ -1,20 +1,17 @@
-import NoInfo from '../../components/NoInfo/NoInfo';
-import Footer from '../../components/layout/Footer';
-
+import Layout from '../../components/layout/Layout';
+import Home from '../../components/HomePage/Home';
 export default function HomePage() {
   return (
-    <div className="h-full bg-background flex flex-col items-center">
-      {/* layout */}
-      {/* content */}
-      <NoInfo
-        title="아직 자산을 입력하지 않았습니다."
-        description="보유하신 자산을 입력해주세요!
-"
-        btnText="자산 입력하기"
-        link="inform"
-      />
-      {/* footer */}
-      <Footer />
-    </div>
+    <Layout title="홈">
+      <div className="px-[20px] h-full bg-graduation flex flex-col mt-[40px] mb-[30px] gap-[24px]">
+        <div>
+          <h1 className="text-gray-80 text-[20px] font-medium">환영합니다</h1>
+          <h1 className="text-gray-80 font-bold text-[20px]">
+            <span className="text-primary-1">유저 이름</span> 님!
+          </h1>
+        </div>
+        <Home />
+      </div>
+    </Layout>
   );
 }

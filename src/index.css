@@ -1,5 +1,5 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css");
-@import url("https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSans.css");
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css');
+@import url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSans.css');
 
 @tailwind base;
 @tailwind components;
@@ -7,4 +7,24 @@
 
 ::-webkit-scrollbar {
     display: none;
+}
+.recharts-surface:focus {
+  outline: none !important;
+}
+.recharts-surface:focus:not(:focus-visible) {
+  outline: none !important;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* 파이어폭스 */
+* {
+  scrollbar-width: none; /* Firefox 전용 */
+}
+
+/* IE, Edge (구버전) */
+* {
+  -ms-overflow-style: none; /* IE, Edge */
 }
