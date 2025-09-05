@@ -3,16 +3,29 @@ import 'react-circular-progressbar/dist/styles.css';
 import {
   useMotionValue,
   useSpring,
-  useTransform,
   animate,
   useMotionValueEvent,
 } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { getGoalSettingInfo } from '../../api/goalApi';
 
 export default function GoalSettingChart() {
-  const value = 12000000;
-  const max = 20000000;
-  const percentage = (value / max) * 100;
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getGoalSettingInfo();
+      if (result) {
+        setData(result);
+      }
+      console.log('📌 getGoalSettingInfo 결과:', result);
+    };
+
+    fetchData();
+  }, []);
+
+  const value = data?.totalAmount || 0;
+  const max = data?.targetAmount || 0;
+  const percentage = data?.achievementRate || 0;
 
   // MotionValue로 애니메이션 제어
   const progress = useMotionValue(0);
@@ -23,21 +36,12 @@ export default function GoalSettingChart() {
     damping: 700,
   });
 
-  // 금액 변환 (MotionValue → 금액)
-  const animatedMoney = useTransform(spring, (val) =>
-    Math.round((val / 100) * max)
-  );
-
   // 실제 표시할 숫자 상태값
   const [displayPercent, setDisplayPercent] = useState(0);
-  const [displayMoney, setDisplayMoney] = useState(0);
 
   // MotionValue 변경될 때마다 state 업데이트
   useMotionValueEvent(spring, 'change', (val) => {
     setDisplayPercent(Math.round(val));
-  });
-  useMotionValueEvent(animatedMoney, 'change', (val) => {
-    setDisplayMoney(val);
   });
 
   useEffect(() => {
@@ -79,7 +83,7 @@ export default function GoalSettingChart() {
           </span>
           <span className="relative font-bold text-[24px]">
             <span className="bg-[#99EFE1] absolute left-0 bottom-[3px] w-full h-[13px] -z-10"></span>
-            {displayMoney.toLocaleString()}
+            {value.toLocaleString()}
           </span>
           <span className="text-[16px] text-[#A7AEB3]">
             / {max.toLocaleString()} 원

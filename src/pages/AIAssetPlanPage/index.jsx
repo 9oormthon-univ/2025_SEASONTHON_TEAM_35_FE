@@ -24,6 +24,7 @@ const ASSET_PALN_BTN = [
 ];
 export default function AIAssetPlanPage() {
   const [onClicked, setOnClicked] = useState('자산 설계');
+
   return (
     <div className="h-[762px] flex flex-col">
       <div className=" h-[108px] flex items-end px-[20px]">
