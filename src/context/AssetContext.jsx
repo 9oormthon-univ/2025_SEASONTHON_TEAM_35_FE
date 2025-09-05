@@ -1,9 +1,24 @@
 import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
 import { getAssetSummary } from '@/api/assetApi.js';
 import { MOCK_SUMMARY } from '@/mocks/assetMock.js';
-import apiClient from '@/api/client.js'; // (아직 submit 쪽에서 사용)
+import apiClient from '@/api/client.js';
 
 const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true';
+const toRecommendationDTO = (p) => ({
+    // 서버가 enum으로 받는 필드들 (이름만 Type로 바꿔줌)
+    incomeRangeType: p.incomeRange,
+    savingRangeType: p.savingRange,
+    expectedProfitRangeType: p.profitRange,        // 서버가 profitRange → expectedProfitRangeType일 가능성 높음
+    investmentPeriodType: p.investmentPeriod,
+    investmentPropensityType: p.propensity,
+    investmentPurposeType: p.investmentPurpose,
+
+    // 불리언은 반드시 boolean으로
+    emergencyFundNeeded: p.emergencyFund === true || p.emergencyFund === 'true',
+
+    // 필요 시 식별자 추가 (토큰으로 식별하면 제외 가능)
+    ...(p.memberId ? { memberId: p.memberId } : {}),
+});
 
 const transformAssetData = (apiResult) => {
     if (!apiResult) return null;
@@ -81,18 +96,15 @@ export function useAssets() {
 
     const submitAssetPlan = async (payload) => {
         try {
-            console.log('[PLAN][REQUEST] POST /api/v0/recommendation/design', payload);
+            const dto = toRecommendationDTO(payload);
+            console.log('[PLAN][REQUEST] POST /api/v0/recommendation/design');
+            console.log('[PLAN][REQUEST][DTO]', dto);
 
-            const res = await apiClient.post('/api/v0/recommendation/design', payload, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    // ...(token ? { Authorization: `Bearer ${token}` } : {}),
-                },
+            const res = await apiClient.post('/api/v0/recommendation/design', dto, {
+                headers: { 'Content-Type': 'application/json' },
             });
 
             console.log('[PLAN][RESPONSE]', res.status, res.data);
-
-            // 성공/실패를 더 풍부하게 리턴
             return {
                 ok: res.status >= 200 && res.status < 300,
                 status: res.status,
@@ -101,22 +113,18 @@ export function useAssets() {
             };
         } catch (err) {
             const status = err?.response?.status;
-            const data = err?.response?.data;
-            const message = err?.message ?? 'Unknown error';
-
-            console.error('[PLAN][ERROR]', status, data || message);
+            // 서버 메시지 상세를 그대로 보여주자 (스프링 표준 problem+json 스타일)
+            const body = err?.response?.data;
+            console.error('[PLAN][ERROR]', status, body || err?.message);
 
             return {
                 ok: false,
                 status: status ?? 0,
                 data: null,
-                error: data || message,
+                error: body || err?.message || 'Unknown error',
             };
         }
     };
 
-    return {
-        ...ctx,          // 기존 컨텍스트 값들 유지
-        submitAssetPlan, // 새 API 함수 노출
-    };
+    return { ...ctx, submitAssetPlan };
 }

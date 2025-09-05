@@ -1,19 +1,11 @@
 import React from 'react';
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Navigate,
-  Outlet,
-} from 'react-router-dom';
-
+import { createBrowserRouter, RouterProvider, Navigate, Outlet, Routes, Route } from "react-router-dom";
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import MyPage from './pages/MyPage';
 import GoalSettingPage from './pages/GoalSettingPage';
 import AIAssetPlanPage from './pages/AIAssetPlanPage';
 import ETFExplanation from './pages/AIAssetPlanPage/ETFExplanation';
-import React from "react";
-import { createBrowserRouter, RouterProvider, Navigate, Outlet, Routes, Route } from "react-router-dom";
 import AssetPage from "./pages/AssetPage/index.jsx";
 import {AssetProvider} from "./context/AssetContext.jsx";
 import AssetPlanInformPage from "./pages/AssetPlanInformPage/index.jsx";
