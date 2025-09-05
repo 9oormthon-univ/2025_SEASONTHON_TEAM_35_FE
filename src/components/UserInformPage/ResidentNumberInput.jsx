@@ -57,7 +57,7 @@ export default function ResidentNumberInput({ value = {}, onChange, error }) {
             <div className="relative w-[169px] h-[50px] ">
                 <input
                     ref={part2Ref}
-                    // 👇 마스킹 타입을 'password' 그대로 사용하되, CSS로 별표 모양을 만듭니다.
+                    // 마스킹 타입을 'password' 그대로 사용하되, CSS로 별표 모양 생성해야함
                     type={isMasked ? 'password' : 'text'}
                     value={part2}
                     onChange={(e) => handlePartChange('part2', e.target.value)}
@@ -74,7 +74,6 @@ export default function ResidentNumberInput({ value = {}, onChange, error }) {
                     onClick={() => setIsMasked(!isMasked)}
                     className="absolute inset-y-0 right-0 px-3 flex items-center"
                 >
-                    {/* 👇 눈 아이콘 이미지 변경 */}
                     <img
                         src={isMasked ? invisibleIcon : visibleIcon}
                         alt={isMasked ? "비밀번호 보이기" : "비밀번호 숨기기"}

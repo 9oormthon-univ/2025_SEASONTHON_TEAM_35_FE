@@ -21,7 +21,7 @@ export default function AssetPage() {
 
     //  로딩 중
     if (loading || !assetData || !userName) {
-        return <div>데이터를 불러오는 중입니다...</div>;
+        return <div className={`bg-background`}></div>;
     }
 
     if (assetData === 'no-asset') {
