@@ -16,7 +16,7 @@ export default function QuestionRenderer({ stepData, value, onChange }) {
                             name={key}
                             option={option}
                             value={value}
-                            onChange={(e) => onChange(e.target.value)}
+                            onChange={(e) => onChange(option.value)}
                         />
                     ))}
                 </div>

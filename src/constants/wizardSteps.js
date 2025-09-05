@@ -29,7 +29,7 @@ export const ASSET_INFORM_STEPS = [
         title: "자산을 연결할 금융사를\n선택해 주세요.",
         keyword: "금융사",
         type: 'multi-select-grid',
-        disableNextOnEmpty: false,
+        disableNextOnEmpty: true,
         options: [
             {
                 groupTitle: '은행',

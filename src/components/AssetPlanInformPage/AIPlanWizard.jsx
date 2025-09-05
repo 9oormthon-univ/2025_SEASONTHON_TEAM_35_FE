@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseWizard from '../common/wizard/BaseWizard.jsx';
-import PlanQuestionStep from './PlanQuestionStep.jsx'; // AI 설계용 질문 UI
+import PlanQuestionStep from './PlanQuestionStep.jsx';
 import { useWizard } from '@/hooks/useWizard.js';
 
 export default function AIPlanWizard(props) {
@@ -9,11 +9,11 @@ export default function AIPlanWizard(props) {
     const wizard = useWizard(wizardSteps, {
         onComplete,
         initialFormValues,
-        payloadType: 'plan' // 사용자 정보와 동일한 플랫 객체 페이로드 사용
+        payloadType: 'plan',
     });
 
     const isLastStep = wizard.step === wizard.totalSteps - 1;
-    const buttonText = isLastStep ? "결과보기" : "다음";
+    const buttonText = isLastStep ? '결과보기' : '다음';
 
     return (
         <BaseWizard
@@ -25,7 +25,17 @@ export default function AIPlanWizard(props) {
                 <PlanQuestionStep
                     stepData={stepData}
                     value={value}
-                    onChange={(newValue) => onChange(stepData.key, newValue)}
+                    onChange={(newValue) => {
+                        // 1) 변경 로그
+                        console.log('[DEBUG] Step Changed:', stepData.key, '=>', newValue);
+
+                        // 2) 실제 상태 반영
+                        onChange(stepData.key, newValue);
+
+                        // 3) 반영 직후 페이로드 스냅샷(예상값)
+                        const nextPayload = { ...wizard.formValues, [stepData.key]: newValue };
+                        console.log('[DEBUG] Payload snapshot:', nextPayload);
+                    }}
                     error={error}
                     setError={setError}
                 />

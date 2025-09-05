@@ -14,7 +14,6 @@ export default function ToggleBox({ option, isSelected, onClick }) {
         ${isSelected
         ? 'border-primary-2 border-[2px] shadow-[0_0_8px_rgba(0,214,179,0.5)]'
         : 'border-gray-5 border-[2px] bg-white'}
-    }
     `;
 
     const titleFontClasses = isSelected ? 'font-semibold' : 'font-medium';
