@@ -4,10 +4,16 @@ import AssetAnalysis from '../../components/AssetPage/AssetAnalysis';
 import InvestmentAnalysis from '../../components/AssetPage/InvestmentAnalysis';
 import {useAssets} from "../../context/AssetContext.jsx";
 import NoInfo from "../../components/NoInfo/NoInfo.jsx";
+import {useEffect} from "react";
 
 export default function AssetPage() {
-    // useAssets 훅에서 loading과 assetData 상태를 가져옴
-    const { loading, assetData } = useAssets();
+    const { loading, assetData, fetchAssetSummary } = useAssets();
+    useEffect(() => {
+        // assetData가 없을 때만
+        if (!assetData) {
+            fetchAssetSummary();
+        }
+    }, [assetData, fetchAssetSummary]);
 
     //  로딩 중
     if (loading) {
@@ -22,7 +28,6 @@ export default function AssetPage() {
     if (assetData) {
         return (
         <Layout title="자산 정보">
-            {/* 헤더와의 간격을 조절 */}
             <div className="flex flex-col items-center gap-[14px] mt-2">
                 <TotalAssets />
                 <AssetAnalysis />

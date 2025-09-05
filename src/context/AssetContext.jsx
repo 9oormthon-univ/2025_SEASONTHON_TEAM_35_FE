@@ -135,6 +135,9 @@ export function AssetProvider({ children }) {
     }, []);
     // 자산 요약 정보 가져오기 (UserInformResultPage에서 사용)
     const fetchAssetSummary = useCallback(async () => {
+        // assetPage에서도 사용하기 위해서 이미 로딩중이면 함수 즉시 종료 로직 추가
+        if (loading) return;
+        
         setLoading(true);
         setError(null);
         try {
@@ -150,7 +153,7 @@ export function AssetProvider({ children }) {
         } finally {
             setLoading(false);
         }
-    }, []);
+    }, [loading]);
 
     // 자산 설계 제출 페이지
     const submitAssetPlan = async (payload) => {
