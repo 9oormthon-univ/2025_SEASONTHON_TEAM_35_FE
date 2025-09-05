@@ -7,13 +7,13 @@ const InstitutionButton = ({ option, isSelected, onClick }) => (
         className={`flex flex-col items-center justify-center w-[108px] h-[108px] rounded-[12px] border transition-all
                    ${isSelected
             ? 'border-primary-2 border-[2px] bg-white [box-shadow:5px_6px_7px_-5px_#00D6B380]' // 👈 이 부분을 추가/수정합니다.
-            : 'border-background bg-background hover:bg-gray-50'
+            : 'border-background bg-background '
         }`}
     >
         <img
             src={option.logo}
             alt={option.label}
-            className="w-[35px] h-[30px] mb-4" // 로고 이미지 크기
+            className="w-[70px] h-[60px]" // 로고 이미지 크기
         />
         <span className={`text-[12px] font-bold `}>
             {option.label}
