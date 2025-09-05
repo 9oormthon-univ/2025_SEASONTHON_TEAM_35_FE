@@ -13,7 +13,6 @@ export default function UserInformWizard(props) {
     });
 
     const isLastStep = wizard.step === wizard.totalSteps - 1;
-    // 👇 UserInformWizard가 직접 버튼 텍스트를 최종 결정합니다.
     const buttonText = isLastStep ? "제출하기" : "다음";
 
     return (
@@ -21,7 +20,7 @@ export default function UserInformWizard(props) {
             wizard={wizard}
             wizardSteps={wizardSteps}
             onClose={onClose}
-            // 👇 결정된 최종 텍스트를 buttonText prop으로 전달합니다.
+            // 위에서 결정된 최종 텍스트를 buttonText prop으로 전달
             buttonText={buttonText}
             renderStep={({ stepData, value, onChange, error, setError }) => (
                 <FormStep

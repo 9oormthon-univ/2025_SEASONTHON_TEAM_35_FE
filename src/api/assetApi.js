@@ -7,5 +7,5 @@ export const getAssetSummary = async () => {
 if (!data?.isSuccess || !data?.result) {
  throw new Error(data?.message || '요약 응답이 올바르지 않습니다.');
 }
-return data.result; // ← 컨텍스트에서 바로 transform에 넣어 쓰기 좋게
+return data.result;
 };

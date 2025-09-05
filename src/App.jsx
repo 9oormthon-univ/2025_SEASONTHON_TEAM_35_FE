@@ -14,7 +14,6 @@ import UserInformPage from "@/pages/UserInformPage/index.jsx";
 import UserInformResultPage from "@/pages/UserInformResultPage/index.jsx";
 import AssetPlanStartPage from "@/pages/AssetPlanStartPage/index.jsx";
 import AssetPlanResultPage from "@/pages/AssetPlanResultPage/index.jsx";
-import OnBoarding from "@/components/OnBoardingPage/OnBoarding.jsx";
 import OnBoardingPage from "@/pages/OnBoardingPage/index.jsx";
 
 function RootLayout() {

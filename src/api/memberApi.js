@@ -2,7 +2,7 @@ import apiClient from './client'; // 설정된 apiClient import
 
 /**
  * @description GET /api/v0/member/name API
- * 회원 이름을 조회합니다.
+ * 회원 이름을 조회
  */
 export const getMemberName = async () => {
     try {

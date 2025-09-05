@@ -10,8 +10,7 @@ export const submitPlan = async (payload) => {
         const response = await apiClient.post('/api/v0/recommendation/design', payload);
         return response.data;
     } catch (error) {
-        // 네트워크 오류나 서버 에러를 처리합니다.
         console.error("AI 자산 설계 API 호출 실패:", error);
-        throw error; // 에러를 상위로 전파하여 Context에서 처리하도록 합니다.
+        throw error;
     }
 };

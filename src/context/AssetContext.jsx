@@ -6,7 +6,7 @@ import { MOCK_SUMMARY } from '@/mocks/assetMock.js';
 
 const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true';
 
-// --- 데이터 변환 유틸리티 함수들 (수정 없음) ---
+// TODO: 데이터 변환 유틸리티 함수들, 이후에 파일처리
 const toRecommendationDTO = (p) => ({
     // 서버가 enum으로 받는 필드들 (이름만 Type로 바꿔줌)
     incomeRangeType: p.incomeRange,
@@ -15,8 +15,6 @@ const toRecommendationDTO = (p) => ({
     investmentPeriodType: p.investmentPeriod,
     investmentPropensityType: p.propensity,
     investmentPurposeType: p.investmentPurpose,
-
-    // 불리언은 반드시 boolean으로
     emergencyFundNeeded: p.emergencyFund === true || p.emergencyFund === "true",
 
     // 필요 시 식별자 추가 (토큰으로 식별하면 제외 가능)
@@ -112,7 +110,6 @@ const transformAssetData = (apiResult) => {
 // --- 컨텍스트 생성 ---
 const AssetContext = createContext(null);
 
-
 // --- Provider 컴포넌트 ---
 export function AssetProvider({ children }) {
     const [assetData, setAssetData] = useState(null);
@@ -161,15 +158,14 @@ export function AssetProvider({ children }) {
         setError(null);
 
         try {
-            // ✅ 실제 API 호출
             const dto = toRecommendationDTO(payload);
             const res = await submitPlan(dto);
 
             console.log("AI 자산 설계 제출 (실제 API):", res);
-            return res; // 서버 응답 그대로 반환
+            return res;
         } catch (err) {
             setError(err);
-            return null; // 실패 시 null 반환
+            return null;
         } finally {
             setIsSubmitting(false);
         }
@@ -194,8 +190,7 @@ export function AssetProvider({ children }) {
     );
 }
 
-// --- Custom Hook ---
-// 👇 5. useAssets 훅은 이제 Context를 가져오는 역할만 하여 매우 깔끔해졌습니다.
+//  Context를 가져오는 역할만 하도록 단순화 작업
 export function useAssets() {
     const context = useContext(AssetContext);
     if (!context) {
