@@ -36,9 +36,15 @@ export default {
         graduation:
           'linear-gradient(to bottom, #F5F7FA 0%, #F6FFFE 50%, #F5F7FA 100%)',
       },
+      boxShadow: {
+        // Primary/02(Main) 색상에 10% 투명도를 적용한 그림자
+        'primary-focus-light': '0 0 0 3px rgba(var(--primary-rgb-2), 0.1)', // Primary/02의 RGB 값 필요
+      },
       fontFamily: {
-        sans: ['Pretendard Variable', 'Pretendard', 'system-ui', 'sans-serif'],
-        gmarket: ['GmarketSans', 'Pretendard Variable', 'sans-serif'],
+        sans: ["Pretendard Variable", "Pretendard", "system-ui", "sans-serif"],
+        gmarket: ["GmarketSans", "Pretendard Variable", "sans-serif"],
+        'sans-password': ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', '"Noto Sans"', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Noto Color Emoji"'],
+
       },
     },
   },

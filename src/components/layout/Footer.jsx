@@ -20,7 +20,7 @@ const FOOTER_TAB = [
   },
   {
     title: '자산 정보',
-    link: '/home/inform',
+    link: '/asset/main',
     activeIcon: activeAssetInformIcon,
     inactiveIcon: inactiveAssetInformIcon,
   },
