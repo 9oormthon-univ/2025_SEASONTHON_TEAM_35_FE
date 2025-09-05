@@ -1,4 +1,3 @@
-// 개별 금융사 로고 버튼
 const InstitutionButton = ({ option, isSelected, onClick }) => (
     <button
         onClick={onClick}
@@ -11,7 +10,7 @@ const InstitutionButton = ({ option, isSelected, onClick }) => (
         <img
             src={option.logo}
             alt={option.label}
-            className="w-[70px] h-[60px]" // 로고 이미지 크기
+            className="w-[70px] h-[60px]"
         />
         <span className={`text-[12px] font-bold `}>
             {option.label}
@@ -34,11 +33,11 @@ export default function MultiSelectGrid({ options, value = [], onChange }) {
             {options.map((group) => (
                 <div key={group.groupTitle}>
                     {/* 그룹 제목 */}
-                    <h3 className="text-[18px] font-bold text-gray-90 mb-3 text-left">
+                    <h3 className="text-[18px] font-bold text-gray-90 mt-3 mb-3 text-left">
                         {group.groupTitle}
                     </h3>
                     {/* 금융사 그리드 */}
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-3 gap-3 mb-5">
                         {group.items.map(option => (
                             <InstitutionButton
                                 key={option.value}
