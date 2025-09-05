@@ -6,6 +6,7 @@ import {
   Outlet,
 } from 'react-router-dom';
 
+import OnBoardingPage from './pages/OnBoardingPage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import MyPage from './pages/MyPage';
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <RootLayout />,
     children: [
-      { index: true, element: <Navigate to="/login" replace /> },
+      { path: '/', element: <OnBoardingPage /> },
       { path: 'home', element: <HomePage /> },
       { path: 'home/inform', element: <div></div> },
       { path: 'login', element: <LoginPage /> },
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
 ]);
 export default function App() {
   return (
-    <div className="flex justify-center min-h-screen bg-#E5E5E5 pt-6">
+    <div className="flex justify-center min-h-screen bg-[#E5E5E5] pt-6">
       <div className="w-[393px] h-[852px] bg-white shadow-lg overflow-hidden relative">
         <RouterProvider router={router} />
       </div>
