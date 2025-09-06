@@ -28,6 +28,7 @@ import OnBoardingPage from "@/pages/OnBoardingPage/OnBoardingPage.jsx";
 import OnBoardingFinal from '@/pages/OnBoardingPage/OnBoardingFinal.jsx';
 import KakaoCallback from './pages/auth/KaKaoCallback.jsx';
 import UpToDatePage from "@/pages/UpToDatePage/index.jsx";
+import {HomeProvider} from "@/context/HomeContext.jsx";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -65,11 +66,13 @@ export default function App() {
   return (
     <div className="flex justify-center min-h-screen bg-[#E5E5E5] pt-6">
       <div className="w-[390px] h-[852px] bg-white shadow-lg overflow-hidden">
-        <AssetProvider>
-          <BrowserRouter>
-            <AnimatedRoutes />
-          </BrowserRouter>
-        </AssetProvider>
+        <HomeProvider>
+          <AssetProvider>
+            <BrowserRouter>
+              <AnimatedRoutes />
+            </BrowserRouter>
+          </AssetProvider>
+        </HomeProvider>
       </div>
     </div>
   );
