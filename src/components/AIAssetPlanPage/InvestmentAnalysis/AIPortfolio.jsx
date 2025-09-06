@@ -4,42 +4,10 @@ import { PieChart, Pie, Cell } from 'recharts';
 import explainIcon from '../../../assets/AIAssetPlan/explainIcon.png';
 import ExplanationModal from './ExplanationModal';
 
-const TEMP_DATA = [
-  {
-    name: 'QQQM',
-    value: 49.58,
-  },
-  {
-    name: '272910.KS',
-    value: 23.31,
-  },
-  {
-    name: '277630.KS',
-    value: 27.12,
-  },
-];
 // 색상
 const COLORS = ['#00D6B3', '#58A9FF', '#FFD562'];
 
-const AI_PORTFOLIO = [
-  {
-    title: '예상 연 수익률',
-    value: 16.29,
-  },
-  {
-    title: '예상 연변동성',
-    value: 16.29,
-  },
-  {
-    title: '샤프지수',
-    value: 1.35,
-  },
-  {
-    title: '최대낙폭',
-    value: -14.4,
-  },
-];
-export default function AIPortfolio() {
+export default function AIPortfolio({ data }) {
   const [onClicked, setOnClicked] = useState('');
   const [modalOpen, setModalOpen] = useState({
     '예상 연 수익률': false,
@@ -47,6 +15,50 @@ export default function AIPortfolio() {
     샤프지수: false,
     최대낙폭: false,
   });
+
+  const weights = data?.weights || {};
+
+  const totalWeight = Object.values(weights).reduce((sum, w) => sum + w, 0);
+
+  const ratios = Object.entries(weights).map(([symbol, weight]) => ({
+    symbol,
+    percent: ((weight / totalWeight) * 100).toFixed(2) + '%',
+  }));
+  const TEMP_DATA = [
+    // QQQM,277630.KS는 너무 작아서 가중치도 0
+    {
+      name: 'QQQM',
+      value: parseFloat(ratios.find((r) => r.symbol === 'QQQM')?.percent) || 0,
+    },
+    {
+      name: '272910.KS',
+      value:
+        parseFloat(ratios.find((r) => r.symbol === '272910.KS')?.percent) || 0,
+    },
+    {
+      name: '277630.KS',
+      value:
+        parseFloat(ratios.find((r) => r.symbol === '277630.KS')?.percent) || 0,
+    },
+  ];
+  const AI_PORTFOLIO = [
+    {
+      title: '예상 연 수익률',
+      value: data?.annual_return,
+    },
+    {
+      title: '예상 연변동성',
+      value: data?.annual_vol,
+    },
+    {
+      title: '샤프지수',
+      value: data?.sharpe,
+    },
+    {
+      title: '최대낙폭',
+      value: data?.max_drawdown,
+    },
+  ];
   return (
     <div className="px-[24px] py-[20px]">
       <div className="flex justify-between">
@@ -62,8 +74,9 @@ export default function AIPortfolio() {
           </Link>
         </div>
         <Link
-            to="/ai/plan/start"
-            className="w-[66px] h-[26px] text-gray-50 text-[12px] border-[1px] border-gray-5 flex justify-center items-center rounded-[12px]">
+          to="/ai/plan/start"
+          className="w-[66px] h-[26px] text-gray-50 text-[12px] border-[1px] border-gray-5 flex justify-center items-center rounded-[12px]"
+        >
           다시하기
         </Link>
       </div>
@@ -97,7 +110,7 @@ export default function AIPortfolio() {
               />
               <span className="text-gray-60">{item.name}</span>
               <span className="ml-auto text-gray-60">
-                {item.value.toFixed(2)}%
+                {item.value?.toFixed(2)}%
               </span>
             </div>
           ))}
@@ -134,7 +147,7 @@ export default function AIPortfolio() {
                     : '#171F27',
               }}
             >
-              {item.value.toFixed(2)}%
+              {item.value?.toFixed(2)}%
             </p>
           </div>
         ))}

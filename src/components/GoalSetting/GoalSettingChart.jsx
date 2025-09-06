@@ -7,22 +7,8 @@ import {
   useMotionValueEvent,
 } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { getGoalSettingInfo } from '../../api/goalApi';
 
-export default function GoalSettingChart() {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getGoalSettingInfo();
-      if (result) {
-        setData(result);
-      }
-      console.log('📌 getGoalSettingInfo 결과:', result);
-    };
-
-    fetchData();
-  }, []);
-
+export default function GoalSettingChart({ data }) {
   const value = data?.totalAmount || 0;
   const max = data?.targetAmount || 0;
   const percentage = data?.achievementRate || 0;
@@ -52,6 +38,16 @@ export default function GoalSettingChart() {
     });
   }, [percentage]);
 
+  const INVESTMENT_PURPOSE = {
+    SAVINGS: '저축',
+    HOME_OWNERSHIP: '내 집 마련',
+    CAR_PURCHASE: ' 차량 구매',
+    TRAVEL: '여행',
+    MARRIAGE: ' 결혼',
+    SELF_DEVELOPMENT: '  자기계발',
+    OTHER: '기타',
+  };
+
   return (
     <div className="h-[261px] p-[20px] flex flex-col gap-[20px] mb-[16px]">
       <div className="flex flex-col">
@@ -79,7 +75,7 @@ export default function GoalSettingChart() {
         {/* ✅ 중앙 텍스트 */}
         <div className="absolute top-[95px] left-1/2 flex flex-col items-center -translate-x-1/2 -translate-y-1/3">
           <span className="text-[12px] font-bold text-[#00BA9B]">
-            결혼 자금
+            {INVESTMENT_PURPOSE[data?.investmentPurpose]}
           </span>
           <span className="relative font-bold text-[24px]">
             <span className="bg-[#99EFE1] absolute left-0 bottom-[3px] w-full h-[13px] -z-10"></span>

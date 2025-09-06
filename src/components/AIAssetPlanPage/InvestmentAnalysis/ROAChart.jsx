@@ -1,13 +1,5 @@
 import { BarChart, Bar, XAxis, CartesianGrid, LabelList, Cell } from 'recharts';
 
-const data = [
-  // api 수정필요! - 값이랑 경우의 수
-  { name: '현재', value: 12000000 },
-  { name: '1년 후', value: 14000000 },
-  { name: '2년 후', value: 16000000 },
-  { name: '3년 후', value: 18000000 },
-];
-
 const CustomTick = ({ x, y, payload }) => {
   const isNow = payload.value === '현재';
   return (
@@ -23,21 +15,23 @@ const CustomTick = ({ x, y, payload }) => {
     </text>
   );
 };
-export default function ROAChart() {
+export default function ROAChart({ result }) {
+  const data = result?.forecast_points ?? [];
+
   return (
     <BarChart width={345} height={237} data={data} margin={{ top: 20 }}>
       {/* 눈금 */}
       <CartesianGrid strokeDasharray="4 2" vertical={false} />
       {/* x축 */}
       <XAxis
-        dataKey="name"
+        dataKey="label"
         tickLine={false}
         axisLine={{ stroke: '#D7DDE1', strokeWidth: 2 }}
         tick={<CustomTick />}
       />
       {/* 막대 */}
       <Bar
-        dataKey="value"
+        dataKey="amount"
         radius={[4, 4, 0, 0]}
         barSize={45} // 개수에 따라 다르게 해야함!!
       >
@@ -53,7 +47,7 @@ export default function ROAChart() {
           />
         ))}
         <LabelList
-          dataKey="value"
+          dataKey="amount"
           position="top"
           content={({ x, y, width, value, index }) => {
             const isFirst = index === 0;
@@ -62,16 +56,15 @@ export default function ROAChart() {
             if (!isFirst && !isLast) return null;
 
             const label = value.toLocaleString() + '원';
-            const fontSize = 12;
 
             if (isFirst) {
               // 처음 라벨: border 박스 포함
               return (
                 <g>
                   <rect
-                    x={x + width / 2 - label.length * fontSize * 0.3}
+                    x={x + width / 2 - label.length * 12 * 0.3}
                     y={y - 30}
-                    width={label.length * fontSize * 0.6 + 10}
+                    width={label.length * 12 * 0.6 + 10}
                     height={20}
                     rx={4}
                     fill="#fff"
@@ -87,7 +80,7 @@ export default function ROAChart() {
                     fontWeight={600}
                     dominantBaseline="middle"
                   >
-                    {label}
+                    {`${result?.currentAmount?.toLocaleString?.() ?? 0}원`}
                   </text>
                 </g>
               );
@@ -105,7 +98,7 @@ export default function ROAChart() {
                   fontWeight={700}
                   dominantBaseline="middle"
                 >
-                  {(value / 10000).toLocaleString()}만
+                  {(value / 10000).toFixed(0)}만
                 </text>
               );
             }
