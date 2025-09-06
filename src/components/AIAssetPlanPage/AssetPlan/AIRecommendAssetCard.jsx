@@ -3,22 +3,23 @@ import { PieChart, Pie, Cell } from 'recharts';
 
 import moneyIcon from '../../../assets/AIAssetPlan/money.png';
 import investmentIcon from '../../../assets/AIAssetPlan/investment.png';
-import anotherIcon from '../../../assets/AIAssetPlan/another.png';
-
-// 임시 데이터
-const DATA = [
-  { name: '현금', icon: moneyIcon, value: 72000000 },
-  { name: '예금', icon: investmentIcon, value: 7200000 },
-  { name: '적금', icon: investmentIcon, value: 7200000 },
-  { name: '투자', icon: investmentIcon, value: 7200000 },
-  { name: '기타 자산', icon: anotherIcon, value: 7200000 },
-];
-const total = DATA.reduce((acc, cur) => acc + cur.value, 0);
-
+import depositIcon from '../../../assets/AIAssetPlan/deposit.png';
+import savingIcon from '../../../assets/AIAssetPlan/saving.png';
 // 색상
 const COLORS = ['#00D6B3', '#FFD562', '#FF92A1', '#58A9FF', '#E4E7EA'];
 
-export default function AIRecommendAssetCard() {
+export default function AIRecommendAssetCard({ aiAssetData }) {
+  const DATA = [
+    { name: '현금', icon: moneyIcon, value: aiAssetData?.cashAmount },
+    { name: '예금', icon: depositIcon, value: aiAssetData?.depositAmount },
+    { name: '적금', icon: savingIcon, value: aiAssetData?.savingsAmount },
+    {
+      name: '투자',
+      icon: investmentIcon,
+      value: aiAssetData?.investmentAmount,
+    },
+  ];
+  const total = DATA.reduce((acc, cur) => acc + cur.value, 0);
   return (
     <div className="pt-[20px] pb-[12px] px-[24px]">
       <div className="flex justify-between items-center mb-[16px]">
@@ -26,8 +27,9 @@ export default function AIRecommendAssetCard() {
           AI 추천 자산 비율
         </h1>
         <Link
-            to="/ai/plan/start"
-            className="w-[66px] h-[26px] text-gray-50 text-[12px] border-[1px] border-gray-5 flex justify-center items-center rounded-[12px]">
+          to="/ai/plan/start"
+          className="w-[66px] h-[26px] text-gray-50 text-[12px] border-[1px] border-gray-5 flex justify-center items-center rounded-[12px]"
+        >
           다시하기
         </Link>
       </div>
@@ -68,7 +70,7 @@ export default function AIRecommendAssetCard() {
                   </p>
                 </div>
                 <p className="text-gray-100 text-[12px] font-semibold">
-                  {item.value.toLocaleString()}원
+                  {item.value?.toLocaleString()}원
                 </p>
               </div>
             </div>

@@ -1,20 +1,5 @@
 import starIcon from '.././../assets/GoalSetting/starIcon.png';
-import { useEffect, useState } from 'react';
-import { getGoalSettingInfo } from '../../api/goalApi';
-
-export default function AIGoalAnalyze() {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getGoalSettingInfo();
-      if (result) {
-        setData(result);
-      }
-      console.log('📌 getGoalSettingInfo 결과:', result);
-    };
-
-    fetchData();
-  }, []);
+export default function AIGoalAnalyze({ data }) {
   const formatToManWon = (text) => {
     if (!text) return '';
     return text.replace(/\d+/g, (num) => {
@@ -27,7 +12,6 @@ export default function AIGoalAnalyze() {
   };
 
   const sentences = data ? data.analysisText.split('\n') : [];
-  console.log(sentences);
   const ANALYZE = [
     {
       title: '저축',
