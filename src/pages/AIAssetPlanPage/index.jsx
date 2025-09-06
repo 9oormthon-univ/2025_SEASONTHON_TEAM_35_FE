@@ -27,6 +27,7 @@ const ASSET_PALN_BTN = [
 ];
 export default function AIAssetPlanPage() {
   const [onClicked, setOnClicked] = useState('자산 설계');
+
   const [aiAssetData, setAiAssetData] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +39,7 @@ export default function AIAssetPlanPage() {
 
     fetchData();
   }, []);
+
   const [data, setData] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
@@ -52,6 +54,7 @@ export default function AIAssetPlanPage() {
 
   return (
     <div className="h-[762px] flex flex-col">
+      {/* header */}
       <div className=" h-[108px] flex items-end px-[20px]">
         <div className="flex justify-between items-start w-full">
           <div className="w-[150px] h-[36px] flex gap-[16px]">
@@ -78,6 +81,8 @@ export default function AIAssetPlanPage() {
           </Link>
         </div>
       </div>
+      {/* main */}
+      {}
       {onClicked === '자산 설계' ? (
         <div className="h-full bg-graduation flex flex-col overflow-y-scroll ">
           <AIRecommendAssetCard aiAssetData={aiAssetData} />
