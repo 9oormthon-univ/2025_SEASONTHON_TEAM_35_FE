@@ -1,6 +1,7 @@
 import PortfolioCard from './PortfolioCard';
 
 export default function Portfolio({ data }) {
+  console.log(data);
   const now = new Date();
   now.setDate(now.getDate() - 1);
 

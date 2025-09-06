@@ -27,18 +27,17 @@ export default function AIPortfolio({ data }) {
   const TEMP_DATA = [
     // QQQM,277630.KS는 너무 작아서 가중치도 0
     {
-      name: 'QQQM',
-      value: parseFloat(ratios.find((r) => r.symbol === 'QQQM')?.percent) || 0,
-    },
-    {
       name: '272910.KS',
       value:
         parseFloat(ratios.find((r) => r.symbol === '272910.KS')?.percent) || 0,
     },
     {
-      name: '277630.KS',
-      value:
-        parseFloat(ratios.find((r) => r.symbol === '277630.KS')?.percent) || 0,
+      name: 'IMTB',
+      value: parseFloat(ratios.find((r) => r.symbol === 'IMTB')?.percent) || 0,
+    },
+    {
+      name: 'SPY',
+      value: parseFloat(ratios.find((r) => r.symbol === 'SPY')?.percent) || 0,
     },
   ];
   const AI_PORTFOLIO = [

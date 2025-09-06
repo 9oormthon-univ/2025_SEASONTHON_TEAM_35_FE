@@ -53,7 +53,7 @@ export default function AIAssetPlanPage() {
   }, []);
 
   return (
-    <div className="h-[762px] flex flex-col">
+    <div className="h-full flex flex-col">
       {/* header */}
       <div className=" h-[108px] flex items-end px-[20px]">
         <div className="flex justify-between items-start w-full">
@@ -90,7 +90,7 @@ export default function AIAssetPlanPage() {
           <MyInfoCard aiAssetData={aiAssetData} />
         </div>
       ) : (
-        <div className="h-full bg-graduation flex flex-col overflow-y-scroll">
+        <div className="h-full bg-graduation flex flex-col overflow-y-scroll pb-[85px]">
           <AIPortfolio data={data} />
           <AIInvestmentOpinion data={data} />
           <Portfolio data={data} />
