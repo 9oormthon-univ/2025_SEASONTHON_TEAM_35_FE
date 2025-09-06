@@ -19,10 +19,7 @@ export default function Home() {
 
     return (
         <div className="flex flex-col gap-[24px]">
-            {/* 환영 문구 (컨텍스트 내부에서 name 사용) */}
             <HomeUserName/>
-
-            {/* 총 자산 / 자산 분석 (각 컴포넌트가 useHome 내부 사용) */}
             <HomeTotalAssets/>
             <HomeAssetAnalysis/>
 

@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useHome } from '@/context/HomeContext.jsx';
 import RatioBar from '../AssetPage/AssetAnalysis/RatioBar.jsx';
+import {Link} from "react-router-dom";
+import seeMoreBtn from "@/assets/icons/seeMoreBtn.png";
 
 const COLOR_CLASS = {
     cash: 'bg-primary-2',
@@ -56,8 +58,11 @@ export default function HomeAssetAnalysis() {
         <div className="w-[353px] flex flex-col gap-2">
             <div className="flex justify-between items-center">
                 <h2 className="text-base font-bold pl-[4px]">자산 분석</h2>
+                <Link to="/asset/main" className="flex gap-[4px] items-center">
+                    <p className="text-gray-40 text-[12px] font-medium">더보기</p>
+                    <img src={seeMoreBtn} alt="seeMoreBtn" className="w-[16px] h-[16px]" />
+                </Link>
             </div>
-
             <div className="w-[353px] bg-white rounded-xl shadow-sm p-4">
                 <RatioBar items={items} isReady={isReady} />
 
