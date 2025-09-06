@@ -44,8 +44,9 @@ export default function Home() {
             />
           </Link>
         </div>
-        {/* 데이터 없을 때 띄우는 안내 카드 */}
-        {!home?.investmentForecast?.forecastPoints?.length && (
+        {home?.investmentForecast?.forecastPoints?.length ? (
+          <AIAssetPlan home={home} />
+        ) : (
           <NoInfoCard
             title="aiAssetPlan"
             description="AI를 통해 자산 관리를 시작해보세요!"
@@ -53,11 +54,6 @@ export default function Home() {
             to="/user/inform"
           />
         )}
-
-        {/* 실제 AI 계획 카드/그래프 */}
-        <div>
-          <AIAssetPlan home={home} />
-        </div>
       </div>
 
       {/* 목표 관리 */}
