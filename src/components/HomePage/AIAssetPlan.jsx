@@ -32,6 +32,10 @@ export default function AIAssetPlan() {
       amount: 3000000,
     },
   ];
+  const adjustedData = data.map((d, i) => ({
+    ...d,
+    amount: d.amount * (1 + i * 0.2),
+  }));
   return (
     <div className="w-[353px] h-[337px] p-[20px] rounded-[12px] bg-white flex flex-col gap-[16px] shadow-[0_0_8px_#E7E9EECC]">
       <div className="flex flex-col gap-[4px]">
@@ -42,7 +46,12 @@ export default function AIAssetPlan() {
       </div>
       <div className="w-[313px] h-[239px] flex justify-center">
         {/* 그래프 */}
-        <BarChart width={350} height={237} data={data} margin={{ top: 20 }}>
+        <BarChart
+          width={350}
+          height={237}
+          data={adjustedData}
+          margin={{ top: 20 }}
+        >
           {/* 눈금 */}
           <CartesianGrid strokeDasharray="4 2" vertical={false} />
           {/* x축 */}

@@ -17,9 +17,12 @@ const CustomTick = ({ x, y, payload }) => {
 };
 export default function ROAChart({ result }) {
   const data = result?.forecast_points ?? [];
-
+  const adjustedData = data.map((d, i) => ({
+    ...d,
+    amount: d.amount * (1 + i * 0.2),
+  }));
   return (
-    <BarChart width={350} height={237} data={data} margin={{ top: 20 }}>
+    <BarChart width={350} height={237} data={adjustedData} margin={{ top: 20 }}>
       {/* 눈금 */}
       <CartesianGrid strokeDasharray="4 2" vertical={false} />
       {/* x축 */}

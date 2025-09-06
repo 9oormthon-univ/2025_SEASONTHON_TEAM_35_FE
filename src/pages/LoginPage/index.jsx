@@ -50,7 +50,7 @@ export default function LoginPage() {
         className="mt-20" // margin을 따로 줘서 Link 컴포넌트를 감싸기
       >
         <button
-          onClick={handleKaKaoLogisn}
+          onClick={handleKaKaoLogin}
           to="/onboarding"
           className="w-[350px] h-[56px] rounded-[12px] bg-[#FFEB3B] flex text-[16px] text-[#111111] font-bold justify-center items-center"
         >
