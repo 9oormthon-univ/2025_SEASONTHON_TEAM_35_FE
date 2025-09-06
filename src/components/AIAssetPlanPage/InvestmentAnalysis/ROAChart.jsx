@@ -1,15 +1,16 @@
 import { BarChart, Bar, XAxis, CartesianGrid, LabelList, Cell } from 'recharts';
 
-const CustomTick = ({ x, y, payload }) => {
+const CustomTick = ({ x, y, payload, index, dataLength }) => {
   const isNow = payload.value === '현재';
+  const isLast = index === dataLength - 1;
   return (
     <text
       x={x}
       y={y + 12} // 위치 보정
       textAnchor="middle"
-      fill={isNow ? '#00D6B3' : '#A7AEB3'} // 조건부 색상
+      fill={isNow || isLast ? '#00D6B3' : '#A7AEB3'} // 조건부 색상
       fontSize={12}
-      fontWeight={400}
+      fontWeight={isNow || isLast ? 600 : 400}
     >
       {payload.value}
     </text>
@@ -30,7 +31,15 @@ export default function ROAChart({ result }) {
         dataKey="label"
         tickLine={false}
         axisLine={{ stroke: '#D7DDE1', strokeWidth: 2 }}
-        tick={<CustomTick />}
+        tick={({ x, y, payload, index }) => (
+          <CustomTick
+            x={x}
+            y={y}
+            payload={payload}
+            index={index}
+            dataLength={data.length}
+          />
+        )}
       />
       {/* 막대 */}
       <Bar
@@ -104,7 +113,7 @@ export default function ROAChart({ result }) {
                   x={x + width / 2}
                   y={y - 11} // 🔥 막대 위에 딱 붙도록 수정
                   textAnchor="middle"
-                  fill="#4DE2CA"
+                  fill="#00BA9B"
                   fontSize={16}
                   fontWeight={700}
                   dominantBaseline="middle"
@@ -121,19 +130,19 @@ export default function ROAChart({ result }) {
 
       <defs>
         <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#00D6B3" stopOpacity={1} />
+          <stop offset="0%" stopColor="#80EBD9" stopOpacity={1} />
           <stop offset="100%" stopColor="#ffffff" stopOpacity={0.5} />
         </linearGradient>
       </defs>
       <defs>
         <linearGradient id="colorMd" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#B2F3E8" stopOpacity={1} />
+          <stop offset="0%" stopColor="#4DE3CA" stopOpacity={1} />
           <stop offset="100%" stopColor="#ffffff" stopOpacity={0.5} />
         </linearGradient>
       </defs>
       <defs>
         <linearGradient id="colorL" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#4DE3CA" stopOpacity={1} />
+          <stop offset="0%" stopColor="#00D6B3" stopOpacity={1} />
           <stop offset="100%" stopColor="#ffffff" stopOpacity={0.5} />
         </linearGradient>
       </defs>

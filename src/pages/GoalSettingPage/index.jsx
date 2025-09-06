@@ -18,7 +18,7 @@ export default function GoalSettingPage() {
   }, []);
 
   return (
-    <div className="flex flex-col bg-background h-screen">
+    <div className="flex flex-col bg-background">
       {data ? (
         <>
           <GoalSettingChart data={data} />
