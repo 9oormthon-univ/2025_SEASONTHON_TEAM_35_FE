@@ -23,7 +23,7 @@ export default function ROAChart({ result }) {
     amount: d.amount * (1 + i * 0.2),
   }));
   return (
-    <BarChart width={350} height={237} data={adjustedData} margin={{ top: 20 }}>
+    <BarChart width={350} height={237} data={adjustedData} margin={{ top: 20 }} style={{ cursor: 'none' }}>
       {/* 눈금 */}
       <CartesianGrid strokeDasharray="4 2" vertical={false} />
       {/* x축 */}
