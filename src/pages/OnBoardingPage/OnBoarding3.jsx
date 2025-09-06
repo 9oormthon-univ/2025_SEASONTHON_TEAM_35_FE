@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import OnboardingDots from '../../components/OnBoardingPage/OnBoardingDots.jsx';
-import OnBoardingButton from '../../components/OnBoardingPage/OnBoardingButton.jsx'; // 컴포넌트 import
+import OnBoardingButton from '../../components/OnBoardingPage/OnBoardingButton.jsx';
+import React from "react"; // 컴포넌트 import
 
 const pageVariants = {
     initial: { x: '100vw' }, // 오른쪽에서 시작
@@ -18,26 +19,26 @@ export default function OnBoardingPage3() {
 
     return (
         <motion.div
-            key="onboarding-3"
+            key="onboarding-1"
             variants={pageVariants}
             initial="initial"
             animate="animate"
             exit="exit"
             transition={pageTransition}
-            className="flex flex-col items-center justify-between min-h-screen p-10 bg-white"
+            className="flex flex-col items-center justify-center min-h-screen p-10 bg-white"
         >
             <OnboardingDots total={3} current={3} />
 
             <div className="flex-grow flex flex-col items-center justify-center">
                 <h1 className="text-2xl font-bold">세 번째 페이지</h1>
-                <p>환영합니다!</p>
             </div>
-
-            <div className="flex w-full ">
-                {/* '이전' 버튼은 첫 페이지에선 숨기기 */}
-                <div className="flex-grow"></div>
-                {/* '다음' 버튼은 OnBoardingButton 컴포넌트로 대체 */}
-                <div className="flex-grow">
+            <div className="flex w-full gap-4 mb-10">
+                <div className="flex w-full gap-4 mb-10">
+                    <OnBoardingButton
+                        onClick={() => navigate('/onboarding/2')}
+                        text="이전"
+                        isPrimary={false}
+                    />
                     <OnBoardingButton
                         onClick={() => navigate('/onboarding/final')}
                         text="다음"

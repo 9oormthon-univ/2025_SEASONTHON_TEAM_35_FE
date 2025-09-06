@@ -21,6 +21,7 @@ import SplashPage from "@/pages/SplashPage/index.jsx";
 import OnBoardingPage1 from "@/pages/OnBoardingPage/OnBoardingPage1.jsx";
 import OnBoardingPage2 from "@/pages/OnBoardingPage/OnBoardingPage2.jsx";
 import OnBoardingPage3 from "@/pages/OnBoardingPage/OnBoarding3.jsx";
+import OnBoardingFinal from "@/pages/OnBoardingPage/OnBoardingFinal.jsx";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -34,6 +35,7 @@ function AnimatedRoutes() {
           <Route path="/onboarding/1" element={<OnBoardingPage1 />} />
           <Route path="/onboarding/2" element={<OnBoardingPage2 />} />
           <Route path="/onboarding/3" element={<OnBoardingPage3 />} />
+          <Route path="/onboarding/final" element={<OnBoardingFinal />} />
           <Route path="/home" element={<Layout title="홈"><HomePage /></Layout>} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/asset/main" element={<AssetPage />} />
