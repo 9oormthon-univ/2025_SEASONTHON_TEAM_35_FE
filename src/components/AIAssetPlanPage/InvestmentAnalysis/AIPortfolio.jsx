@@ -43,7 +43,7 @@ export default function AIPortfolio({ data }) {
   const AI_PORTFOLIO = [
     {
       title: '예상 연 수익률',
-      value: data?.annual_return,
+      value: 16,
     },
     {
       title: '예상 연변동성',

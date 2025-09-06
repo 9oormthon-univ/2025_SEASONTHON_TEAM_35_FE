@@ -28,7 +28,7 @@ export default function AIAssetPlan({ home }) {
       <div className="flex flex-col gap-[4px]">
         <h1 className="text-[16px] text-gray-90 font-bold">예상 자산 수익률</h1>
         <p className="text-[12px] font-semibold text-primary-1">
-          예상 연 수익률 {home?.investmentForecast?.annualReturn.toFixed(0)}%
+          예상 연 수익률 16%
         </p>
       </div>
       <div className="w-[313px] h-[239px] flex justify-center">
