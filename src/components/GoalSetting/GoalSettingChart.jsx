@@ -3,40 +3,35 @@ import 'react-circular-progressbar/dist/styles.css';
 import {
   useMotionValue,
   useSpring,
-  animate,
   useMotionValueEvent,
 } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export default function GoalSettingChart({ data }) {
-  const value = data?.totalAmount || 0;
-  const max = data?.targetAmount || 0;
-  const percentage = data?.achievementRate || 0;
+  const value = data?.totalAmount ?? 0;
+  const max = data?.targetAmount ?? 0;
+  const percentageRaw = data?.achievementRate ?? 0;
+  const percentage = Math.max(0, Math.min(100, percentageRaw)); // 0~100 클램프
 
-  // MotionValue로 애니메이션 제어
+  // MotionValue
   const progress = useMotionValue(0);
 
-  // 스프링 애니메이션
   const spring = useSpring(progress, {
-    stiffness: 700,
-    damping: 700,
+    stiffness: 750,
+    damping: 300,
   });
 
-  // 실제 표시할 숫자 상태값
+  // 표시에 사용할 숫자
   const [displayPercent, setDisplayPercent] = useState(0);
 
-  // MotionValue 변경될 때마다 state 업데이트
+  // spring 값이 변할 때마다 반영
   useMotionValueEvent(spring, 'change', (val) => {
     setDisplayPercent(Math.round(val));
   });
 
   useEffect(() => {
-    // 0 → percentage까지 애니메이션
-    animate(progress, percentage, {
-      duration: 0.5,
-      ease: 'easeInOut',
-    });
-  }, [percentage]);
+    progress.set(percentage);
+  }, [percentage, progress]);
 
   const INVESTMENT_PURPOSE = {
     SAVINGS: '저축',
