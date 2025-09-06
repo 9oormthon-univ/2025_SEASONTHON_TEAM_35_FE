@@ -18,7 +18,7 @@ const CustomTick = ({ x, y, payload, index, dataLength }) => {
 };
 
 export default function AIAssetPlan({ home }) {
-  const data = home?.investmentForecast?.forecastPoints;
+  const data = home?.investmentForecast?.forecastPoints ?? [];
   const adjustedData = data.map((d, i) => ({
     ...d,
     amount: d.amount * (1 + i * 0.2),
