@@ -17,7 +17,6 @@ export default function UserInfo() {
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
     window.location.href = '/login';
-    console.log('logout');
   };
   return (
     <div className="flex flex-col items-center ">
