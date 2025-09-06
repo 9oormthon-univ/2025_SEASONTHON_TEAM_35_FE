@@ -1,6 +1,7 @@
 import starIcon from '../../../assets/AIAssetPlan/starIcon.png';
 
 export default function AIAssetOpinionCard({ aiAssetData }) {
+  console.log(aiAssetData);
   return (
     <div className="w-full py-[20px] flex justify-center">
       <div className="w-[353px] rounded-[16px] bg-white  border-[2px] border-primary-2 shadow-[0_0_10px_#00d6b27d] flex flex-col gap-[16px] py-[20px] px-[24px]">
