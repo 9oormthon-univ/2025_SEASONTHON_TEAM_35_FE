@@ -1,6 +1,7 @@
 import seeMoreBtn from '../../assets/icons/seeMoreBtn.png';
 import { getMyPageInfo } from '../../api/myPageApi';
 import { useEffect, useState } from 'react';
+import {Link} from 'react-router-dom';
 
 export default function UserInfo() {
   const [data, setData] = useState(null);
@@ -33,8 +34,9 @@ export default function UserInfo() {
             </p>
           </div>
         </div>
-        {/* 자산 최신화하기 */}
-        <div className="w-[124px] h-[30px] flex gap-[4px] border-[1px] border-gray-5 rounded-[16px]  justify-center items-center">
+        <Link
+            to="/mypage/up-to-date"
+            className="w-[124px] h-[30px] flex gap-[4px] border-[1px] border-gray-5 rounded-[16px]  justify-center items-center">
           <p className="text-gray-40 font-normal text-[12px]">
             자산 최신화하기
           </p>
@@ -43,7 +45,7 @@ export default function UserInfo() {
             alt="seeMoreBtn"
             className="w-[16px] h-[16px] "
           />
-        </div>
+        </Link>
       </div>
       {/* logout */}
       <button

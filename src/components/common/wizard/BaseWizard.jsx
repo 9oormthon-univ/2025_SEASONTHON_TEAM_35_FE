@@ -4,7 +4,7 @@ import WizardContent from './WizardContent';
 import WizardFooter from './WizardFooter';
 
 export default function BaseWizard(props) {
-    const { wizard, renderStep, onClose, buttonText } = props;
+    const { wizard, renderStep, onClose, buttonText, showProgress = true} = props;
 
     if (!wizard) {
         console.error("[BaseWizard] 'wizard' prop이 전달되지 않았습니다.");
@@ -27,8 +27,9 @@ export default function BaseWizard(props) {
     return (
         <div className="flex h-full flex-col bg-white">
             <WizardHeader onPrev={prev} isPrevDisabled={step === 0} onClose={onClose} showPrevButton={step > 0} />
-            <WizardProgress totalSteps={totalSteps} currentStep={step} />
-
+            {showProgress && (
+                <WizardProgress totalSteps={totalSteps} currentStep={step} />
+            )}
             <div className="p-5 pb-0">
                 <h2 className="mt-1 mb-8 whitespace-pre-wrap text-2xl font-bold leading-tight">
                     {currentStepData.keyword ? (

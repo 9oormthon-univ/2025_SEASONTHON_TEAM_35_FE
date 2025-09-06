@@ -27,6 +27,7 @@ import SplashPage from '@/pages/SplashPage/index.jsx';
 import OnBoardingPage from "@/pages/OnBoardingPage/OnBoardingPage.jsx";
 import OnBoardingFinal from '@/pages/OnBoardingPage/OnBoardingFinal.jsx';
 import KakaoCallback from './pages/auth/KaKaoCallback.jsx';
+import UpToDatePage from "@/pages/UpToDatePage/index.jsx";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -40,15 +41,9 @@ function AnimatedRoutes() {
         <Route path="/oauth/callback/kakao" element={<KakaoCallback />} />
         <Route path="/onboarding" element={<OnBoardingPage />} />
         <Route path="/onboarding/final" element={<OnBoardingFinal />} />
-        <Route
-          path="/home"
-          element={
-            <Layout title="홈">
-              <HomePage />
-            </Layout>
-          }
-        />
+        <Route path="/home" element={<Layout title="홈"><HomePage /></Layout>}/>
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/mypage/up-to-date" element={<UpToDatePage/>} />
         <Route path="/asset/main" element={<AssetPage />} />
         <Route path="/user/inform" element={<UserInformPage />} />
         <Route path="/user/inform/result" element={<UserInformResultPage />} />
@@ -56,18 +51,8 @@ function AnimatedRoutes() {
         <Route path="/home/AI-asset-plan/ETF" element={<ETFExplanation />} />
         <Route path="/ai/plan/start" element={<AssetPlanStartPage />} />
         <Route path="/ai/plan/inform" element={<AssetPlanInformPage />} />
-        <Route
-          path="/ai/plan/inform/result"
-          element={<AssetPlanResultPage />}
-        />
-        <Route
-          path="/goal-setting"
-          element={
-            <Layout title="목표 관리">
-              <GoalSettingPage />
-            </Layout>
-          }
-        />
+        <Route path="/ai/plan/inform/result" element={<AssetPlanResultPage />}/>
+        <Route path="/goal-setting" element={<Layout title="목표 관리"><GoalSettingPage /></Layout>}/>
 
         {/* 일치하는 경로가 없을 경우, 홈으로 리다이렉트  */}
         <Route path="*" element={<Navigate to="/" replace />} />

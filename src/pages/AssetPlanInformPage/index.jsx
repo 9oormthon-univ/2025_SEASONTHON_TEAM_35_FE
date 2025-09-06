@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAssets } from '../../context/AssetContext';
 import { PLAN_WIZARD_STEPS } from '@/constants/wizardSteps.js';
-import AIPlanWizard from '../../components/AssetPlanInformPage/AIPlanWizard'; // 👈 1. 새로 만든 래퍼 import
+import AIPlanWizard from '../../components/AssetPlanInformPage/AIPlanWizard';
 
 export default function AssetPlanInformPage() {
     const navigate = useNavigate();
