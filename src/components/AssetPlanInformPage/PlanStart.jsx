@@ -1,4 +1,5 @@
 import React from 'react';
+import assetPlan from "@/assets/AssetPlanInform/assetplan.png";
 
 export default function PlanStart({ title, keyword, subtitle, onStart }) {
     const titleParts = title.split(keyword);
@@ -16,7 +17,11 @@ export default function PlanStart({ title, keyword, subtitle, onStart }) {
                 </div>
             </div>
 
-            <div className="absolute bottom-[150px] left-4 right-0">
+            <div className="flex-grow flex justify-center items-center mb-[200px] ">
+                <img className="h-[240px] w-[230px]" src={assetPlan} alt='asset'/>
+            </div>
+
+            <div className="absolute bottom-[50px] left-4 right-0">
                    <button
                      type="button"
                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); onStart?.(); }}
