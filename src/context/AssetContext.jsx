@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useCallback } from 'react';
 import { getAssetSummary } from '@/api/assetApi.js';
-import {submitPlan} from "@/api/planApi.js";
+import axios from "axios";
+import { submitPlan, submitUpdatePlan } from '@/api/planApi';
 import {getMemberName} from "@/api/memberApi.js";
 import { MOCK_SUMMARY } from '@/mocks/assetMock.js';
 
@@ -159,19 +160,27 @@ export function AssetProvider({ children }) {
     }, []);
 
     // 자산 설계 제출 페이지
-    const submitAssetPlan = async (payload) => {
+    const submitAssetPlan = async (payload, mode) => {
         setIsSubmitting(true);
         setError(null);
 
         try {
-            const dto = toRecommendationDTO(payload);
-            const res = await submitPlan(dto);
+            const dto = toRecommendationDTO(payload); // ✅ 기존 변환 함수 호출
+            const normalizedMode = String(mode ?? '').trim().toLowerCase();
 
-            console.log("AI 자산 설계 제출 (실제 API):", res);
-            return res;
+            let response;
+            if (normalizedMode === 'update') {
+                            response = await submitUpdatePlan(dto);
+                      } else {
+                            response = await submitPlan(dto);
+                      }
+
+            console.log("AI 자산 설계 제출 성공 (실제 API):", response);
+            return true;
         } catch (err) {
             setError(err);
-            return null;
+            console.error("AI 자산 설계 제출 실패:", err);
+            return false;
         } finally {
             setIsSubmitting(false);
         }

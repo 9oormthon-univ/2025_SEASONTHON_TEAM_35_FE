@@ -6,14 +6,20 @@ import apiClient from './client.js';
  * @returns {Promise<object>} - API 응답 데이터
  */
 export const submitPlan = async (payload) => {
-  try {
-    const response = await apiClient.post(
-      '/api/v0/recommendation/design',
-      payload
-    );
-    return response.data;
-  } catch (error) {
-    console.error('AI 자산 설계 API 호출 실패:', error);
-    throw error;
-  }
+    try {
+        const response = await apiClient.post('/api/v0/recommendation/design', payload);
+        return response.data;
+    } catch (error) {
+        console.error("AI 자산 설계 API 호출 실패:", error);
+        throw error;
+    }
+};
+export const submitUpdatePlan = async (payload) => {
+    try {
+        const response = await apiClient.post('/api/v0/recommendation/design/update', payload);
+        return response.data;
+    } catch (error) {
+        console.error("AI 자산 설계 API 호출 실패:", error);
+        throw error;
+    }
 };

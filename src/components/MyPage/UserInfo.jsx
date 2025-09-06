@@ -2,6 +2,7 @@ import seeMoreBtn from '../../assets/icons/seeMoreBtn.png';
 import { getMyPageInfo } from '../../api/myPageApi';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import profile from '../../assets/MyPage/profile.png'
 
 export default function UserInfo() {
   const [data, setData] = useState(null);
@@ -40,7 +41,7 @@ export default function UserInfo() {
       <div className="py-[24px] px-[20px] mb-[373px] bg-white w-[353px] h-[270px]  rounded-[12px] flex flex-col items-center shadow-[0_0_8px_#E7E9EECC]">
         {/* user */}
         <div className="flex flex-col gap-[24px] pb-[24px] items-center ">
-          <div className="w-[92px] h-[92px] bg-primary-4 rounded-[50%]" />
+          <img src={profile} alt='profile' className='w-[92px] h=[92px]' />
           <div className="flex flex-col items-center">
             <h1 className="font-bold text-[20px] text-gray-100">
               {data?.name}

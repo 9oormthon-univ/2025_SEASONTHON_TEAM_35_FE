@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { PieChart, Pie, Cell } from 'recharts';
 
 import moneyIcon from '../../../assets/AIAssetPlan/money.png';
@@ -19,6 +19,12 @@ export default function AIRecommendAssetCard({ aiAssetData }) {
       value: aiAssetData?.investmentAmount,
     },
   ];
+  const navigate = useNavigate();
+
+  const handleRetry = () => {
+    console.log('[RETRY] navigating to /ai/plan/start?mode=update');
+    navigate('/ai/plan/start?mode=update');
+  };
   const total = DATA.reduce((acc, cur) => acc + cur.value, 0);
   return (
     <div className="pt-[20px] pb-[12px] px-[24px]">
@@ -26,12 +32,12 @@ export default function AIRecommendAssetCard({ aiAssetData }) {
         <h1 className="text-gray-90 text-[16px] font-bold">
           AI 추천 자산 비율
         </h1>
-        <Link
-          to="/ai/plan/start"
-          className="w-[66px] h-[26px] text-gray-50 text-[12px] border-[1px] border-gray-5 flex justify-center items-center rounded-[12px]"
+        <button
+            onClick={handleRetry}
+            className="w-[66px] h-[26px] text-gray-50 text-[12px] border-[1px] border-gray-5 flex justify-center items-center rounded-[12px]"
         >
           다시하기
-        </Link>
+        </button>
       </div>
 
       {/* 그래프 */}

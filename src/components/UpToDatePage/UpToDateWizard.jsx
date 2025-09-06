@@ -9,6 +9,7 @@ const wizardSteps = [
         title: '자산을 연결할 금융사를 \n선택해 주세요',
         keyword:"금융사",
         component: UpToDateStep,
+        disableNextOnEmpty: true,
     },
 ];
 

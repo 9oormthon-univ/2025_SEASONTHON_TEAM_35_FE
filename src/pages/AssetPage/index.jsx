@@ -28,11 +28,10 @@ export default function AssetPage() {
         return <NoInfo />;
     }
 
-    // 자산 정보가 성공적으로 불러와졌을 때
     if (assetData) {
         return (
         <Layout title="자산 정보">
-            <div className="flex flex-col items-center gap-[14px] mt-2">
+            <div className="flex flex-col items-center gap-[14px] mt-2 mb-10">
                 <TotalAssets />
                 <AssetAnalysis />
                 <InvestmentAnalysis />

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import assetPlan from "@/assets/AssetPlanInform/assetplan.png";
 
 export default function PlanStart({ title, keyword, subtitle, onStart }) {
     const titleParts = title.split(keyword);
@@ -13,19 +13,22 @@ export default function PlanStart({ title, keyword, subtitle, onStart }) {
                         <span className="text-primary-1">{keyword}</span>
                         {titleParts[1]}
                     </h1>
-                    <p className="mt-2 text-[18px] text-gray-40">
-                        {subtitle}
-                    </p>
+                    <p className="mt-2 text-[18px] text-gray-40">{subtitle}</p>
                 </div>
             </div>
 
-            <div className="absolute bottom-[150px] left-4 right-0">
-                <Link
-                    to="/ai/plan/inform"
-                    className="flex items-center justify-center w-[353px] h-[55px] bg-primary-2 text-white font-bold text-[20px] rounded-[12px] "
-                >
-                    시작하기
-                </Link>
+            <div className="flex-grow flex justify-center items-center mb-[200px] ">
+                <img className="h-[240px] w-[230px]" src={assetPlan} alt='asset'/>
+            </div>
+
+            <div className="absolute bottom-[50px] left-4 right-0">
+                   <button
+                     type="button"
+                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); onStart?.(); }}
+                     className="flex items-center justify-center w-[353px] h-[55px] bg-primary-2 text-white font-bold text-[20px] rounded-[12px]"
+                   >
+                     시작하기
+                   </button>
             </div>
         </div>
     );
