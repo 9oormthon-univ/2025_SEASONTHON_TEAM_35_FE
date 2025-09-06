@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import profileIcon from '../../assets/AIAssetPlan/profile.png';
 import Footer from '../../components/layout/Footer';
+import NoInfo from '../../components/NoInfo/NoInfo';
 
 // 자산 설계
 import AIRecommendAssetCard from '../../components/AIAssetPlanPage/AssetPlan/AIRecommendAssetCard';
@@ -39,6 +40,10 @@ export default function AIAssetPlanPage() {
 
     fetchData();
   }, []);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/ai/plan/start');
+  };
 
   const [data, setData] = useState(null);
   useEffect(() => {
@@ -82,19 +87,29 @@ export default function AIAssetPlanPage() {
         </div>
       </div>
       {/* main */}
-      {}
-      {onClicked === '자산 설계' ? (
-        <div className="h-full bg-graduation flex flex-col overflow-y-scroll ">
-          <AIRecommendAssetCard aiAssetData={aiAssetData} />
-          <AIAssetOpinionCard aiAssetData={aiAssetData} />
-          <MyInfoCard aiAssetData={aiAssetData} />
-        </div>
+      {aiAssetData ? (
+        onClicked === '자산 설계' ? (
+          <div className="h-full bg-graduation flex flex-col overflow-y-scroll ">
+            <AIRecommendAssetCard aiAssetData={aiAssetData} />
+            <AIAssetOpinionCard aiAssetData={aiAssetData} />
+            <MyInfoCard aiAssetData={aiAssetData} />
+          </div>
+        ) : (
+          <div className="h-full bg-graduation flex flex-col overflow-y-scroll pb-[85px]">
+            <AIPortfolio data={data} />
+            <AIInvestmentOpinion data={data} />
+            <Portfolio data={data} />
+            <ROA result={data || {}} />
+          </div>
+        )
       ) : (
-        <div className="h-full bg-graduation flex flex-col overflow-y-scroll pb-[85px]">
-          <AIPortfolio data={data} />
-          <AIInvestmentOpinion data={data} />
-          <Portfolio data={data} />
-          <ROA result={data || {}} />
+        <div className="bg-background h-full flex justify-center pt-[12px]">
+          <NoInfo
+            title="아직 AI 자산 설계를 받지 않았습니다."
+            description="가장 알맞은 자산 비율을 찾아보세요!"
+            btnText="AI 자산 설계 받기"
+            onButtonClick={handleClick}
+          />
         </div>
       )}
 
