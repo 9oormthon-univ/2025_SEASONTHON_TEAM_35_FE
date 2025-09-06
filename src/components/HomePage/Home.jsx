@@ -1,5 +1,4 @@
 import AssetAnalysis from '@/components/AssetPage/AssetAnalysis.jsx';
-import TotalAssets from '@/components/AssetPage/TotalAssets.jsx';
 import ROA from '@/components/AIAssetPlanPage/InvestmentAnalysis/ROA.jsx';
 
 import NoInfoCard from './NoInfoCard';
@@ -9,6 +8,9 @@ import { Link } from 'react-router-dom';
 
 import { getGoalSettingInfo } from '../../api/goalApi';
 import { useState, useEffect } from 'react';
+import HomeUserName from "@/components/HomePage/HomeUserName.jsx";
+import HomeTotalAssets from "@/components/HomePage/HomeTotalAsset.jsx";
+import HomeAssetAnalysis from "@/components/HomePage/HomeAssetAnalysis.jsx";
 
 export default function Home() {
   const [data, setData] = useState(null);
@@ -24,10 +26,11 @@ export default function Home() {
   }, []);
   return (
     <div className="flex flex-col gap-[24px]">
+        <HomeUserName/>
       {/* 총 자산 */}
-      <TotalAssets />
+      <HomeTotalAssets/>
       {/* 자산 분석 */}
-      <AssetAnalysis />
+      <HomeAssetAnalysis/>
 
       {/* AI 자산 설계 */}
       {/*<div className="flex flex-col gap-[12px]">*/}

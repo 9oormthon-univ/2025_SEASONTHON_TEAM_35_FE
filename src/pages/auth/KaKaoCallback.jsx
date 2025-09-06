@@ -12,7 +12,7 @@ export default function KakaoCallback() {
       localStorage.setItem('accessToken', token);
       console.log(token);
       // 로그인 성공 후 이동할 페이지 (예: 온보딩)
-      navigate('/onboarding/1');
+      navigate('/onboarding');
     } else {
       console.error('카카오 로그인 실패: 토큰 없음');
       navigate('/login');

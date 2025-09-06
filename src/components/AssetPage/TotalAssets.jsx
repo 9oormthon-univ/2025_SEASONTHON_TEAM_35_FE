@@ -1,5 +1,4 @@
 import { useAssets } from '../../context/AssetContext.jsx';
-import {Link} from "react-router-dom"; //
 
 export default function TotalAssets() {
     // useAssets 훅을 호출 -> 전역 상태와 필요한 값들
