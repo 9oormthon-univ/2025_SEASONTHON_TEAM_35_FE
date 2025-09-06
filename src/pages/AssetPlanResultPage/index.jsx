@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion'; // 👈 1. framer-motion을 import 합니다.
+import { motion } from 'framer-motion';
 import AnalysisLayout from '../../components/AssetPlanInformPage/AnalysisLayout.jsx';
 import StatusAnimation from '@/components/common/animations/StatusAnimation.jsx';
 
