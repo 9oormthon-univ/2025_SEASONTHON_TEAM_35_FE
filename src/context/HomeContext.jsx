@@ -61,24 +61,12 @@ export function HomeProvider({ children }) {
         }));
     }, [home]);
 
-    const periodLabel = useMemo(() => {
-        // 서버 enum → 한국어 라벨 매핑(필요 시 확장)
-        const map = {
-            UNDER_6_MONTHS: "6개월 이내",
-            UNDER_1_YEAR: "1년 이내",
-            ONE_TO_THREE_YEARS: "1–3년",
-            OVER_THREE_YEARS: "3년 이상",
-        };
-        return map[home.investmentForecast?.period] || home.investmentForecast?.period || "";
-    }, [home]);
-
     const value = {
         loading,
         error,
         home,             // 원본 전체
         assetRatios,      // 그래프/카드에 바로 쓰기 좋게 정리
         forecastSeries,   // 예측 라인차트용
-        periodLabel,      // 기간 라벨(한국어)
         refresh,          // 재로딩 액션
     };
 
