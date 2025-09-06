@@ -37,7 +37,7 @@ export default function ResidentNumberInput({ value = {}, onChange, error }) {
     };
 
     return (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2"  style={{ cursor: 'none' }}>
             {/* 첫 번째 6자리 입력 필드 */}
             <input
                 ref={part1Ref}
@@ -50,6 +50,7 @@ export default function ResidentNumberInput({ value = {}, onChange, error }) {
                            ${error ? 'border-red-500' : 'border-gray-10'}
                            focus:border-primary-1 focus:ring-1 focus:ring-primary-1
                            focus:shadow-primary-focus-light`}
+                style={{ cursor: 'none' }}
             />
             <span className="text-gray-40">-</span>
 
@@ -67,7 +68,9 @@ export default function ResidentNumberInput({ value = {}, onChange, error }) {
                                ${error ? 'border-red-500' : 'border-gray-10'}
                                focus:border-primary-1 focus:ring-1 focus:ring-primary-1
                                focus:shadow-primary-focus-light
-                               ${isMasked ? 'font-sans-password' : ''}`}
+                               ${isMasked ? '' : ''}`}
+                    style={{ cursor: 'none' }}
+
                 />
                 <button
                     type="button"

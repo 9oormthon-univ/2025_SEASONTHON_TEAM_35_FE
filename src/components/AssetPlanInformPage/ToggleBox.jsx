@@ -19,7 +19,7 @@ export default function ToggleBox({ option, isSelected, onClick }) {
     const titleFontClasses = isSelected ? 'font-semibold' : 'font-medium';
 
     return (
-        <button onClick={onClick} className={containerClasses}>
+        <button onClick={onClick} className={containerClasses} style={{ cursor: 'none' }}>
             <div className="flex flex-col items-start justify-start w-full h-full text-left">
                 {ICONS[icon] && (
                     <img
