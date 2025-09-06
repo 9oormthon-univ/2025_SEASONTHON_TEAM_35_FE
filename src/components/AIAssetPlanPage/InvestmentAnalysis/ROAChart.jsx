@@ -48,6 +48,20 @@ export default function ROAChart({ result }) {
         barSize={`${
           data?.length === 3 ? '50' : data?.length === 4 ? '45' : '30'
         }`}
+        shape={(props) => {
+          const { x, y, width, height, fill } = props;
+
+          return (
+            <rect
+              x={x}
+              y={y - 1} // 위로 이동
+              width={width}
+              height={height} // 높이는 그대로
+              fill={fill}
+              rx={4}
+            />
+          );
+        }}
       >
         {/* 막대별 색상 지정 */}
         {data.map((entry, index) => (
@@ -131,19 +145,19 @@ export default function ROAChart({ result }) {
       <defs>
         <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#80EBD9" stopOpacity={1} />
-          <stop offset="100%" stopColor="#ffffff" stopOpacity={0.5} />
+          <stop offset="100%" stopColor="#f2fffa" stopOpacity={0.5} />
         </linearGradient>
       </defs>
       <defs>
         <linearGradient id="colorMd" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#4DE3CA" stopOpacity={1} />
-          <stop offset="100%" stopColor="#ffffff" stopOpacity={0.5} />
+          <stop offset="100%" stopColor="#f2fffa" stopOpacity={0.5} />
         </linearGradient>
       </defs>
       <defs>
         <linearGradient id="colorL" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#00D6B3" stopOpacity={1} />
-          <stop offset="100%" stopColor="#ffffff" stopOpacity={0.5} />
+          <stop offset="100%" stopColor="#f2fffa" stopOpacity={0.5} />
         </linearGradient>
       </defs>
     </BarChart>
