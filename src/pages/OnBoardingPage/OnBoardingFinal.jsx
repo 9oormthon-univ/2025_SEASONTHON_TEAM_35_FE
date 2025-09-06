@@ -1,6 +1,8 @@
+import {useEffect} from "react";
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import graph from '../../assets/OnBoarding/graphicon.png'
+import {useAssets} from "@/context/AssetContext.jsx";
 
 const fadeInVariants = {
     initial: { opacity: 0 }, // 처음에는 투명하게
@@ -14,6 +16,13 @@ const pageTransition = {
 };
 
 export default function OnBoardingFinal() {
+    const { userName, fetchUserName } = useAssets();
+    console.log("3. OnboardingPage: Context로부터 받은 userName:", userName);
+    //이름 받아오는 API
+    useEffect(() => {
+        fetchUserName();
+    }, [fetchUserName]);
+
     return (
         <motion.div
             key="onboarding-final" // key를 "onboarding-final"로 변경하여 다른 페이지와 구분
