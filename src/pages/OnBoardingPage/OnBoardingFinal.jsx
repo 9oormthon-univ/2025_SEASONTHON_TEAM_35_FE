@@ -1,7 +1,8 @@
+import {useEffect} from "react";
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import OnboardingDots from '../../components/OnBoardingPage/OnBoardingDots.jsx';
-import React from "react";
+import {useAssets} from "@/context/AssetContext.jsx";
 
 const pageVariants = {
     initial: { x: '100vw' }, // 오른쪽에서 시작
@@ -15,7 +16,15 @@ const pageTransition = {
 
 export default function OnBoardingFinal() {
     const navigate = useNavigate();
+    const { userName, fetchUserName } = useAssets();
 
+    // 👇 [로그 3] OnboardingPage가 Context로부터 받은 이름 확인
+    console.log("3. OnboardingPage: Context로부터 받은 userName:", userName);
+
+    // 페이지가 렌더링될 때 사용자 이름을 비동기적으로 가져옵니다.
+    useEffect(() => {
+        fetchUserName();
+    }, [fetchUserName]);
     return (
         <motion.div
             key="onboarding-1"
