@@ -5,7 +5,7 @@ const CustomTick = ({ x, y, payload }) => {
   return (
     <text
       x={x}
-      y={y + 8} // 위치 보정
+      y={y + 12} // 위치 보정
       textAnchor="middle"
       fill={isNow ? '#00D6B3' : '#A7AEB3'} // 조건부 색상
       fontSize={12}
@@ -17,9 +17,12 @@ const CustomTick = ({ x, y, payload }) => {
 };
 export default function ROAChart({ result }) {
   const data = result?.forecast_points ?? [];
-
+  const adjustedData = data.map((d, i) => ({
+    ...d,
+    amount: d.amount * (1 + i * 0.2),
+  }));
   return (
-    <BarChart width={345} height={237} data={data} margin={{ top: 20 }}>
+    <BarChart width={350} height={237} data={adjustedData} margin={{ top: 20 }}>
       {/* 눈금 */}
       <CartesianGrid strokeDasharray="4 2" vertical={false} />
       {/* x축 */}
@@ -33,7 +36,9 @@ export default function ROAChart({ result }) {
       <Bar
         dataKey="amount"
         radius={[4, 4, 0, 0]}
-        barSize={45} // 개수에 따라 다르게 해야함!!
+        barSize={`${
+          data?.length === 3 ? '50' : data?.length === 4 ? '45' : '30'
+        }`}
       >
         {/* 막대별 색상 지정 */}
         {data.map((entry, index) => (
@@ -41,8 +46,10 @@ export default function ROAChart({ result }) {
             key={`cell-${index}`}
             fill={
               index === data.length - 1
-                ? 'url(#colorGy)' // 마지막 막대는 회색
-                : 'url(#colorUv)' // 나머지는 그라데이션
+                ? 'url(#colorL)'
+                : index === 0
+                ? 'url(#colorUv)'
+                : 'url(#colorMd)'
             }
           />
         ))}
@@ -62,7 +69,9 @@ export default function ROAChart({ result }) {
               return (
                 <g>
                   <rect
-                    x={x + width / 2 - label.length * 12 * 0.3}
+                    x={`${
+                      data?.length === 4 || data?.length === 6 ? '2' : '18'
+                    }`}
                     y={y - 30}
                     width={label.length * 12 * 0.6 + 10}
                     height={20}
@@ -72,7 +81,9 @@ export default function ROAChart({ result }) {
                     strokeWidth={1}
                   />
                   <text
-                    x={x + width / 2 + 4}
+                    x={`${
+                      data?.length === 6 || data?.length === 4 ? '42' : '62'
+                    }`}
                     y={y - 19}
                     textAnchor="middle"
                     fill="#00D6B3"
@@ -93,7 +104,7 @@ export default function ROAChart({ result }) {
                   x={x + width / 2}
                   y={y - 11} // 🔥 막대 위에 딱 붙도록 수정
                   textAnchor="middle"
-                  fill="#A7AEB3"
+                  fill="#4DE2CA"
                   fontSize={16}
                   fontWeight={700}
                   dominantBaseline="middle"
@@ -115,8 +126,14 @@ export default function ROAChart({ result }) {
         </linearGradient>
       </defs>
       <defs>
-        <linearGradient id="colorGy" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#E4E7EA" stopOpacity={1} />
+        <linearGradient id="colorMd" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#B2F3E8" stopOpacity={1} />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity={0.5} />
+        </linearGradient>
+      </defs>
+      <defs>
+        <linearGradient id="colorL" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#4DE3CA" stopOpacity={1} />
           <stop offset="100%" stopColor="#ffffff" stopOpacity={0.5} />
         </linearGradient>
       </defs>

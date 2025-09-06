@@ -1,12 +1,23 @@
 import PortfolioCard from './PortfolioCard';
 
 export default function Portfolio({ data }) {
+  const now = new Date();
+  now.setDate(now.getDate() - 1);
+
+  // 포맷 함수 (한 자리 수 앞에 0 붙이기)
+  const pad = (num) => String(num).padStart(2, '0');
+
+  const year = now.getFullYear();
+  const month = pad(now.getMonth() + 1); // 월은 0부터 시작
+  const day = pad(now.getDate());
+  const hour = pad(now.getHours());
+  const minute = pad(now.getMinutes());
   return (
     <div className="px-[24px] py-[20px]">
       <div className="w-[345px] flex justify-between mb-[16px] items-center">
         <h1 className="text-gray-90 text-[16px] font-bold">포트폴리오</h1>
         <p className="text-gray-40 font-medium text-[12px]">
-          2025.08.29 08:30 기준
+          {year}.{month}.{day} {hour}:{minute} 기준
         </p>
       </div>
       <div className="flex flex-col gap-[10px]">
