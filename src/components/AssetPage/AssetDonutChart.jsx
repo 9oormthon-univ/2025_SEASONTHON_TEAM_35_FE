@@ -68,8 +68,10 @@ export default function AssetDonutChart() {
                         >
                             <div
                                 className="w-2 h-2 rounded-full ml-3 mr-2"
-                                style={{ backgroundColor: entry.color }}
-                                style={{ cursor: 'none' }}
+                                style={{
+                                    backgroundColor: entry.color,
+                                    cursor: 'none'
+                                }}
                             />
                             <span className={textColor}>{entry.name}</span>
                             <span className={`${textColor} ml-auto mr-3`}>

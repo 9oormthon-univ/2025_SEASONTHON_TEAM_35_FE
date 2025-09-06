@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import visibleIcon from '../../assets/userInformPage/visible.png';
-import invisibleIcon from '../../assets/userInformPage/invisible.png';
+import visibleIcon from '../../assets/UserInformPage/visible.png';
+import invisibleIcon from '../../assets/UserInformPage/invisible.png';
 
 
 export default function ResidentNumberInput({ value = {}, onChange, error }) {
