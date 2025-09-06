@@ -1,54 +1,45 @@
-import {useEffect} from "react";
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import OnboardingDots from '../../components/OnBoardingPage/OnBoardingDots.jsx';
-import {useAssets} from "@/context/AssetContext.jsx";
+import { Link } from 'react-router-dom';
+import graph from '../../assets/OnBoarding/graphicon.png'
 
-const pageVariants = {
-    initial: { x: '100vw' }, // 오른쪽에서 시작
-    animate: { x: 0 },       // 중앙으로 이동
-    exit: { x: '-100vw' }     // 왼쪽으로 사라짐
+const fadeInVariants = {
+    initial: { opacity: 0 }, // 처음에는 투명하게
+    animate: { opacity: 1 }, // 나타날 때 서서히 보이게
+    exit: { opacity: 0 }     // 사라질 때 서서히 사라지게
 };
+
 const pageTransition = {
     type: 'tween',
-    duration: 0.5
+    duration: 1.0
 };
 
 export default function OnBoardingFinal() {
-    const navigate = useNavigate();
-    const { userName, fetchUserName } = useAssets();
-
-    // 👇 [로그 3] OnboardingPage가 Context로부터 받은 이름 확인
-    console.log("3. OnboardingPage: Context로부터 받은 userName:", userName);
-
-    // 페이지가 렌더링될 때 사용자 이름을 비동기적으로 가져옵니다.
-    useEffect(() => {
-        fetchUserName();
-    }, [fetchUserName]);
     return (
         <motion.div
-            key="onboarding-1"
-            variants={pageVariants}
+            key="onboarding-final" // key를 "onboarding-final"로 변경하여 다른 페이지와 구분
+            variants={fadeInVariants}
             initial="initial"
             animate="animate"
             exit="exit"
             transition={pageTransition}
             className="flex flex-col items-center justify-center min-h-screen p-10 bg-white"
         >
-            <OnboardingDots total={3} current={3} />
 
             <div className="flex-grow flex flex-col items-center justify-center">
-                <h1 className="text-2xl font-bold">마지막 페이지</h1>
-            </div>
-            <div className="flex w-full gap-4 mb-10">
-                <div className="flex w-full gap-4 mb-10">
-
-                   <button onClick={() => navigate('/user/inform')}
-                   >
-                       시작하기
-                   </button>
+                <div className="text-[24px] text-center font-bold">
+                    <span className="text-primary-2">그로우플랜</span>과 함께 <br />
+                    자산관리를 시작해보세요!
                 </div>
             </div>
+            <div className="w-[240px] h-[313px] mb-20">
+                <img src={graph} alt="Onboarding" className="w-full h-full object-contain" />
+            </div>
+            <Link
+                to="/user/inform"
+                className="flex items-center justify-center w-[353px] h-[55px] bg-primary-2 text-white font-bold text-[20px] rounded-[12px] mb-20"
+            >
+                시작하기
+            </Link>
         </motion.div>
     );
 }
