@@ -1,4 +1,4 @@
-import onboarding1 from "../../assets/OnBoarding/onboarding1.png"
+import onboarding1 from "@/assets/OnBoarding/onboarding1.png"
 
 export default function OnBoardingContent1() {
     return (
