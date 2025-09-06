@@ -6,7 +6,7 @@ export default function ROA({ result }) {
       <div className="flex gap-[4px] flex-col mb-[16px]">
         <h1 className="text-gray-90 text-[16px] font-bold">예상 자산 수익률</h1>
         <p className="text-primary-1 font-semibold text-[12px]">
-          예상 연 수익률 {parseInt(result.annual_return)}%
+          예상 연 수익률 {parseInt(result?.annual_return)}%
         </p>
       </div>
       <div>
