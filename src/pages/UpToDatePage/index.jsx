@@ -8,7 +8,6 @@ const wizardSteps = [
         title: '금융사 선택',
         component: UpToDateStep,
     },
-
 ];
 
 export default function UpToDatePage() {

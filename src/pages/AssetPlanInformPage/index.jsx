@@ -6,10 +6,10 @@ import AIPlanWizard from '../../components/AssetPlanInformPage/AIPlanWizard';
 
 export default function AssetPlanInformPage() {
     const navigate = useNavigate();
-    const location = useLocation(); // ✅ 현재 URL 정보 가져오기
+    const location = useLocation();
     const { submitAssetPlan } = useAssets();
 
-    // ✅ URL의 쿼리 파라미터에서 mode 값 추출
+    // URL의 쿼리 파라미터에서 mode 값 추출
     const queryParams = new URLSearchParams(location.search);
     const mode = (queryParams.get('mode') || '').trim().toLowerCase();
 
@@ -23,7 +23,7 @@ export default function AssetPlanInformPage() {
             return;
         }
 
-        // ✅ submitAssetPlan에 payload와 mode를 함께 전달
+        // submitAssetPlan에 payload와 mode를 함께 전달
         const success = await submitAssetPlan(payload, mode);
 
         if (success) {
