@@ -9,7 +9,7 @@ export default function ROA({ result }) {
           예상 연 수익률 {parseInt(result?.annual_return)}%
         </p>
       </div>
-      <div>
+      <div className="w-[345px] h-[237px] flex jsutify-center">
         <ROAChart result={result || {}} />
       </div>
     </div>
