@@ -26,6 +26,8 @@ const CustomCursor = () => {
                 left: position.x,
                 // 원형 커서 스타일
                 backgroundColor: 'rgba(220, 220, 220, 0.6)', // 투명한 흰색
+                width: '20px',
+                height: '20px',
                 borderRadius: '50%',
                 pointerEvents: 'none', // 커서가 다른 요소 클릭 방해 방지
                 transform: 'translate(-50%, -50%)', // 커서 정중앙에 위치
