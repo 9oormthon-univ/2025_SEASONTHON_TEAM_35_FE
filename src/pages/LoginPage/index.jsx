@@ -36,7 +36,7 @@ export default function LoginPage() {
                 className="mt-20" // margin을 따로 줘서 Link 컴포넌트를 감싸기
             >
                 <Link
-                    to="/on-boarding"
+                    to="/onboarding/1"
                     className="w-[350px] h-[56px] rounded-[12px] bg-[#FFEB3B] flex text-[16px] text-[#111111] font-bold justify-center items-center"
                 >
                     <img src={kakaoIcon} alt="kakaoIcon" className="w-[32px] h-[27px] mr-[6px]"/>
