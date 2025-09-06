@@ -1,37 +1,24 @@
 import { BarChart, Bar, XAxis, CartesianGrid, LabelList, Cell } from 'recharts';
-const CustomTick = ({ x, y, payload }) => {
+
+const CustomTick = ({ x, y, payload, index, dataLength }) => {
   const isNow = payload.value === '현재';
+  const isLast = index === dataLength - 1;
   return (
     <text
       x={x}
       y={y + 12} // 위치 보정
       textAnchor="middle"
-      fill={isNow ? '#00D6B3' : '#A7AEB3'} // 조건부 색상
+      fill={isNow || isLast ? '#00D6B3' : '#A7AEB3'} // 조건부 색상
       fontSize={12}
-      fontWeight={400}
+      fontWeight={isNow || isLast ? 600 : 400}
     >
       {payload.value}
     </text>
   );
 };
-export default function AIAssetPlan() {
-  const data = [
-    {
-      label: '현재',
-      years: 0,
-      amount: 1000000,
-    },
-    {
-      label: '1년 후',
-      years: 1,
-      amount: 2000000,
-    },
-    {
-      label: '2년 후',
-      years: 2,
-      amount: 3000000,
-    },
-  ];
+
+export default function AIAssetPlan({ home }) {
+  const data = home?.investmentForecast?.forecastPoints;
   const adjustedData = data.map((d, i) => ({
     ...d,
     amount: d.amount * (1 + i * 0.2),
@@ -59,7 +46,15 @@ export default function AIAssetPlan() {
             dataKey="label"
             tickLine={false}
             axisLine={{ stroke: '#D7DDE1', strokeWidth: 2 }}
-            tick={<CustomTick />}
+            tick={({ x, y, payload, index }) => (
+              <CustomTick
+                x={x}
+                y={y}
+                payload={payload}
+                index={index}
+                dataLength={data.length}
+              />
+            )}
           />
           {/* 막대 */}
           <Bar
@@ -68,6 +63,20 @@ export default function AIAssetPlan() {
             barSize={`${
               data?.length === 3 ? '50' : data?.length === 4 ? '45' : '30'
             }`}
+            shape={(props) => {
+              const { x, y, width, height, fill } = props;
+
+              return (
+                <rect
+                  x={x}
+                  y={y - 1} // 위로 이동
+                  width={width}
+                  height={height} // 높이는 그대로
+                  fill={fill}
+                  rx={4}
+                />
+              );
+            }}
           >
             {/* 막대별 색상 지정 */}
             {data.map((entry, index) => (
@@ -99,7 +108,7 @@ export default function AIAssetPlan() {
                     <g>
                       <rect
                         x={`${
-                          data?.length === 4 || data?.length === 6 ? '2' : '18'
+                          data?.length === 4 || data?.length === 6 ? '1' : '15'
                         }`}
                         y={y - 30}
                         width={label.length * 12 * 0.6 + 10}
@@ -120,8 +129,10 @@ export default function AIAssetPlan() {
                         fontWeight={600}
                         dominantBaseline="middle"
                       >
-                        {/* {`${result?.currentAmount?.toLocaleString?.() ?? 0}원`} */}
-                        {data[0].amount.toLocaleString()}원
+                        {`${
+                          home?.investmentForecast?.currentAmount?.toLocaleString?.() ??
+                          0
+                        }원`}
                       </text>
                     </g>
                   );
@@ -134,13 +145,12 @@ export default function AIAssetPlan() {
                       x={x + width / 2}
                       y={y - 11} // 🔥 막대 위에 딱 붙도록 수정
                       textAnchor="middle"
-                      fill="#4DE2CA"
+                      fill="#00BA9B"
                       fontSize={16}
                       fontWeight={700}
                       dominantBaseline="middle"
                     >
-                      {/* {(value / 10000).toFixed(0)}만 */}
-                      1,800만
+                      {(value / 10000).toFixed(0)}만
                     </text>
                   );
                 }
@@ -152,20 +162,20 @@ export default function AIAssetPlan() {
 
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#00D6B3" stopOpacity={1} />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity={0.5} />
+              <stop offset="0%" stopColor="#80EBD9" stopOpacity={1} />
+              <stop offset="100%" stopColor="#f2fffa" stopOpacity={0.5} />
             </linearGradient>
           </defs>
           <defs>
             <linearGradient id="colorMd" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#B2F3E8" stopOpacity={1} />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity={0.5} />
+              <stop offset="0%" stopColor="#4DE3CA" stopOpacity={1} />
+              <stop offset="100%" stopColor="#f2fffa" stopOpacity={0.5} />
             </linearGradient>
           </defs>
           <defs>
             <linearGradient id="colorL" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#4DE3CA" stopOpacity={1} />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity={0.5} />
+              <stop offset="0%" stopColor="#00D6B3" stopOpacity={1} />
+              <stop offset="100%" stopColor="#f2fffa" stopOpacity={0.5} />
             </linearGradient>
           </defs>
         </BarChart>
