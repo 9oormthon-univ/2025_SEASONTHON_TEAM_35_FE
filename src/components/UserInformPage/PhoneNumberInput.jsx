@@ -47,7 +47,7 @@ export default function PhoneNumberInput({ value = {}, onChange, error }) {
     const selectedCarrierLabel = carriers.find(c => c.value === carrier)?.label || '이용 중인 통신사를 선택해 주세요';
 
     return (
-        <div className="space-y-2">
+        <div className="space-y-2 "  style={{ cursor: 'none' }}>
             <div className="relative" ref={dropdownRef}>
                 <button
                     type="button"
@@ -57,6 +57,7 @@ export default function PhoneNumberInput({ value = {}, onChange, error }) {
                                focus:shadow-primary-focus-light focus:border-primary-2 focus:outline-none
                                ${!carrier ? 'text-gray-400' : 'text-gray-100'}
                                text-[18px]  border-2 rounded-xl bg-white`}
+                    style={{ cursor: 'none' }}
                 >
                     <span>{selectedCarrierLabel}</span>
                     <svg
@@ -71,12 +72,14 @@ export default function PhoneNumberInput({ value = {}, onChange, error }) {
                     <div
                         className="absolute z-10 w-full  bg-white border border-gray-200 rounded-xl shadow-lg
                                    h-[267px] overflow-y-auto"
+                        style={{ cursor: 'none' }}
                     >
                         {carriers.map(c => (
                             <div
                                 key={c.value}
                                 onClick={() => handleCarrierSelect(c.value)}
                                 className="px-4 py-[8px] text-[18px] text-gray-100  cursor-pointer"
+                                style={{ cursor: 'none' }}
                             >
                                 {c.label}
                             </div>
@@ -95,6 +98,7 @@ export default function PhoneNumberInput({ value = {}, onChange, error }) {
                 className={`w-full h-[50px] px-4 rounded-[12px] border text-[18px]
                ${error ? 'border-red-500' : 'border-gray-20'}
                focus:shadow-primary-focus-light focus:border-primary-2 focus:outline-none`}
+                style={{ cursor: 'none' }}
             />
         </div>
     );

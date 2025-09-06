@@ -38,6 +38,7 @@ export default function AIAssetPlan({ home }) {
           height={237}
           data={adjustedData}
           margin={{ top: 20 }}
+          style={{ cursor: 'none' }}
         >
           {/* 눈금 */}
           <CartesianGrid strokeDasharray="4 2" vertical={false} />

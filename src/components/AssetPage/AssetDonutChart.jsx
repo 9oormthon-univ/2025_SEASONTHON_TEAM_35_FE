@@ -26,8 +26,8 @@ export default function AssetDonutChart() {
     return (
         <div className="flex items-center space-x-6 p-4 bg-white rounded-lg">
             {/* 도넛 차트 */}
-            <div className="relative mr-1">
-                <PieChart width={140} height={140}>
+            <div className="relative mr-1" style={{ cursor: 'none' }}>
+                <PieChart width={140} height={140} style={{ cursor: 'none' }}>
                     <Pie
                         data={chartData}
                         dataKey="value"
@@ -37,6 +37,7 @@ export default function AssetDonutChart() {
                         outerRadius={65}
                         startAngle={90}
                         endAngle={-270}
+                        style={{ cursor: 'none' }}
                     >
                         {chartData.map((entry) => (
                             <Cell key={`cell-${entry.name}`} fill={entry.color} stroke="none" />
@@ -63,10 +64,12 @@ export default function AssetDonutChart() {
                                 transition: 'opacity 740ms ease, transform 740ms ease',
                                 transitionDelay: `${200 + index * 50}ms`,
                             }}
+
                         >
                             <div
                                 className="w-2 h-2 rounded-full ml-3 mr-2"
                                 style={{ backgroundColor: entry.color }}
+                                style={{ cursor: 'none' }}
                             />
                             <span className={textColor}>{entry.name}</span>
                             <span className={`${textColor} ml-auto mr-3`}>

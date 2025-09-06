@@ -80,8 +80,8 @@ export default function AIPortfolio({ data }) {
         </Link>
       </div>
       {/* 그래프 */}
-      <div className="border-b-[1px] border-gray-5 pb-[20px] flex flex-col items-center mt-[16px] gap-[24px]">
-        <PieChart width={220} height={220}>
+      <div className="border-b-[1px] border-gray-5 pb-[20px] flex flex-col items-center mt-[16px] gap-[24px]" style={{ cursor: 'none' }}>
+        <PieChart width={220} height={220} style={{ cursor: 'none' }}>
           <Pie
             data={TEMP_DATA}
             dataKey="value"

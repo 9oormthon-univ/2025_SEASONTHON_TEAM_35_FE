@@ -1,6 +1,7 @@
 export default function NameInput({ value, error, onClick }) {
     return (
-        <div className="relative" onClick={onClick}>
+        <div className="relative" onClick={onClick}
+             style={{ cursor: 'none' }}>
             <input
                 type="text"
                 value={value || ''}
@@ -8,6 +9,8 @@ export default function NameInput({ value, error, onClick }) {
                 className={`w-full h-[50px] px-4 rounded-lg border text-[20px]
                            ${error ? 'border-red-500' : 'border-gray-20'} 
                            bg-white text-gray-90`}
+                style={{ cursor: 'none' }}
+
             />
         </div>
     );

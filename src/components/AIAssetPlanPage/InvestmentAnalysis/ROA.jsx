@@ -10,7 +10,7 @@ export default function ROA({ result }) {
         </p>
       </div>
       <div className="w-[345px] h-[237px] flex jsutify-center">
-        <ROAChart result={result || {}} />
+        <ROAChart result={result || {}} style={{ cursor: 'none' }}/>
       </div>
     </div>
   );

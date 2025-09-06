@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PlanStart from '../../components/AssetPlanInformPage/PlanStart.jsx';
 import WizardHeader from '../../components/common/wizard/WizardHeader.jsx';
-import assetPlan from '../../assets/AssetPlanInform/assetplan.png'; // Make sure the path is correct
 
 export default function AssetPlanStartPage() {
     const navigate = useNavigate();

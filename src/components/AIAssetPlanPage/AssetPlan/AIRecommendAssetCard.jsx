@@ -41,8 +41,8 @@ export default function AIRecommendAssetCard({ aiAssetData }) {
       </div>
 
       {/* 그래프 */}
-      <div className="flex flex-col items-center gap-[24px]">
-        <PieChart width={220} height={220}>
+      <div className="flex flex-col items-center gap-[24px]" style={{ cursor: 'none' }}>
+        <PieChart width={220} height={220} style={{ cursor: 'none' }}>
           <Pie
             data={DATA}
             dataKey="value"
