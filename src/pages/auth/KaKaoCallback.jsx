@@ -6,7 +6,7 @@ export default function KakaoCallback() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = searchParams.get('token');
+    const token = searchParams.get('access_token');
     if (token) {
       // 토큰 저장
       localStorage.setItem('accessToken', token);
