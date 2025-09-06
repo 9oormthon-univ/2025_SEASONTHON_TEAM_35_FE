@@ -11,7 +11,7 @@ export default function GoalSetting({ data }) {
       </div>
       <div className="flex flex-col gap-[4px]">
         <div className="text-gray-40 text-[12px] font-semibold flex justify-between">
-          <p>{data?.totalAmount?.toLocaleString()}원</p>
+          <p>{data?.totalAsset?.toLocaleString()}원</p>
           <p>{data?.targetAmount?.toLocaleString()}원</p>
         </div>
         <div className="w-full h-[8px] bg-gray-5 rounded-full overflow-hidden">
