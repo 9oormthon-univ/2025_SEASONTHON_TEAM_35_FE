@@ -23,8 +23,11 @@ import UserInformPage from '@/pages/UserInformPage/index.jsx';
 import UserInformResultPage from '@/pages/UserInformResultPage/index.jsx';
 import AssetPlanStartPage from '@/pages/AssetPlanStartPage/index.jsx';
 import AssetPlanResultPage from '@/pages/AssetPlanResultPage/index.jsx';
-import OnBoardingPage from '@/pages/OnBoardingPage/index.jsx';
 import SplashPage from '@/pages/SplashPage/index.jsx';
+import OnBoardingPage1 from '@/pages/OnBoardingPage/OnBoardingPage1.jsx';
+import OnBoardingPage2 from '@/pages/OnBoardingPage/OnBoardingPage2.jsx';
+import OnBoardingPage3 from '@/pages/OnBoardingPage/OnBoarding3.jsx';
+import OnBoardingFinal from '@/pages/OnBoardingPage/OnBoardingFinal.jsx';
 import KakaoCallback from './pages/auth/KaKaoCallback.jsx';
 
 function AnimatedRoutes() {
@@ -37,7 +40,11 @@ function AnimatedRoutes() {
         <Route path="/" element={<SplashPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/oauth/callback/kakao" element={<KakaoCallback />} />
-        <Route path="/on-boarding" element={<OnBoardingPage />} />
+
+        <Route path="/onboarding/1" element={<OnBoardingPage1 />} />
+        <Route path="/onboarding/2" element={<OnBoardingPage2 />} />
+        <Route path="/onboarding/3" element={<OnBoardingPage3 />} />
+        <Route path="/onboarding/final" element={<OnBoardingFinal />} />
         <Route
           path="/home"
           element={
